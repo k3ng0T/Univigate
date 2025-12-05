@@ -2,41 +2,74 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Univigate — Поиск университетов</title>
-    <link rel="stylesheet" href="style.css">
+    <title>UniviGate - Поиск университетов</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Подключение иконок Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header class="header-blur">
-        <div class="header-content">
-            <div class="logo-block">
-                <img src="img/logo.png" alt="Логотип" class="logo">
-                <span class="project-name">Univigate</span>
+    <!-- Центральная кнопка навигации -->
+    <div class="central-nav">
+        <button id="central-button" class="central-button">
+            <i class="fas fa-graduation-cap"></i>
+        </button>
+    </div>
+
+    <!-- Круговое меню навигации (отдельно от central-nav) -->
+    <div class="circular-menu" id="circular-menu">
+        <div class="menu-buttons-container">
+            <button class="menu-item search-btn" data-description="Расширенный поиск">
+                <i class="fas fa-search-plus"></i>
+            </button>
+            <a href="pages/ai-searcher.html" class="menu-item ai-btn" data-description="AI Поиск университетов">
+                <i class="fas fa-robot"></i>
+            </a>
+            <button class="menu-item ranking-btn" data-description="Рейтинги университетов">
+                <i class="fas fa-trophy"></i>
+            </button>
+            <button class="menu-item filter-btn" data-description="Фильтры поиска">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+            <button class="menu-item favorite-btn" data-description="Избранные университеты">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button class="menu-item compare-btn" data-description="Сравнение университетов">
+                <i class="fas fa-balance-scale"></i>
+            </button>
+            <button class="menu-item exit-btn" data-description="Закрыть меню">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Главный контейнер -->
+    <div class="container">
+
+        <!-- Каталог университетов -->
+        <div class="university-catalog" id="university-catalog">
+            <!-- Карточки университетов будут добавлены через JavaScript -->
+        </div>
+
+        <!-- Модальное окно поиска -->
+        <div class="modal" id="search-modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Расширенный поиск университетов</h2>
+                <form id="search-form">
+                    <input type="number" placeholder="Балл IELTS" min="0" max="9" step="0.5">
+                    <input type="number" placeholder="Балл SAT" min="0" max="1600">
+                    <select id="country-select">
+                        <option value="">Выберите страну</option>
+                    </select>
+                    <button type="submit">Поиск</button>
+                </form>
             </div>
-            <div class="menu-center">
-                <button class="menubutton" id="menubutton"></button>
-            </div>
         </div>
-    </header>
-    <main class="main-bg">
-      <section class="news">
-        <div class="news-card">
-          <h3>Новость 1</h3>
-          <p>Текст новости. Обновления проекта...</p>
-        </div>
-        <div class="news-card">
-          <h3>Новость 2</h3>
-          <p>Вышло обновление дизайна!...</p>
-        </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <span>Univigate © 2025</span>
-    </footer>
-    <div id="menumodal" class="menu-modal">
-      <!-- Модальное меню (по кнопке) --></div>
-    <script src="script.js"></script>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
-
