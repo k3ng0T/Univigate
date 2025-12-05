@@ -113,3 +113,89 @@ countries.forEach(country => {
 // Инициализация: главная страница пустая
 // Университеты отображаются только через AI поиск на странице результатов
 // displayUniversities();
+
+// ============================================
+// АНИМИРОВАННЫЙ ПОИСК
+// ============================================
+
+const animatedSearchInput = document.getElementById('animated-search-input');
+const animatedSearchButton = document.getElementById('animated-search-button');
+const animatedSearch = document.querySelector('.animated-search');
+
+// Функция для поиска университетов по тексту
+function searchUniversitiesByText(searchText) {
+    if (!searchText || searchText.trim() === '') {
+        return universities;
+    }
+    
+    const searchLower = searchText.toLowerCase().trim();
+    return universities.filter(university => {
+        const nameMatch = university.name.toLowerCase().includes(searchLower);
+        const countryMatch = university.country.toLowerCase().includes(searchLower);
+        return nameMatch || countryMatch;
+    });
+}
+
+// Обработчик ввода текста в анимированный поиск
+if (animatedSearchInput) {
+    let searchTimeout;
+    
+    animatedSearchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        const searchText = e.target.value;
+        
+        // Поиск с небольшой задержкой для оптимизации
+        searchTimeout = setTimeout(() => {
+            const filteredUniversities = searchUniversitiesByText(searchText);
+            displayUniversities(filteredUniversities);
+        }, 300);
+    });
+    
+    // Обработчик нажатия Enter
+    animatedSearchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const searchText = e.target.value;
+            const filteredUniversities = searchUniversitiesByText(searchText);
+            displayUniversities(filteredUniversities);
+        }
+    });
+}
+
+// Обработчик клика по кнопке поиска
+if (animatedSearchButton) {
+    animatedSearchButton.addEventListener('click', () => {
+        if (animatedSearchInput) {
+            const searchText = animatedSearchInput.value;
+            const filteredUniversities = searchUniversitiesByText(searchText);
+            displayUniversities(filteredUniversities);
+        }
+    });
+}
+
+// Управление классом search-opened для контроля анимации закрытия
+if (animatedSearch) {
+    animatedSearch.addEventListener('mouseenter', () => {
+        animatedSearch.classList.add('search-opened');
+    });
+    
+    animatedSearch.addEventListener('mouseleave', () => {
+        // Убираем класс после завершения анимации закрытия
+        setTimeout(() => {
+            animatedSearch.classList.remove('search-opened');
+        }, 150); // Время анимации закрытия
+    });
+    
+    // Также при фокусе
+    if (animatedSearchInput) {
+        animatedSearchInput.addEventListener('focus', () => {
+            animatedSearch.classList.add('search-opened');
+        });
+        
+        animatedSearchInput.addEventListener('blur', () => {
+            setTimeout(() => {
+                animatedSearch.classList.remove('search-opened');
+            }, 150);
+        });
+    }
+}

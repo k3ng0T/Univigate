@@ -20,55 +20,40 @@
     <!-- Круговое меню навигации (отдельно от central-nav) -->
     <div class="circular-menu" id="circular-menu">
         <div class="menu-buttons-container">
-            <button class="menu-item search-btn" data-description="Расширенный поиск">
-                <i class="fas fa-search-plus"></i>
-            </button>
-            <a href="pages/ai-searcher.html" class="menu-item ai-btn" data-description="AI Поиск университетов">
+            <!-- Анимированный поиск в центре -->
+            <div class="animated-search">
+                <input type="text" class="animated-search__input" id="animated-search-input" placeholder="Поиск университетов...">
+                <button class="animated-search__button" id="animated-search-button">
+                    <svg class="animated-search__icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <g>
+                            <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                        </g>
+                    </svg>
+                </button>
+            </div>
+            
+
+            <a href="pages/ai-searcher.html" class="menu-item ai-btn" data-description="AI Калькулятор">
                 <i class="fas fa-robot"></i>
             </a>
-            <a href="pages/map.html" class="menu-item map-btn" data-description="Карта университетов">
-                <i class="fas fa-map-marked-alt"></i>
+            <a href="pages/map.html" class="menu-item search-btn" data-description="Расширенная карта РК">
+                <i class="fas fa-search-plus"></i>
             </a>
-            <button class="menu-item ranking-btn" data-description="Рейтинги университетов">
+            <a href="#" class="menu-item ranking-btn" data-description="Рейтинги университетов">
                 <i class="fas fa-trophy"></i>
-            </button>
-            <button href="pages/map.html" class="menu-item map-btn" data-description="karta">
+            </a>
+            <a href="#" class="menu-item filter-btn" data-description="Фильтры поиска">
                 <i class="fas fa-sliders-h"></i>
-            </button>
-            <button class="menu-item favorite-btn" data-description="Избранные университеты">
+            </a>
+            <a href="#" class="menu-item favorite-btn" data-description="Избранные университеты">
                 <i class="fas fa-heart"></i>
-            </button>
-            <button class="menu-item compare-btn" data-description="Сравнение университетов">
+            </a>
+            <a href="#" class="menu-item compare-btn" data-description="Сравнение университетов">
                 <i class="fas fa-balance-scale"></i>
-            </button>
-            <button class="menu-item exit-btn" data-description="Закрыть меню">
+            </a>
+            <a href="#" class="menu-item exit-btn" data-description="Закрыть меню">
                 <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Главный контейнер -->
-    <div class="container">
-
-        <!-- Каталог университетов -->
-        <div class="university-catalog" id="university-catalog">
-            <!-- Карточки университетов будут добавлены через JavaScript -->
-        </div>
-
-        <!-- Модальное окно поиска -->
-        <div class="modal" id="search-modal">
-            <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2>Расширенный поиск университетов</h2>
-                <form id="search-form">
-                    <input type="number" placeholder="Балл IELTS" min="0" max="9" step="0.5">
-                    <input type="number" placeholder="Балл SAT" min="0" max="1600">
-                    <select id="country-select">
-                        <option value="">Выберите страну</option>
-                    </select>
-                    <button type="submit">Поиск</button>
-                </form>
-            </div>
+            </a>
         </div>
     </div>
 
