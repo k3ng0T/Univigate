@@ -1,0 +1,158 @@
+{
+  "AstanaIT": {
+    "full_name": [
+      "Astana IT University"
+    ],
+    "Description": [
+      "Astana IT University (AITU) — специализированный IT-университет нового поколения.",
+      "Университет создан для подготовки высококвалифицированных IT-специалистов.",
+      "Обучение ведётся на английском языке с использованием современных методик.",
+      "AITU является центром цифровых инноваций и технологического предпринимательства."
+    ],
+    "Rating": [
+      "QS World University Rankings: нету",
+      "QS Asia University Rankings: нету",
+      "Национальный рейтинг исследовательских вузов Казахстана (NHR): нету"
+    ],
+    "Accreditation": [
+      "Национальная аккредитация IQAA",
+      "Международные партнёрства с Microsoft, Cisco, AWS",
+      "Государственная лицензия МОН РК"
+    ],
+    "Location": [
+      "Астана, Казахстан"
+    ],
+    "Founded": [
+      "2017 год"
+    ],
+    "ProgramsByDegree": {
+      "Bachelor": [
+        "Computer Science",
+        "Software Engineering",
+        "Information Systems",
+        "Cybersecurity",
+        "Data Science",
+        "Artificial Intelligence",
+        "Big Data Analytics",
+        "Blockchain Technologies",
+        "Digital Journalism",
+        "Digital Marketing",
+        "IT Management",
+        "Media Technologies",
+        "Smart Technologies",
+        "Internet of Things",
+        "Machine Learning",
+        "Computer Vision",
+        "Cloud Computing",
+        "DevOps Engineering",
+        "Game Development",
+        "Mobile Development",
+        "Web Development",
+        "UX/UI Design",
+        "IT Project Management",
+        "Digital Business"
+      ],
+      "Master": [
+        "Computer Science",
+        "Software Engineering",
+        "Data Science",
+        "Cybersecurity",
+        "Artificial Intelligence",
+        "IT Management",
+        "Big Data Analytics",
+        "Digital Transformation",
+        "Machine Learning",
+        "Cloud Computing",
+        "Information Systems Management"
+      ],
+      "Doctorate": [
+        "Computer Science",
+        "Information Systems",
+        "Data Science",
+        "Cybersecurity"
+      ]
+    },
+    "FacultyDirections": {
+      "School of Information Technology": [
+        "Computer Science",
+        "Software Engineering",
+        "Information Systems",
+        "Cybersecurity",
+        "Data Science",
+        "Artificial Intelligence",
+        "Big Data",
+        "Blockchain",
+        "Cloud Computing",
+        "DevOps"
+      ],
+      "School of Digital Technologies": [
+        "Digital Journalism",
+        "Digital Marketing",
+        "IT Management",
+        "Media Technologies",
+        "UX/UI Design"
+      ]
+    },
+    "RequirementsToApply": {
+      "Undergraduate": [
+        "Аттестат о среднем образовании",
+        "Результаты ЕНТ",
+        "IELTS 5.5+ или внутренний тест по английскому",
+        "Мотивационное письмо"
+      ],
+      "Graduate": [
+        "Диплом бакалавра в области IT или смежной специальности",
+        "IELTS 6.0+ или эквивалент",
+        "Рекомендательные письма",
+        "Мотивационное письмо",
+        "Портфолио проектов (рекомендуется)"
+      ]
+    },
+    "AbroadOpportunityScholarships": {
+      "Стипендии": "Государственные гранты, внутренние стипендии для отличников, стипендии от IT-компаний партнёров",
+      "Международные программы": "Партнёрства с IT-компаниями (Microsoft, Cisco, AWS, Google), обмены с зарубежными университетами, стажировки в международных технологических компаниях"
+    },
+    "StrongPoints": [
+      "Специализация на IT",
+      "Современные программы обучения",
+      "Партнёрства с IT-компаниями (Microsoft, Cisco, AWS)",
+      "Практико-ориентированное обучение",
+      "Инкубатор стартапов и технопарк",
+      "Преподавание на английском языке"
+    ],
+    "BachelorENTThresholds": {
+      "Computer Science": {
+        "threshold": 50,
+        "grant": 120
+      },
+      "Software Engineering": {
+        "threshold": 50,
+        "grant": 118
+      },
+      "Cybersecurity": {
+        "threshold": 50,
+        "grant": 115
+      },
+      "Data Science": {
+        "threshold": 50,
+        "grant": 122
+      },
+      "AI": {
+        "threshold": 50,
+        "grant": 125
+      },
+      "Information Systems": {
+        "threshold": 50,
+        "grant": 112
+      },
+      "IT Management": {
+        "threshold": 50,
+        "grant": 105
+      },
+      "Digital Marketing": {
+        "threshold": 50,
+        "grant": 100
+      }
+    }
+  }
+}

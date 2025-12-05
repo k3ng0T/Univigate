@@ -1,0 +1,119 @@
+{
+  "DMUK": {
+    "full_name": [
+      "De Montfort University Kazakhstan"
+    ],
+    "Description": [
+      "De Montfort University Kazakhstan (DMUK) — первый британский университет в Казахстане.",
+      "Филиал британского De Montfort University (Лестер).",
+      "Студенты получают британский диплом, признанный во всём мире.",
+      "Обучение ведётся полностью на английском языке по британским стандартам."
+    ],
+    "Rating": [
+      "QS World University Rankings (DMU UK): 711-720 место",
+      "Uni Compare 2025: топ-25",
+      "Национальный рейтинг исследовательских вузов Казахстана (NHR): нету"
+    ],
+    "Accreditation": [
+      "Аккредитация Quality Assurance Agency for Higher Education (QAA) UK",
+      "Британский диплом De Montfort University",
+      "Признание диплома в 196 странах мира"
+    ],
+    "Location": [
+      "Алматы, район Esentai City"
+    ],
+    "Founded": [
+      "2021 год"
+    ],
+    "ProgramsByDegree": {
+      "Bachelor": [
+        "Politics and International Relations",
+        "Business Entrepreneurship & Innovation",
+        "Finance and Investments",
+        "Business and Marketing",
+        "Advertising and Marketing",
+        "Business Management",
+        "Graphic Design",
+        "Graphic Design & Illustration",
+        "Computer Science",
+        "Cyber Security",
+        "Business Data Analytics",
+        "Artificial Intelligence",
+        "Digital Media",
+        "Fashion Design",
+        "Interior Design",
+        "Economics",
+        "Accounting and Finance",
+        "Human Resource Management",
+        "Event Management"
+      ],
+      "Master": [
+        "Business Administration (MBA)",
+        "International Business",
+        "Finance and Investment",
+        "Marketing Management",
+        "Cyber Security",
+        "Data Analytics",
+        "Artificial Intelligence",
+        "Project Management",
+        "Digital Marketing"
+      ],
+      "Doctorate": [
+        "Доступны через основной кампус DMU в Лестере"
+      ]
+    },
+    "FacultyDirections": {
+      "Business Faculty": [
+        "Politics and International Relations",
+        "Business Entrepreneurship & Innovation",
+        "Finance and Investments",
+        "Business and Marketing",
+        "Advertising and Marketing",
+        "Business Management",
+        "Economics",
+        "Accounting and Finance"
+      ],
+      "Design Faculty": [
+        "Graphic Design",
+        "Graphic Design & Illustration",
+        "Fashion Design",
+        "Interior Design",
+        "Digital Media"
+      ],
+      "IT Faculty": [
+        "Computer Science",
+        "Cyber Security",
+        "Business Data Analytics",
+        "Artificial Intelligence"
+      ]
+    },
+    "RequirementsToApply": {
+      "Undergraduate": [
+        "Аттестат о среднем образовании",
+        "IELTS 6.0+ или внутренний тест",
+        "Собеседование",
+        "Портфолио (для программ дизайна)"
+      ],
+      "Graduate": [
+        "Диплом бакалавра",
+        "IELTS 6.5+",
+        "Профессиональное резюме",
+        "Рекомендательные письма",
+        "Мотивационное письмо"
+      ]
+    },
+    "AbroadOpportunityScholarships": {
+      "Стипендии": "Global Gateway Scholarship (32%), частичный грант 4000 USD, Academic Excellence, Creative Minds",
+      "Международные программы": "Обучение в кампусах DMU в Лестере, Камбодже, Дубае. Образовательные поездки в Южную Корею, Японию, Грузию"
+    },
+    "StrongPoints": [
+      "Британский диплом",
+      "95% преподавателей — иностранцы",
+      "Современный кампус в стиле Google/Amazon",
+      "Возможность обучения в международных кампусах",
+      "Признание диплома по всему миру",
+      "Обучение полностью на английском языке"
+    ],
+    "BachelorENTThresholds": "ЕНТ не требуется. Приём на основе внутренних тестов и IELTS."
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "NU": {
+    "full_name": [
+      "Nazarbayev University"
+    ],
+    "Description": [
+      "Nazarbayev University (NU) — автономный исследовательский университет мирового класса.",
+      "Университет основан по инициативе Первого Президента РК Нурсултана Назарбаева.",
+      "NU является первым университетом в Центральной Азии, работающим по модели американских исследовательских университетов.",
+      "Обучение ведётся исключительно на английском языке."
+    ],
+    "Rating": [
+      "QS World University Rankings 2024: 207 место",
+      "QS Asia University Rankings: топ-50",
+      "Национальный рейтинг исследовательских вузов Казахстана (NHR): 1 место"
+    ],
+    "Accreditation": [
+      "Международные аккредитации от ведущих аккредитационных агентств",
+      "Партнёрства с University of Cambridge, Duke University, University of Pennsylvania, University of Wisconsin-Madison и др.",
+      "ABET (для инженерных программ)",
+      "AACSB (для бизнес-школы)"
+    ],
+    "Location": [
+      "Астана (Нур-Султан), Казахстан"
+    ],
+    "Founded": [
+      "2010 год"
+    ],
+    "ProgramsByDegree": {
+      "Bachelor": [
+        "Computer Science",
+        "Electrical and Computer Engineering",
+        "Civil and Environmental Engineering",
+        "Chemical and Materials Engineering",
+        "Mechanical and Aerospace Engineering",
+        "Robotics Engineering",
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "Mathematics",
+        "Economics",
+        "Political Science and International Relations",
+        "Sociology",
+        "Anthropology",
+        "History",
+        "World Languages, Linguistics and Literature",
+        "Law (LLB)"
+      ],
+      "Master": [
+        "Computer Science",
+        "Electrical and Computer Engineering",
+        "Civil and Environmental Engineering",
+        "Chemical and Materials Engineering",
+        "Mechanical and Aerospace Engineering",
+        "Robotics Engineering",
+        "Data Science",
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "Mathematics",
+        "Economics",
+        "Political Science and International Relations",
+        "MBA",
+        "Executive MBA",
+        "Finance",
+        "Management",
+        "Educational Leadership",
+        "Multilingual Education",
+        "Inclusive Education",
+        "Public Policy",
+        "Public Administration",
+        "Law (LLM)",
+        "Mining Engineering",
+        "Petroleum Engineering",
+        "Geology",
+        "Applied Mathematics"
+      ],
+      "Doctorate": [
+        "Computer Science",
+        "Electrical and Computer Engineering",
+        "Civil and Environmental Engineering",
+        "Chemical and Materials Engineering",
+        "Mechanical and Aerospace Engineering",
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "Mathematics",
+        "Economics",
+        "Political Science",
+        "Educational Leadership",
+        "Public Policy",
+        "Mining Engineering",
+        "Petroleum Engineering",
+        "Geology",
+        "Medicine (MD)"
+      ]
+    },
+    "Schools": {
+      "School of Engineering and Digital Sciences": [
+        "Computer Science",
+        "Electrical and Computer Engineering",
+        "Civil and Environmental Engineering",
+        "Chemical and Materials Engineering",
+        "Mechanical and Aerospace Engineering",
+        "Robotics Engineering"
+      ],
+      "School of Medicine": [
+        "General Medicine (MD)",
+        "Nursing",
+        "Public Health"
+      ],
+      "School of Sciences and Humanities": [
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "Mathematics",
+        "Economics",
+        "Political Science and International Relations",
+        "Sociology",
+        "Anthropology",
+        "History",
+        "Languages, Linguistics and Literature"
+      ],
+      "Graduate School of Business": [
+        "MBA",
+        "Executive MBA",
+        "Finance",
+        "Management"
+      ],
+      "Graduate School of Education": [
+        "Educational Leadership",
+        "Multilingual Education",
+        "Inclusive Education"
+      ],
+      "Graduate School of Public Policy": [
+        "Public Policy",
+        "Public Administration"
+      ],
+      "School of Law": [
+        "Law (LLB, LLM)"
+      ],
+      "School of Mining and Geosciences": [
+        "Mining Engineering",
+        "Petroleum Engineering",
+        "Geology"
+      ]
+    },
+    "FacultyDirections": {
+      "School of Engineering and Digital Sciences": [
+        "Computer Science",
+        "Electrical and Computer Engineering",
+        "Civil and Environmental Engineering",
+        "Chemical and Materials Engineering",
+        "Mechanical and Aerospace Engineering",
+        "Robotics Engineering",
+        "Data Science"
+      ],
+      "School of Medicine": [
+        "General Medicine (MD)",
+        "Nursing",
+        "Public Health"
+      ],
+      "School of Sciences and Humanities": [
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "Mathematics",
+        "Economics",
+        "Political Science and International Relations",
+        "Sociology",
+        "Anthropology",
+        "History",
+        "Languages, Linguistics and Literature"
+      ],
+      "Graduate School of Business": [
+        "MBA",
+        "Executive MBA",
+        "Finance",
+        "Management"
+      ],
+      "Graduate School of Education": [
+        "Educational Leadership",
+        "Multilingual Education",
+        "Inclusive Education"
+      ],
+      "Graduate School of Public Policy": [
+        "Public Policy",
+        "Public Administration"
+      ],
+      "School of Law": [
+        "Law (LLB, LLM)"
+      ],
+      "School of Mining and Geosciences": [
+        "Mining Engineering",
+        "Petroleum Engineering",
+        "Geology"
+      ]
+    },
+    "RequirementsToApply": {
+      "Undergraduate": [
+        "Аттестат о среднем образовании",
+        "Результаты SAT или ACT",
+        "IELTS 6.5+ или TOEFL iBT 79+",
+        "Мотивационное эссе",
+        "Рекомендательные письма",
+        "Собеседование (для некоторых программ)"
+      ],
+      "Graduate": [
+        "Диплом бакалавра",
+        "IELTS 6.5+ или TOEFL iBT 79+",
+        "GRE/GMAT (для некоторых программ)",
+        "Рекомендательные письма",
+        "Statement of Purpose",
+        "CV/Resume"
+      ]
+    },
+    "AbroadOpportunityScholarships": {
+      "Стипендии": "NU предоставляет полные стипендии (Full Scholarship), покрывающие обучение, проживание и стипендию на личные расходы для всех принятых студентов бакалавриата.",
+      "Международные программы": "Семестровые обмены с университетами-партнёрами в США, Европе, Азии. Летние школы и стажировки."
+    },
+    "StrongPoints": [
+      "Полные стипендии для всех студентов бакалавриата",
+      "Преподавание на английском языке",
+      "Международный преподавательский состав (PhD из топ-университетов мира)",
+      "Современный кампус мирового уровня",
+      "Сильные исследовательские программы",
+      "Партнёрства с ведущими университетами мира",
+      "Высокий уровень трудоустройства выпускников"
+    ],
+    "BachelorENTThresholds": "ЕНТ не требуется. Приём на основе SAT/ACT и внутренних экзаменов NU."
+  }
+}

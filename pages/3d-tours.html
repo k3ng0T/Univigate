@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D-туры университетов | Univigate</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --accent: #4f46e5;
+        --accent-2: #0ea5e9;
+        --accent-hover: #4338ca;
+        --border: #e5e7eb;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --bg: #ffffff;
+        --bg-muted: #f5f7fb;
+        --shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background: radial-gradient(circle at 20% 20%, #eef2ff, #f8fafc 38%),
+          radial-gradient(circle at 80% 0%, #e0f2fe, #f8fafc 32%), #f8fafc;
+        color: var(--text-primary);
+        min-height: 100vh;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 20px 72px;
+      }
+
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .pill-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--text-secondary);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .pill-link:hover {
+        transform: translateY(-1px);
+        border-color: #d1d5db;
+        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+      }
+
+      .header {
+        margin-bottom: 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.12),
+          rgba(14, 165, 233, 0.12)
+        );
+        border: 1px solid #e0e7ff;
+        border-radius: 18px;
+        padding: 22px 20px;
+        box-shadow: 0 14px 36px rgba(79, 70, 229, 0.16);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid #e0e7ff;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        margin-bottom: 8px;
+      }
+
+      .header p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        max-width: 820px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        position: relative;
+        background: linear-gradient(160deg, #ffffff, #f8fafc);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            circle at 18% 24%,
+            rgba(79, 70, 229, 0.08),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 90% 0%,
+            rgba(14, 165, 233, 0.08),
+            transparent 28%
+          );
+        z-index: 0;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+      }
+
+      .card__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        z-index: 1;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        background: rgba(79, 70, 229, 0.08);
+        border: 1px solid #e0e7ff;
+        border-radius: 12px;
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.95rem;
+        z-index: 1;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        z-index: 1;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        z-index: 1;
+      }
+
+      .muted {
+        color: var(--text-secondary);
+        z-index: 1;
+      }
+
+      .card__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        z-index: 1;
+      }
+
+      .cta {
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 14px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.2s ease, transform 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow: 0 10px 24px rgba(79, 70, 229, 0.25);
+      }
+
+      .cta:hover {
+        background: linear-gradient(
+          135deg,
+          var(--accent-hover),
+          var(--accent-2)
+        );
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(79, 70, 229, 0.3);
+      }
+
+      .helper {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-top: 4px;
+      }
+
+      @media (max-width: 640px) {
+        .header h1 {
+          font-size: 1.6rem;
+        }
+
+        .card__footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .cta {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="top-nav">
+        <a class="pill-link" href="../index.html">
+          <i class="fas fa-arrow-left"></i>
+          На главную
+        </a>
+        <span class="helper">
+          <i class="fas fa-vr-cardboard"></i>
+          Подборка актуальных 3D-туров по кампусам
+        </span>
+      </div>
+
+      <div class="header">
+        <div class="eyebrow">
+          <i class="fas fa-cube"></i>
+          3D-туры кампусов
+        </div>
+        <h1>Исследуйте университеты в формате 360°</h1>
+        <p>
+          Откройте виртуальные туры, чтобы изучить аудитории, лаборатории и
+          коворкинги, не выходя из дома. Ссылки можно обновить или дополнить
+          внизу страницы (объект <code>tours</code>).
+        </p>
+      </div>
+
+      <div id="cards" class="grid"></div>
+    </div>
+
+    <script>
+      // Задайте свои ссылки на 3D-туры здесь
+      const tours = [
+        {
+          code: "AITU",
+          name: "Astana IT University",
+          city: "Астана",
+          url: "https://kuula.co/share/7868k/collection/7PDWF?fs=1&vr=1&sd=1&initload=0&thumbs=1&info=0&logo=0",
+        },
+        {
+          code: "IITU",
+          name: "International IT University",
+          city: "Алматы",
+          url: "https://iitu.edu.kz/_static/3d-tour-iitu/",
+        },
+        {
+          code: "NU",
+          name: "Nazarbayev University",
+          city: "Астана",
+          url: "https://nu.edu.kz/ru/campus/campustour",
+        },
+      ];
+
+      const cardsEl = document.getElementById("cards");
+
+      function renderCards() {
+        cardsEl.innerHTML = tours
+          .map(
+            (t) => `
+          <div class="card">
+            <div class="card__top">
+              <div class="badge"><i class="fas fa-graduation-cap"></i> ${
+                t.code
+              }</div>
+              <span class="tag"><i class="fas fa-map-marker-alt"></i> ${
+                t.city || "Город не указан"
+              }</span>
+            </div>
+            <h3>${t.name}</h3>
+            <p class="muted">Виртуальный тур кампуса в формате 360°/VR.</p>
+            <div class="card__footer">
+              <span class="helper"><i class="fas fa-bolt"></i> Открывается в новом окне</span>
+              <a class="cta" href="${
+                t.url
+              }" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-play"></i>
+                Открыть 3D-тур
+              </a>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+      }
+
+      renderCards();
+    </script>
+  </body>
+</html>

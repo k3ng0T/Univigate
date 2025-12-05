@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сравнение университетов - UniviGate</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Навигация назад -->
+    <div class="nav-back">
+        <a href="../index.html" class="nav-back-btn" title="Вернуться на главную">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="compare-container">
+        <h1 class="compare-title">
+            <i class="fas fa-balance-scale"></i>
+            Сравнение университетов
+        </h1>
+
+        <!-- Форма выбора -->
+        <div class="compare-selection" id="compare-selection">
+            <div class="selection-row">
+                <div class="selection-item">
+                    <label for="university1">Университет 1</label>
+                    <select id="university1" class="university-select" required>
+                        <option value="">Выберите университет</option>
+                    </select>
+                </div>
+                <div class="vs-badge">VS</div>
+                <div class="selection-item">
+                    <label for="university2">Университет 2</label>
+                    <select id="university2" class="university-select" required>
+                        <option value="">Выберите университет</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="direction-selection">
+                <label for="direction-category">Направление</label>
+                <select id="direction-category" class="direction-select" required>
+                    <option value="">Выберите направление</option>
+                    <!-- Направления загружаются динамически -->
+                </select>
+            </div>
+
+            <button type="button" class="compare-btn-submit" id="compare-submit">
+                <i class="fas fa-chart-bar"></i> Сравнить
+            </button>
+        </div>
+
+        <!-- Результаты сравнения -->
+        <div class="compare-results" id="compare-results" style="display: none;">
+            <!-- Заголовки университетов -->
+            <div class="compare-header">
+                <div class="uni-header uni-header-1">
+                    <h2 id="uni1-name"></h2>
+                    <p id="uni1-fullname" class="uni-fullname"></p>
+                </div>
+                <div class="compare-divider-header"></div>
+                <div class="uni-header uni-header-2">
+                    <h2 id="uni2-name"></h2>
+                    <p id="uni2-fullname" class="uni-fullname"></p>
+                </div>
+            </div>
+
+            <!-- Секция: Пороговые баллы ЕНТ -->
+            <div class="compare-section">
+                <h3 class="section-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Пороговые баллы ЕНТ
+                </h3>
+                <div class="compare-content">
+                    <div class="compare-column" id="ent1"></div>
+                    <div class="compare-divider"></div>
+                    <div class="compare-column" id="ent2"></div>
+                </div>
+            </div>
+
+            <!-- Секция: Требования для поступления -->
+            <div class="compare-section">
+                <h3 class="section-title">
+                    <i class="fas fa-clipboard-check"></i>
+                    Требования для поступления
+                </h3>
+                <div class="compare-content">
+                    <div class="compare-column" id="requirements1"></div>
+                    <div class="compare-divider"></div>
+                    <div class="compare-column" id="requirements2"></div>
+                </div>
+            </div>
+
+            <!-- Секция: Академические программы -->
+            <div class="compare-section">
+                <h3 class="section-title">
+                    <i class="fas fa-book"></i>
+                    Академические программы
+                </h3>
+                <div class="compare-content">
+                    <div class="compare-column" id="programs1"></div>
+                    <div class="compare-divider"></div>
+                    <div class="compare-column" id="programs2"></div>
+                </div>
+            </div>
+
+            <!-- Секция: Рейтинги -->
+            <div class="compare-section">
+                <h3 class="section-title">
+                    <i class="fas fa-trophy"></i>
+                    Рейтинги
+                </h3>
+                <div class="compare-content">
+                    <div class="compare-column" id="achievements1"></div>
+                    <div class="compare-divider"></div>
+                    <div class="compare-column" id="achievements2"></div>
+                </div>
+            </div>
+
+            <!-- Секция: Сильные стороны -->
+            <div class="compare-section">
+                <h3 class="section-title">
+                    <i class="fas fa-star"></i>
+                    Сильные стороны
+                </h3>
+                <div class="compare-content">
+                    <div class="compare-column" id="strengths1"></div>
+                    <div class="compare-divider"></div>
+                    <div class="compare-column" id="strengths2"></div>
+                </div>
+            </div>
+
+            <!-- Секция: Стипендии и международные возможности -->
+            <div class="compare-section">
+                <h3 class="section-title">
+                    <i class="fas fa-globe"></i>
+                    Стипендии и международные возможности
+                </h3>
+                <div class="compare-content">
+                    <div class="compare-column" id="scholarships1"></div>
+                    <div class="compare-divider"></div>
+                    <div class="compare-column" id="scholarships2"></div>
+                </div>
+            </div>
+
+            <!-- Секция: Аккредитации -->
+            <div class="compare-section">
+                <h3 class="section-title">
+                    <i class="fas fa-certificate"></i>
+                    Аккредитации
+                </h3>
+                <div class="compare-content">
+                    <div class="compare-column" id="accreditations1"></div>
+                    <div class="compare-divider"></div>
+                    <div class="compare-column" id="accreditations2"></div>
+                </div>
+            </div>
+
+            <!-- Кнопка назад -->
+            <button type="button" class="back-to-selection" id="back-to-selection">
+                <i class="fas fa-arrow-left"></i> Новое сравнение
+            </button>
+        </div>
+    </div>
+
+    <script src="../js/universities-data.js"></script>
+    <script src="../js/compare.js"></script>
+</body>
+</html>

@@ -1,3 +1,8 @@
+/**
+ * AI University Searcher
+ * Использует данные из universities-data.js
+ */
+
 // Получаем элементы формы
 const form = document.getElementById('ai-search-form');
 
@@ -43,44 +48,6 @@ setupOptionalField(hasIeltsSelect, ieltsScoreGroup, ieltsScoreInput);
 setupOptionalField(hasToeflSelect, toeflScoreGroup, toeflScoreInput);
 setupOptionalField(hasEntSelect, entScoreGroup, entScoreInput);
 
-// Функция для проверки соответствия требованиям университета
-function checkUniversityRequirements(university, criteria) {
-    // Проверяем IELTS если он указан
-    if (criteria.hasIelts === 'yes' && university.requirements.ielts) {
-        if (criteria.ielts < university.requirements.ielts) {
-            return false;
-        }
-    }
-
-    // Проверяем TOEFL если он указан
-    if (criteria.hasToefl === 'yes' && university.requirements.toefl) {
-        if (criteria.toefl < university.requirements.toefl) {
-            return false;
-        }
-    }
-
-    // Проверяем SAT если он указан
-    if (criteria.hasSat === 'yes' && university.requirements.sat) {
-        if (criteria.sat < university.requirements.sat) {
-            return false;
-        }
-    }
-
-    // Проверяем ЕНТ если он указан
-    if (criteria.hasEnt === 'yes' && university.requirements.ent) {
-        if (criteria.ent < university.requirements.ent) {
-            return false;
-        }
-    }
-
-    // Проверяем GPA
-    if (criteria.gpa < university.requirements.gpa) {
-        return false;
-    }
-
-    return true;
-}
-
 // Обработчик отправки формы
 form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -107,10 +74,8 @@ form.addEventListener('submit', function(e) {
         gpa: parseFloat(document.getElementById('gpa')?.value || 0)
     };
 
-    // Фильтруем университеты
-    const matchingUniversities = universities.filter(university => 
-        checkUniversityRequirements(university, formData)
-    );
+    // Фильтруем университеты с использованием новой функции
+    const matchingUniversities = filterUniversities(formData);
 
     // Сохраняем результаты в localStorage
     localStorage.setItem('searchResults', JSON.stringify({
@@ -118,6 +83,146 @@ form.addEventListener('submit', function(e) {
         universities: matchingUniversities
     }));
 
-    // Переходим на страницу результатов
-    window.location.href = 'results.html';
+    // Показываем результаты на этой же странице
+    showResults(matchingUniversities, formData);
 });
+
+// Функция отображения результатов
+function showResults(universities, criteria) {
+    // Скрываем форму
+    const formContainer = document.querySelector('.ai-form');
+    formContainer.style.display = 'none';
+    
+    // Создаём контейнер результатов
+    let resultsContainer = document.getElementById('results-container');
+    if (!resultsContainer) {
+        resultsContainer = document.createElement('div');
+        resultsContainer.id = 'results-container';
+        resultsContainer.className = 'results-container';
+        document.querySelector('.ai-searcher-container').appendChild(resultsContainer);
+    }
+    
+    // Очищаем предыдущие результаты
+    resultsContainer.innerHTML = '';
+    
+    // Заголовок
+    const header = document.createElement('div');
+    header.className = 'results-header';
+    header.innerHTML = `
+        <h2><i class="fas fa-university"></i> Найдено университетов: ${universities.length}</h2>
+        <button class="back-btn" onclick="resetSearch()">
+            <i class="fas fa-arrow-left"></i> Новый поиск
+        </button>
+    `;
+    resultsContainer.appendChild(header);
+    
+    // Если нет результатов
+    if (universities.length === 0) {
+        resultsContainer.innerHTML += `
+            <div class="no-results">
+                <i class="fas fa-search"></i>
+                <h3>Университеты не найдены</h3>
+                <p>Попробуйте изменить критерии поиска</p>
+                <button class="submit-btn" onclick="resetSearch()">
+                    <i class="fas fa-redo"></i> Изменить критерии
+                </button>
+            </div>
+        `;
+        return;
+    }
+    
+    // Сортируем по рейтингу
+    universities.sort((a, b) => {
+        const rankA = a.rankings.national || 999;
+        const rankB = b.rankings.national || 999;
+        return rankA - rankB;
+    });
+    
+    // Карточки университетов
+    const grid = document.createElement('div');
+    grid.className = 'results-grid';
+    
+    universities.forEach(uni => {
+        const card = createUniversityCard(uni, criteria);
+        grid.appendChild(card);
+    });
+    
+    resultsContainer.appendChild(grid);
+}
+
+// Создание карточки университета
+function createUniversityCard(uni, criteria) {
+    const card = document.createElement('div');
+    card.className = 'university-card';
+    
+    // Определяем, есть ли шанс на грант
+    let grantChance = '';
+    if (criteria.hasEnt === 'yes' && uni.requirements.ent) {
+        if (criteria.ent >= uni.requirements.ent.grant) {
+            grantChance = '<span class="grant-badge grant-high"><i class="fas fa-star"></i> Высокий шанс на грант</span>';
+        } else if (criteria.ent >= uni.requirements.ent.min + 20) {
+            grantChance = '<span class="grant-badge grant-medium"><i class="fas fa-star-half-alt"></i> Средний шанс на грант</span>';
+        }
+    }
+    
+    // Рейтинг
+    let rankingBadge = '';
+    if (uni.rankings.qsWorld) {
+        rankingBadge = `<span class="ranking-badge">QS: #${uni.rankings.qsWorld}</span>`;
+    } else if (uni.rankings.qsAsia) {
+        rankingBadge = `<span class="ranking-badge">QS Asia: #${uni.rankings.qsAsia}</span>`;
+    }
+    
+    // Требования
+    const reqHtml = [];
+    if (uni.requirements.ielts) {
+        const status = criteria.hasIelts === 'yes' && criteria.ielts >= uni.requirements.ielts.min ? 'met' : 'unmet';
+        reqHtml.push(`<span class="req ${status}">IELTS: ${uni.requirements.ielts.min}+</span>`);
+    }
+    if (uni.requirements.ent) {
+        const status = criteria.hasEnt === 'yes' && criteria.ent >= uni.requirements.ent.min ? 'met' : 'unmet';
+        reqHtml.push(`<span class="req ${status}">ЕНТ: ${uni.requirements.ent.min}+</span>`);
+    } else if (!uni.requirements.entRequired) {
+        reqHtml.push(`<span class="req special">ЕНТ не требуется</span>`);
+    }
+    if (uni.requirements.sat) {
+        const status = criteria.hasSat === 'yes' && criteria.sat >= uni.requirements.sat.min ? 'met' : 'unmet';
+        reqHtml.push(`<span class="req ${status}">SAT: ${uni.requirements.sat.min}+</span>`);
+    }
+    
+    card.innerHTML = `
+        <div class="card-header">
+            <h3>${uni.shortName}</h3>
+            ${rankingBadge}
+        </div>
+        <div class="card-body">
+            <p class="uni-name">${uni.nameRu}</p>
+            <p class="uni-location"><i class="fas fa-map-marker-alt"></i> ${uni.info.location.city}</p>
+            ${grantChance}
+            <div class="requirements">
+                ${reqHtml.join('')}
+            </div>
+            <div class="strengths">
+                ${uni.strengths.slice(0, 3).map(s => `<span class="strength">${s}</span>`).join('')}
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="university.html?id=${uni.id}" class="btn-details">
+                <i class="fas fa-info-circle"></i> Подробнее
+            </a>
+        </div>
+    `;
+    
+    return card;
+}
+
+// Сброс поиска
+function resetSearch() {
+    const formContainer = document.querySelector('.ai-form');
+    formContainer.style.display = 'flex';
+    
+    const resultsContainer = document.getElementById('results-container');
+    if (resultsContainer) {
+        resultsContainer.remove();
+    }
+}

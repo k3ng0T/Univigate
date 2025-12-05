@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Университеты | Univigate</title>
+    <link href="Unilist_files/css2.css" rel="stylesheet" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+    <link rel="stylesheet" href="Unilist_files/main.css" />
+    <script src="../js/universities-data.js"></script>
+    <style>
+      :root {
+        --accent: #007bff;
+        --accent-hover: #0056b3;
+        --border: #e1e3e8;
+        --text-primary: #333;
+        --text-secondary: #666;
+        --bg: #fff;
+        --bg-muted: #f7f9fc;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background: #f5f5f5;
+        color: var(--text-primary);
+        min-height: 100vh;
+      }
+
+      .page {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 24px 20px 60px;
+      }
+
+      .panel {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .panel:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .panel-header {
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .panel-header h2 {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .search {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        outline: none;
+        font-size: 0.95rem;
+      }
+
+      .search:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+      }
+
+      .list {
+        max-height: calc(100vh - 220px);
+        overflow-y: auto;
+      }
+
+      .list-item {
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .list-item:last-child {
+        border-bottom: none;
+      }
+
+      .list-item:hover {
+        background: var(--bg-muted);
+        transform: translateX(2px);
+      }
+
+      .list-item.active {
+        border-left: 3px solid var(--accent);
+        background: #eef4ff;
+      }
+
+      .list-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .list-sub {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .detail {
+        padding: 18px;
+        animation: fadeIn 0.2s ease;
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .back-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .detail h1 {
+        font-size: 1.4rem;
+        margin-bottom: 6px;
+      }
+
+      .meta {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+
+      .badge {
+        background: var(--bg-muted);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .section {
+        margin-top: 16px;
+      }
+
+      .section h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      .section ul {
+        padding-left: 18px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .kv {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+
+      .kv-item {
+        padding: 8px 10px;
+        background: var(--bg-muted);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 0.92rem;
+      }
+
+      .kv-item strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--text-primary);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        background: var(--bg-muted);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 0.92rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .pill:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-1px);
+      }
+
+      .muted {
+        color: var(--text-secondary);
+      }
+
+      .program-list {
+        animation: fadeIn 0.2s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .nav-back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.nav-back-btn {
+  text-decoration: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.nav-back-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-back-btn i {
+  font-size: 20px;
+  color: #007bff;
+}
+    </style>
+  </head>
+  <body>
+    <div class="nav-back">
+      <a href="../index.html" class="nav-back-btn" title="Вернуться на главную">
+          <i class="fas fa-arrow-left"></i>
+      </a>
+    </div>
+    <div class="page">
+      <div class="panel" id="mainPanel">
+        <div class="panel-header">
+          <div style="display: flex; align-items: center; gap: 8px">
+            <button
+              id="backBtn"
+              class="back-btn"
+              style="display: none"
+              onclick="backToList()"
+              aria-label="Назад к списку"
+            >
+              ←
+            </button>
+            <h2 id="panelTitle" style="margin: 0">Университеты</h2>
+          </div>
+        </div>
+        <div style="padding: 12px 14px 0px; display: block" id="searchWrap">
+          <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="Поиск по названию или городу..."
+            oninput="handleSearch(event)"
+          />
+        </div>
+        <div id="uniList" class="list" style="display: block">
+          <div class="list-item">
+            <div class="list-title">ATU</div>
+            <div class="list-sub">Алматы, Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">AstanaIT</div>
+            <div class="list-sub">Астана, Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">DMUK</div>
+            <div class="list-sub">Алматы, район Esentai City</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">KBTU</div>
+            <div class="list-sub">Алматы, Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">KIMEP</div>
+            <div class="list-sub">Алматы, Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">KazNU</div>
+            <div class="list-sub">Алматы, Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">MNU</div>
+            <div class="list-sub">Астана, Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">MUIT</div>
+            <div class="list-sub">Алматы, Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">Nazarbayev University</div>
+            <div class="list-sub">Астана (Нур-Султан), Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">Narxoz</div>
+            <div class="list-sub">Алматы, Казахстан</div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">Suleyman Demirel University</div>
+            <div class="list-sub">
+              Каскелен, Алматинская область, Казахстан.
+            </div>
+          </div>
+          <div class="list-item">
+            <div class="list-title">Satbayev</div>
+            <div class="list-sub">Алматы, Казахстан</div>
+          </div>
+        </div>
+        <div class="detail" id="detailContent" style="display: none"></div>
+      </div>
+    </div>
+
+    <script>
+      const uniListEl = document.getElementById("uniList");
+      const detailEl = document.getElementById("detailContent");
+      const searchEl = document.getElementById("search");
+      let universities = [];
+      let filtered = [];
+      let activeKey = null;
+      let showingDetail = false;
+
+      const prettyLabel = {
+        Description: "Описание",
+        Raiting: "Рейтинг",
+        Accreditation: "Аккредитации",
+        Location: "Локация",
+        Founded: "Основан",
+        ProgramsByDegree: "Программы",
+        Tuition: "Стоимость",
+        Scholarships: "Стипендии",
+        Contact: "Контакты",
+      };
+
+      // Данные подключены как JS (universities-data.js), чтобы работать без сервера (file://)
+      loadDataFromJs();
+
+      function loadDataFromJs() {
+        const data =
+          window.UNIVERSITIES ||
+          (typeof UNIVERSITIES !== "undefined" ? UNIVERSITIES : null);
+        if (!data) {
+          detailEl.innerHTML =
+            '<p class="muted">Не удалось найти данные (window.UNIVERSITIES). Убедитесь, что подключён файл ../js/universities-data.js.</p>';
+          return;
+        }
+        universities = Object.entries(data).map(([code, info]) => ({
+          code,
+          ...info,
+        }));
+        filtered = universities;
+        renderList();
+      }
+
+      function handleSearch(e) {
+        const q = e.target.value.toLowerCase().trim();
+        filtered = universities.filter((u) => {
+          const name = (
+            u.info?.name ||
+            u.name ||
+            u.nameRu ||
+            u.full_name?.[0] ||
+            u.code ||
+            ""
+          ).toLowerCase();
+          const loc = (
+            u.info?.location?.city ||
+            u.info?.location?.address ||
+            (u.Location && u.Location[0]) ||
+            ""
+          ).toLowerCase();
+          return name.includes(q) || loc.includes(q);
+        });
+        renderList();
+      }
+
+      function renderList() {
+        uniListEl.innerHTML = "";
+        if (!filtered.length) {
+          uniListEl.innerHTML =
+            '<div class="list-item"><div class="list-sub">Ничего не найдено</div></div>';
+          return;
+        }
+        filtered.forEach((u) => {
+          const item = document.createElement("div");
+          item.className =
+            "list-item" + (u.code === activeKey ? " active" : "");
+          item.onclick = () => selectUni(u.code);
+          const title =
+            u.info?.name || u.name || u.nameRu || u.full_name || u.code;
+          const subtitle =
+            u.info?.location?.city ||
+            (u.Location && u.Location[0]) ||
+            u.info?.location?.address ||
+            "—";
+          item.innerHTML = `
+            <div class="list-title">${title}</div>
+            <div class="list-sub">${subtitle}</div>
+          `;
+          uniListEl.appendChild(item);
+        });
+        showList();
+      }
+
+      function selectUni(code) {
+        activeKey = code;
+        renderList();
+        const uni = universities.find((u) => u.code === code);
+        if (!uni) return;
+        detailEl.innerHTML = buildDetail(
+          uni,
+          uni.info?.name || uni.name || uni.nameRu || uni.full_name || code
+        );
+        showDetail();
+      }
+
+      function buildDetail(uni, nameFromIndex) {
+        const name =
+          nameFromIndex ||
+          uni.info?.name ||
+          uni.name ||
+          uni.nameRu ||
+          uni.full_name?.[0] ||
+          uni.code;
+        const location =
+          uni.info?.location?.city ||
+          (uni.Location && uni.Location[0]) ||
+          uni.info?.location?.address;
+        const founded = uni.info?.founded || (uni.Founded && uni.Founded[0]);
+        const address =
+          uni.info?.location?.address ||
+          (uni.Address && uni.Address[0]) ||
+          location;
+        const type = uni.info?.type;
+        const students = uni.info?.students;
+        return `
+          <h1>${name}</h1>
+          <div class="meta">
+            ${address ? `<span class="badge">📍 ${address}</span>` : ""}
+            ${
+              founded ? `<span class="badge">🎓 Основан: ${founded}</span>` : ""
+            }
+            ${type ? `<span class="badge">🏫 ${escapeHtml(type)}</span>` : ""}
+            ${
+              students
+                ? `<span class="badge">👥 Студенты: ${students}</span>`
+                : ""
+            }
+          </div>
+          ${section("Описание", uni.info?.description || uni.Description)}
+          ${reqSection(uni.requirements)}
+          ${rankingSection(uni.rankings || uni.Raiting)}
+          ${section("Аккредитации", uni.accreditations || uni.Accreditation)}
+          ${section("Сильные стороны", uni.strengths || uni.StrongPoints)}
+          ${scholarshipsSection(uni.scholarships || uni.Scholarships)}
+          ${programs(uni.programs || uni.ProgramsByDegree)}
+          ${faculties(uni.faculties || uni.FacultyDirections)}
+          ${section("Стоимость", uni.Tuition)}
+          ${section("Стипендии", uni.Scholarships)}
+          ${admission(uni.admissionProcess || uni.AdmissionProcess)}
+          ${section(
+            "Необходимые документы",
+            uni.requiredDocuments || uni.RequiredDocuments
+          )}
+          ${section(
+            "Программы обмена",
+            uni.exchangePrograms || uni.ExchangePrograms
+          )}
+          ${section(
+            "Партнёрские университеты",
+            uni.partnerUniversities || uni.PartnerUniversities
+          )}
+          ${entScores(uni.entScores || uni.BachelorENTThresholds)}
+          ${contactSection(uni.info || uni.Contact)}
+        `;
+      }
+
+      function showDetail() {
+        showingDetail = true;
+        document.getElementById("panelTitle").textContent = "Детали";
+        document.getElementById("backBtn").style.display = "inline-flex";
+        document.getElementById("searchWrap").style.display = "none";
+        uniListEl.style.display = "none";
+        detailEl.style.display = "block";
+      }
+
+      function showList() {
+        if (showingDetail) return;
+        document.getElementById("panelTitle").textContent = "Университеты";
+        document.getElementById("backBtn").style.display = "none";
+        document.getElementById("searchWrap").style.display = "block";
+        uniListEl.style.display = "block";
+        detailEl.style.display = "none";
+      }
+
+      function backToList() {
+        showingDetail = false;
+        document.getElementById("panelTitle").textContent = "Университеты";
+        document.getElementById("backBtn").style.display = "none";
+        document.getElementById("searchWrap").style.display = "block";
+        uniListEl.style.display = "block";
+        detailEl.style.display = "none";
+      }
+
+      function backToList() {
+        showingDetail = false;
+        document.getElementById("panelTitle").textContent = "Университеты";
+        document.getElementById("backBtn").style.display = "none";
+        document.getElementById("searchWrap").style.display = "block";
+        uniListEl.style.display = "block";
+        detailEl.style.display = "none";
+      }
+
+      function section(title, data) {
+        if (!data) return "";
+        const items = Array.isArray(data) ? data : [data];
+        if (!items.length) return "";
+        return `
+          <div class="section">
+            <h3>${title}</h3>
+            <ul>
+              ${items.map((i) => `<li>${escapeHtml(i)}</li>`).join("")}
+            </ul>
+          </div>
+        `;
+      }
+
+      function reqSection(req) {
+        if (!req) return "";
+        const parts = [];
+        if (req.ielts) parts.push(`IELTS: ${formatRange(req.ielts)}`);
+        if (req.toefl) parts.push(`TOEFL: ${formatRange(req.toefl)}`);
+        if (req.sat) parts.push(`SAT: ${formatRange(req.sat)}`);
+        if (req.ent) parts.push(`ЕНТ: ${formatRange(req.ent)}`);
+        if (req.gpa) parts.push(`GPA: ${formatRange(req.gpa)}`);
+        if (req.entNote) parts.push(req.entNote);
+        return parts.length ? section("Требования", parts) : "";
+      }
+
+      function rankingSection(r) {
+        if (!r) return "";
+        const list = [];
+        if (r.qsWorld) list.push(`QS World: ${r.qsWorld}`);
+        if (r.qsAsia) list.push(`QS Asia: ${r.qsAsia}`);
+        if (r.national) list.push(`Национальный: ${r.national}`);
+        if (r.qsSubjects) {
+          Object.entries(r.qsSubjects).forEach(([k, v]) =>
+            list.push(`${escapeHtml(k)}: ${escapeHtml(String(v))}`)
+          );
+        }
+        return list.length ? section("Рейтинг", list) : "";
+      }
+
+      function scholarshipsSection(s) {
+        if (!s) return "";
+        const items = [];
+        if (s.types)
+          items.push(...(Array.isArray(s.types) ? s.types : [s.types]));
+        if (s.international)
+          items.push(
+            ...(Array.isArray(s.international)
+              ? s.international
+              : [s.international])
+          );
+        return items.length ? section("Стипендии и возможности", items) : "";
+      }
+
+      function faculties(obj) {
+        if (!obj || typeof obj !== "object") return "";
+        const entries = Object.entries(obj);
+        if (!entries.length) return "";
+        return `
+          <div class="section">
+            <h3>Факультеты / школы</h3>
+            ${entries
+              .map(
+                ([name, data]) => `
+                  <div class="section">
+                    <strong>${escapeHtml(name)}</strong>
+                    ${
+                      Array.isArray(data)
+                        ? `<ul>${data
+                            .map((p) => `<li>${escapeHtml(p)}</li>`)
+                            .join("")}</ul>`
+                        : data?.programs
+                        ? `<ul>${(data.programs || [])
+                            .map((p) => `<li>${escapeHtml(p)}</li>`)
+                            .join("")}</ul>`
+                        : ""
+                    }
+                  </div>
+                `
+              )
+              .join("")}
+          </div>
+        `;
+      }
+
+      function admission(obj) {
+        if (!obj) return "";
+        const steps = obj.steps || obj.Steps || [];
+        const link = obj.official_link || obj.officialLink;
+        const blocks = [];
+        if (steps.length)
+          blocks.push(
+            `<ul>${steps.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ul>`
+          );
+        if (link)
+          blocks.push(
+            `<div class="muted">Официально: <a href="${link}" target="_blank" rel="noopener">сайт</a></div>`
+          );
+        return blocks.length
+          ? `<div class="section"><h3>Процесс поступления</h3>${blocks.join(
+              ""
+            )}</div>`
+          : "";
+      }
+
+      function entScores(obj) {
+        if (!obj || typeof obj !== "object") return "";
+        const entries = Object.entries(obj);
+        if (!entries.length) return "";
+        return `
+          <div class="section">
+            <h3>ЕНТ / пороги</h3>
+            <div class="kv">
+              ${entries
+                .map(
+                  ([prog, val]) => `
+                    <div class="kv-item">
+                      <strong>${escapeHtml(prog)}</strong>
+                      ${
+                        typeof val === "object"
+                          ? Object.entries(val)
+                              .map(
+                                ([k, v]) =>
+                                  `<div>${escapeHtml(k)}: ${escapeHtml(
+                                    String(v)
+                                  )}</div>`
+                              )
+                              .join("")
+                          : escapeHtml(String(val))
+                      }
+                    </div>
+                  `
+                )
+                .join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      function contactSection(info) {
+        if (!info) return "";
+        const lines = [];
+        if (info.website) {
+          lines.push(
+            `<a href="${
+              info.website
+            }" target="_blank" rel="noopener">${escapeHtml(info.website)}</a>`
+          );
+        }
+        if (info.email) {
+          lines.push(
+            `Email: <a href="mailto:${info.email}">${escapeHtml(
+              info.email
+            )}</a>`
+          );
+        }
+        if (info.phone) {
+          lines.push(`Телефон: ${escapeHtml(info.phone)}`);
+        }
+        return lines.length
+          ? `
+            <div class="section">
+              <h3>Контакты</h3>
+              <ul>
+                ${lines.map((i) => `<li>${i}</li>`).join("")}
+              </ul>
+            </div>
+          `
+          : "";
+      }
+
+      function formatRange(val) {
+        if (typeof val === "object" && val !== null) {
+          const parts = [];
+          if (val.min) parts.push(`min ${val.min}`);
+          if (val.grant) parts.push(`grant ${val.grant}`);
+          return parts.join(", ");
+        }
+        return val;
+      }
+
+      function programs(obj) {
+        if (!obj || typeof obj !== "object") return "";
+        const entries = Object.entries(obj);
+        if (!entries.length) return "";
+        return `
+          <div class="section">
+            <h3>Программы</h3>
+            <div class="grid">
+              ${entries
+                .map(
+                  ([deg, list]) => `
+                    <button class="pill" onclick="togglePrograms('${deg}')">
+                      <strong>${deg}</strong>
+                      <span class="muted">(${
+                        Array.isArray(list) ? list.length : 0
+                      })</span>
+                    </button>
+                  `
+                )
+                .join("")}
+            </div>
+            <div class="section" style="margin-top:12px;">
+              ${entries
+                .map(
+                  ([deg, list]) => `
+                    <div id="prog-${deg}" class="program-list" style="display:none; margin-bottom:12px;">
+                      <strong>${deg}</strong>
+                      <ul>
+                        ${(list || [])
+                          .map((p) => `<li>${escapeHtml(p)}</li>`)
+                          .join("")}
+                      </ul>
+                    </div>
+                  `
+                )
+                .join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      function togglePrograms(deg) {
+        document.querySelectorAll(".program-list").forEach((el) => {
+          if (el.id === `prog-${deg}`) {
+            const isHidden = el.style.display === "none";
+            el.style.display = isHidden ? "block" : "none";
+          } else {
+            el.style.display = "none";
+          }
+        });
+      }
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+    </script>
+  </body>
+</html>
