@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Чат-бот | Univigate</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent: #007bff;
+        --accent-hover: #0056b3;
+        --border: #e1e3e8;
+        --text-primary: #333;
+        --text-secondary: #666;
+        --text-muted: #999;
+        --bg: #ffffff;
+        --bg-muted: #f5f7fb;
+        --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      body {
+        font-family: "Inter", "Roboto", sans-serif;
+        background: #0a1b35;
+        color: var(--text-primary);
+        min-height: 100vh;
+      }
+
+      .chat-embed-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .chat-widget {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 1000;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .chat-toggle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+        transition: all 0.25s ease;
+      }
+
+      .chat-toggle:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+      }
+
+      .chat-toggle svg {
+        width: 26px;
+        height: 26px;
+        fill: #fff;
+        transition: transform 0.25s ease;
+      }
+
+      .chat-toggle.active svg {
+        transform: rotate(90deg);
+      }
+
+      .chat-window {
+        position: absolute;
+        bottom: 76px;
+        right: 0;
+        width: 420px;
+        max-width: calc(100vw - 48px);
+        height: 540px;
+        background: var(--bg);
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(16px) scale(0.98);
+        transition: all 0.25s ease;
+      }
+
+      .chat-window.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+
+      .chat-window.fullscreen {
+        position: fixed;
+        inset: 24px;
+        width: auto;
+        height: auto;
+        max-width: calc(100vw - 48px);
+        max-height: calc(100vh - 48px);
+        border-radius: 18px;
+      }
+
+      .chat-header {
+        padding: 16px 18px;
+        background: var(--bg-muted);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .mode-switch {
+        margin-left: auto;
+        display: flex;
+        gap: 8px;
+      }
+
+      .mode-btn {
+        padding: 6px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--text-secondary);
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .mode-btn.active {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+
+      .mode-btn:hover {
+        border-color: var(--accent);
+      }
+
+      .chat-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #4da3ff, #7c5ce0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: #fff;
+      }
+
+      .chat-info h4 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .chat-info span {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .chat-close {
+        margin-left: auto;
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: #fff;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .chat-close:hover {
+        background: #ffe9e9;
+        border-color: #ff6b6b;
+      }
+
+      .chat-close svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--text-secondary);
+      }
+
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: #fff;
+      }
+
+      .chat-messages::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .chat-messages::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 3px;
+      }
+
+      .message {
+        max-width: 85%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+
+      .message.user {
+        align-self: flex-end;
+        background: linear-gradient(135deg, #4da3ff, #2f80ed);
+        color: #fff;
+        border-bottom-right-radius: 6px;
+      }
+
+      .message.bot {
+        align-self: flex-start;
+        background: #f4f7fb;
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+        border-bottom-left-radius: 6px;
+      }
+
+      .message.error {
+        background: #ffecec;
+        border: 1px solid #ffb3b3;
+        color: #c0392b;
+      }
+
+      .message.system {
+        align-self: center;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        padding: 4px 10px;
+        box-shadow: none;
+      }
+
+      .message pre {
+        background: #111827;
+        color: #e5e7eb;
+        padding: 10px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-top: 10px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+      }
+
+      .message code {
+        font-family: "JetBrains Mono", monospace;
+        background: rgba(0, 0, 0, 0.07);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+
+      .typing-indicator {
+        display: none;
+        align-self: flex-start;
+        padding: 12px 14px;
+        background: #f4f7fb;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        border-bottom-left-radius: 6px;
+        margin-left: 16px;
+        margin-bottom: 8px;
+        gap: 6px;
+      }
+
+      .typing-indicator.visible {
+        display: flex;
+      }
+
+      .typing-indicator span {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: bounce 1.4s infinite ease-in-out;
+      }
+
+      .typing-indicator span:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes bounce {
+        0%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-6px);
+        }
+      }
+
+      .chat-input-area {
+        padding: 14px;
+        background: var(--bg-muted);
+        border-top: 1px solid var(--border);
+      }
+
+      .chat-input-wrapper {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+      }
+
+      .chat-input {
+        flex: 1;
+        padding: 12px 14px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: var(--text-primary);
+        font-family: "Roboto", sans-serif;
+        font-size: 0.95rem;
+        outline: none;
+        resize: none;
+        min-height: 46px;
+        max-height: 120px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      .chat-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+      }
+
+      .chat-input::placeholder {
+        color: var(--text-muted);
+      }
+
+      .chat-send {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        background: var(--accent);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+
+      .chat-send:hover:not(:disabled) {
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
+      }
+
+      .chat-send:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .chat-send svg {
+        width: 18px;
+        height: 18px;
+        fill: #fff;
+      }
+
+      @media (max-width: 480px) {
+        .chat-widget {
+          bottom: 16px;
+          right: 16px;
+        }
+
+        .chat-window {
+          width: calc(100vw - 32px);
+          height: calc(100vh - 120px);
+          bottom: 68px;
+          right: 0;
+          border-radius: 16px;
+        }
+
+        .chat-toggle {
+          width: 56px;
+          height: 56px;
+        }
+
+        .chat-window.fullscreen {
+          inset: 12px;
+          max-width: calc(100vw - 24px);
+          max-height: calc(100vh - 24px);
+          border-radius: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Анимированный фон, кнопка назад -->
+    <div class="space-background">
+      <div class="space-gradient"></div>
+      <div class="space-gradient-2"></div>
+      <div class="space-gradient-3"></div>
+      <div class="stars"></div>
+      <div class="stars-2"></div>
+      <div class="shooting-stars">
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+      </div>
+    </div>
+
+    <div class="nav-back">
+      <a href="../index.html" class="nav-back-btn" title="Вернуться на главную">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+    </div>
+
+    <div class="chat-embed-wrapper"></div>
+
+    <div class="chat-widget">
+      <div class="chat-window fullscreen" id="chatWindow">
+        <div class="chat-header">
+          <div class="chat-avatar">✨</div>
+          <div class="chat-info">
+            <h4>Univigate AI</h4>
+            <span>Gemini 2.5 Flash</span>
+          </div>
+          <div class="mode-switch">
+            <button
+              class="mode-btn"
+              id="modeAssistant"
+              onclick="setMode('assistant')"
+            >
+              Ассистент
+            </button>
+            <button
+              class="mode-btn active"
+              id="modeTest"
+              onclick="setMode('test')"
+            >
+              Генератор тестов
+            </button>
+          </div>
+          <button class="chat-close" onclick="toggleChat()">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="welcome-msg">
+            <div class="emoji">🧠</div>
+            <h3>Собрать профтест?</h3>
+            <p>
+              Напиши класс, интересы, сколько вопросов нужно или сферу (если
+              известна) — сгенерирую углублённый тест и подскажу профессии.
+            </p>
+          </div>
+          <div class="message system">
+            Режим переключен: Генератор профтестов
+          </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="chat-input-area">
+          <div class="chat-input-wrapper">
+            <textarea
+              class="chat-input"
+              id="chatInput"
+              placeholder="Напишите сообщение..."
+              rows="1"
+              onkeydown="handleKeyDown(event)"
+            ></textarea>
+            <button class="chat-send" id="sendBtn" onclick="sendMessage()">
+              <svg viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <script>
+      const GEMINI_API_URL = "/api/chat";
+      let currentMode = "assistant";
+      const histories = { assistant: [], test: [] };
+      let conversationHistory = histories[currentMode];
+
+      const SYSTEM_PROMPTS = {
+        assistant: `Ты — дружелюбный AI-ассистент Univigate. Отвечай кратко и по делу на русском, используй эмодзи для читаемости. Если просят про поступление, гранты или карьеру — дай чёткие шаги. Если просят код — форматируй в markdown.`,
+        test: `Ты — профессиональный профориентолог Univigate для школьников/студентов Казахстана.
+Задача: собрать точный профтест, просить уточнения при неполных ответах, НЕ придумывать данные.
+Формат финального ответа:
+- "Вопросы": 10–12 пронумерованных, разнообразных (interests, skills, personality, values, real_world). Короткие и ясные, максимум 2 похожих.
+- "Результаты": топ-3 сферы с процентами (сумма 100%) и кратким объяснением, на чём основано.
+- "Профессии": по каждой сфере 3–5 профессий с % соответствия (внутри сферы ≤ 100) + короткое обоснование (интересы/навыки).
+- "Шаги": практические советы (курсы/олимпиады/проекты/вуз в РК или онлайн-ресурсы).
+Правила:
+1) Если ответ пользователя неполный/не по теме, явно попроси уточнить (класс, город/регион, интересы, желаемая сфера, количество вопросов).
+2) Если пользователь назвал сферу (IT, медицина, дизайн, бизнес, инженерия и т.п.) — углубляй вопросы и примеры в этой сфере.
+3) Учитывай контекст: класс/курс, город/регион (Almaty, Astana, регионы), запрос на STEM/гуманитарный уклон.
+4) Пиши компактно, без воды; не придумывай факты, опирайся только на ответы пользователя.
+5) Всегда проверяй, достаточно ли входных данных. При дефиците — задай уточняющий вопрос перед выдачей результатов.`,
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        autoResizeTextarea();
+        renderWelcome();
+      });
+
+      function setMode(mode) {
+        if (mode === currentMode) return;
+        currentMode = mode;
+        conversationHistory = histories[currentMode];
+        document
+          .getElementById("modeAssistant")
+          .classList.toggle("active", mode === "assistant");
+        document
+          .getElementById("modeTest")
+          .classList.toggle("active", mode === "test");
+        renderWelcome();
+        const chatWindow = document.getElementById("chatWindow");
+        if (chatWindow.classList.contains("open")) {
+          chatWindow.classList.toggle("fullscreen", mode === "test");
+        }
+        addMessage(
+          `Режим переключен: ${
+            mode === "assistant"
+              ? "Ассистент (общие вопросы)"
+              : "Генератор профтестов"
+          }`,
+          "system"
+        );
+      }
+
+      function renderWelcome() {
+        const messagesContainer = document.getElementById("chatMessages");
+        if (currentMode === "assistant") {
+          messagesContainer.innerHTML = `
+              <div class="welcome-msg">
+                <div class="emoji">👋</div>
+                <h3>Привет!</h3>
+                <p>Я AI-ассистент на базе Gemini. Задайте мне любой вопрос!</p>
+              </div>
+            `;
+        } else {
+          messagesContainer.innerHTML = `
+              <div class="welcome-msg">
+                <div class="emoji">🧠</div>
+                <h3>Собрать профтест?</h3>
+                <p>Напиши класс, интересы, сколько вопросов нужно или сферу (если известна) — сгенерирую углублённый тест и подскажу профессии.</p>
+              </div>
+            `;
+        }
+      }
+
+      function toggleChat() {
+        const chatWindow = document.getElementById("chatWindow");
+        const chatToggle = document.getElementById("chatToggle");
+
+        chatWindow.classList.toggle("open");
+        chatWindow.classList.toggle("fullscreen", currentMode === "test");
+        chatToggle.classList.toggle("active");
+
+        if (chatWindow.classList.contains("open")) {
+          document.getElementById("chatInput").focus();
+        }
+      }
+
+      function addMessage(text, type) {
+        const messagesContainer = document.getElementById("chatMessages");
+        const welcomeMsg = messagesContainer.querySelector(".welcome-msg");
+
+        if (welcomeMsg && type !== "system") {
+          welcomeMsg.remove();
+        }
+
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `message ${type}`;
+
+        let formattedText = text
+          .replace(/```(\w+)?\n([\s\S]*?)```/g, "<pre><code>$2</code></pre>")
+          .replace(/`([^`]+)`/g, "<code>$1</code>")
+          .replace(/\n/g, "<br>");
+
+        messageDiv.innerHTML = formattedText;
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      function setTyping(show) {
+        const indicator = document.getElementById("typingIndicator");
+        indicator.classList.toggle("visible", show);
+
+        if (show) {
+          const messagesContainer = document.getElementById("chatMessages");
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+      }
+
+      async function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const sendBtn = document.getElementById("sendBtn");
+        const message = input.value.trim();
+
+        if (!message) return;
+
+        addMessage(message, "user");
+        input.value = "";
+        input.style.height = "auto";
+
+        conversationHistory.push({
+          role: "user",
+          parts: [{ text: message }],
+        });
+
+        sendBtn.disabled = true;
+        setTyping(true);
+
+        try {
+          const messages = [
+            { role: "user", content: getSystemPrompt() },
+            ...conversationHistory.map((m) => ({
+              role: m.role === "model" ? "assistant" : "user",
+              content: (m.parts && m.parts[0]?.text) || "",
+            })),
+            { role: "user", content: message },
+          ];
+
+          const response = await fetch(GEMINI_API_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ messages }),
+          });
+
+          const data = await response.json();
+
+          if (data.error) {
+            throw new Error(data.error.detail || data.error);
+          }
+
+          const botResponse =
+            data.text ||
+            data.candidates?.[0]?.content?.parts?.[0]?.text ||
+            "Нет ответа";
+
+          conversationHistory.push({
+            role: "model",
+            parts: [{ text: botResponse }],
+          });
+
+          setTyping(false);
+          addMessage(botResponse, "bot");
+        } catch (error) {
+          setTyping(false);
+          console.error("Error:", error);
+          addMessage(`❌ Ошибка: ${error.message}`, "error");
+          conversationHistory.pop();
+        }
+
+        sendBtn.disabled = false;
+      }
+
+      function handleKeyDown(event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          sendMessage();
+        }
+      }
+
+      function autoResizeTextarea() {
+        const textarea = document.getElementById("chatInput");
+        textarea.addEventListener("input", function () {
+          this.style.height = "auto";
+          this.style.height = Math.min(this.scrollHeight, 120) + "px";
+        });
+      }
+
+      function getSystemPrompt() {
+        return SYSTEM_PROMPTS[currentMode];
+      }
+    </script>
+  </body>
+</html>
+
