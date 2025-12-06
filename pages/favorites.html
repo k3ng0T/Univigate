@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Избранные университеты - UniviGate</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Анимированный космический фон -->
+  <div class="space-background">
+    <div class="space-gradient"></div>
+    <div class="space-gradient-2"></div>
+    <div class="space-gradient-3"></div>
+    <div class="stars"></div>
+    <div class="stars-2"></div>
+    <div class="shooting-stars">
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+    </div>
+  </div>
+
+  <!-- Навигация назад -->
+  <div class="nav-back">
+    <a href="../index.html" class="nav-back-btn" title="Вернуться на главную">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+  </div>
+
+  <main class="favorites-page">
+    <header class="favorites-header">
+      <div>
+        <h1 class="favorites-title"><i class="fas fa-heart"></i> Избранные университеты</h1>
+        <p class="favorites-subtitle">
+          Сохраняйте понравившиеся университеты, чтобы вернуться к ним позже и сравнить.
+        </p>
+      </div>
+      <button id="clear-favorites" class="btn-secondary favorites-clear">
+        <i class="fas fa-trash"></i> Очистить
+      </button>
+    </header>
+
+    <section id="favorites-empty" class="favorites-empty">
+      <i class="fas fa-inbox"></i>
+      <h2>Пока пусто</h2>
+      <p>Добавьте университеты из каталога или поиска, чтобы видеть их здесь.</p>
+      <div class="empty-actions">
+        <a class="btn-primary" href="unilist.html"><i class="fas fa-list"></i> Открыть каталог</a>
+        <a class="btn-secondary" href="ai-searcher.html"><i class="fas fa-robot"></i> AI поиск</a>
+      </div>
+    </section>
+
+    <section id="favorites-grid" class="favorites-grid"></section>
+  </main>
+
+  <script src="../js/universities-data.js"></script>
+  <script src="../js/favorites.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('favorites-grid');
+      const emptyState = document.getElementById('favorites-empty');
+      const clearBtn = document.getElementById('clear-favorites');
+
+      function renderFavorites() {
+        const favorites = getFavoriteUniversities();
+        grid.innerHTML = '';
+
+        if (!favorites.length) {
+          emptyState.style.display = 'flex';
+          clearBtn.disabled = true;
+          return;
+        }
+
+        emptyState.style.display = 'none';
+        clearBtn.disabled = false;
+
+        const cards = favorites.map(buildCard).join('');
+        grid.innerHTML = cards;
+
+        // Подключаем кнопки избранного в карточках
+        grid.querySelectorAll('.favorite-toggle').forEach((btn) => {
+          const id = btn.dataset.id;
+          bindFavoriteButton(btn, id, { labels: { add: 'В избранное', remove: 'Убрать' } });
+          btn.addEventListener('click', renderFavorites);
+        });
+      }
+
+      function buildCard(uni) {
+        const ranking = rankingBadge(uni);
+        return `
+          <article class="university-card favorite-card" data-id="${uni.id}">
+            <div class="card-header">
+              <div>
+                <h3>${uni.shortName}</h3>
+                <div class="uni-name">${uni.nameRu}</div>
+              </div>
+              ${ranking}
+            </div>
+            <div class="card-body">
+              <div class="uni-location"><i class="fas fa-map-marker-alt"></i> ${uni.info.location.city}</div>
+              <div class="favorite-meta">
+                <span class="badge badge-type">${uni.info.type}</span>
+                <span class="badge badge-founded">Основан: ${uni.info.founded || '—'}</span>
+              </div>
+              <p class="favorite-description">${uni.info.description || ''}</p>
+            </div>
+            <div class="favorite-actions">
+              <a class="btn-details" href="university.html?id=${uni.id}">
+                <i class="fas fa-arrow-right"></i> Открыть
+              </a>
+              <button class="favorite-toggle small" data-id="${uni.id}">
+                <i class="fas fa-heart"></i>
+                <span data-fav-label>Убрать</span>
+              </button>
+            </div>
+          </article>
+        `;
+      }
+
+      function rankingBadge(uni) {
+        if (uni.rankings?.qsWorld) {
+          return `<span class="ranking-badge">QS World #${uni.rankings.qsWorld}</span>`;
+        }
+        if (uni.rankings?.qsAsia) {
+          return `<span class="ranking-badge">QS Asia #${uni.rankings.qsAsia}</span>`;
+        }
+        if (uni.rankings?.national) {
+          return `<span class="ranking-badge">KZ #${uni.rankings.national}</span>`;
+        }
+        return '';
+      }
+
+      clearBtn.addEventListener('click', () => {
+        clearFavorites();
+        renderFavorites();
+      });
+
+      window.addEventListener('favorites:changed', renderFavorites);
+      renderFavorites();
+    });
+  </script>
+</body>
+</html>
+

@@ -99,6 +99,9 @@ function renderUniversityPage(uni) {
     // Аккредитации
     renderAccreditations(uni);
     
+    // Избранное
+    initFavoriteButton(uni);
+    
     // Инициализация табов
     initTabs();
 }
@@ -382,6 +385,16 @@ function renderAccreditations(uni) {
     container.innerHTML = uni.accreditations.map(a => `
         <li><i class="fas fa-award"></i> ${a}</li>
     `).join('');
+}
+
+// Кнопка избранного
+function initFavoriteButton(uni) {
+    const favBtn = document.getElementById('favorite-toggle');
+    if (!favBtn || typeof bindFavoriteButton !== 'function') return;
+    favBtn.dataset.id = uni.id;
+    bindFavoriteButton(favBtn, uni.id, {
+        labels: { add: 'В избранное', remove: 'В избранном' }
+    });
 }
 
 // Инициализация табов

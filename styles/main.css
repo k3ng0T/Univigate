@@ -3421,6 +3421,450 @@ body {
   font-weight: 500;
 }
 
+/* ============================================
+   ИЗБРАННОЕ
+============================================ */
+
+.favorite-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 129, 0.35);
+  background: rgba(255, 107, 129, 0.12);
+  color: #ff6b81;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.favorite-toggle i {
+  color: inherit;
+}
+
+.favorite-toggle:hover {
+  background: rgba(255, 107, 129, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(255, 107, 129, 0.25);
+}
+
+.favorite-toggle.active {
+  background: linear-gradient(135deg, #ff6b81, #ff3366);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 32px rgba(255, 99, 132, 0.35);
+}
+
+.favorite-toggle.small {
+  padding: 10px 12px;
+}
+
+.favorites-page {
+  max-width: 1200px;
+  margin: 90px auto 50px;
+  padding: 0 20px 30px;
+}
+
+.favorites-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.favorites-title {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  font-size: 1.8em;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.favorites-title i {
+  color: #ff6b81;
+}
+
+.favorites-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 6px;
+}
+
+.favorites-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.favorite-card {
+  min-height: 0;
+}
+
+.favorite-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.favorite-description {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin: 5px 0 0;
+}
+
+.favorite-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0 20px 20px;
+}
+
+.favorites-empty {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px;
+  margin: 10px 0 30px;
+  background: rgba(14, 71, 136, 0.35);
+  border: 1px dashed rgba(0, 212, 255, 0.35);
+  border-radius: 16px;
+  color: #fff;
+}
+
+.favorites-empty i {
+  font-size: 2.6em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.favorites-empty p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.empty-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.favorites-grid .btn-details {
+  flex: 1;
+}
+
+.favorite-actions .favorite-toggle {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .favorites-page {
+    margin: 80px 16px 40px;
+  }
+
+  .favorites-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+/* ============================================
+   СПИСОК УНИВЕРСИТЕТОВ (UNILIST)
+============================================ */
+
+.unilist-page {
+  max-width: 1200px;
+  margin: 90px auto 50px;
+  padding: 0 20px 40px;
+}
+
+.unilist-panel {
+  background: rgba(14, 71, 136, 0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+  padding: 18px 18px 12px;
+}
+
+.unilist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.unilist-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.unilist-title {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+}
+
+.unilist-search {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 360px;
+  max-width: 60vw;
+}
+
+.unilist-search .search {
+  width: 100%;
+  padding: 14px 14px 14px 46px;
+  background: rgba(6, 30, 66, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 14px;
+  color: #fff;
+  font-size: 0.98rem;
+  transition: all 0.25s ease;
+}
+
+.unilist-search .search:focus {
+  outline: none;
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.2);
+  background: rgba(6, 30, 66, 0.75);
+}
+
+.unilist-search .search::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.unilist-search .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00d4ff;
+  opacity: 0.75;
+}
+
+.unilist-content {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) 1fr;
+  gap: 18px;
+}
+
+.unilist-list {
+  max-height: calc(100vh - 260px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.unilist-list .list-item {
+  background: rgba(6, 30, 66, 0.55);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.unilist-list .list-item:hover {
+  border-color: rgba(0, 212, 255, 0.45);
+  transform: translateX(3px);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.12);
+}
+
+.unilist-list .list-item.active {
+  border-left: 3px solid #00d4ff;
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.12);
+  box-shadow: 0 12px 34px rgba(0, 212, 255, 0.18);
+}
+
+.unilist-list .list-title {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.unilist-list .list-sub {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+}
+
+.unilist-detail {
+  background: rgba(14, 71, 136, 0.35);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.32);
+  color: #fff;
+}
+
+.unilist-detail h1 {
+  color: #00d4ff;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.unilist-detail .meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.unilist-detail .badge {
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: #00d4ff;
+}
+
+.unilist-detail .section {
+  margin-top: 14px;
+}
+
+.unilist-detail .section h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.unilist-detail .section ul {
+  padding-left: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.55;
+}
+
+.unilist-detail .kv {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.unilist-detail .kv-item {
+  padding: 8px 10px;
+  background: rgba(6, 30, 66, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  border-radius: 10px;
+  color: #fff;
+}
+
+.unilist-detail .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.unilist-detail .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 10px;
+  font-size: 0.92rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.unilist-detail .pill:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 960px) {
+  .unilist-page {
+    margin: 80px 16px 36px;
+  }
+
+  .unilist-content {
+    grid-template-columns: 1fr;
+  }
+
+  .unilist-list {
+    max-height: none;
+  }
+}
+
+.unilist-cards-wrapper {
+  margin-top: 52px;
+}
+
+.unilist-card {
+  cursor: pointer;
+}
+
+.card-thumb {
+  width: 100%;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(6, 30, 66, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bookmark-btn {
+  color: #ffb347;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 179, 71, 0.35);
+  background: rgba(255, 179, 71, 0.15);
+  transition: all 0.2s ease;
+}
+
+.bookmark-btn:hover {
+  background: rgba(255, 179, 71, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(255, 179, 71, 0.25);
+}
+
+.bookmark-btn i {
+  color: inherit;
+}
+
 /* Текст "нет данных" */
 .no-data {
   color: rgba(255, 255, 255, 0.5);
@@ -3448,4 +3892,21 @@ body.compare-page.compare-scrollable {
 .requirements-content .req-value {
   color: #fff;
   font-weight: 500;
+}
+
+/* Unilist cards grid overrides */
+.unilist-cards-wrapper .results-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 960px) {
+  .unilist-cards-wrapper .results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .unilist-cards-wrapper .results-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }
