@@ -10,21 +10,18 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Подключение иконок Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
   <body>
-    <!-- Анимированный космический фон -->
     <div class="space-background">
       <div class="space-gradient"></div>
       <div class="space-gradient-2"></div>
       <div class="space-gradient-3"></div>
       <div class="stars"></div>
       <div class="stars-2"></div>
-      <!-- Падающие звезды -->
       <div class="shooting-stars">
         <div class="shooting-star"></div>
         <div class="shooting-star"></div>
@@ -49,31 +46,21 @@
       </div>
     </div>
 
-    <!-- Главный хедер с логотипом -->
     <header class="main-header">
       <div class="header-content">
         <img src="images/unilogo.png" alt="Univigate Logo" class="header-logo">
         <span class="header-title">Univigate</span>
       </div>
-      <!-- Language Selector -->
-      <div class="language-selector">
-        <button class="lang-btn" data-lang="kz">KZ</button>
-        <button class="lang-btn active" data-lang="ru">RU</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-      </div>
     </header>
 
-    <!-- Центральная кнопка навигации (по центру) -->
     <div class="central-nav">
       <button id="central-button" class="central-button">
         <i class="fas fa-graduation-cap"></i>
       </button>
     </div>
 
-    <!-- Круговое меню навигации (отдельно от central-nav) -->
     <div class="circular-menu" id="circular-menu">
       <div class="menu-buttons-container">
-        <!-- Анимированный поиск в центре -->
         <div class="animated-search">
           <input
             type="text"
@@ -143,48 +130,37 @@
         </a>
       </div>
     </div>
-
-    <!-- Основной контент страницы -->
     <main class="landing">
-      <!-- Hero секция -->
       <header class="hero">
         <div class="hero__text">
-          <p class="eyebrow"><i class="fas fa-rocket"></i> UniviGate</p>
-          <h1>Навигация по вузам Казахстана</h1>
-          <p class="hero__lead">
+          <p class="eyebrow" id="eyebrowText"><i class="fas fa-rocket"></i> UniviGate</p>
+          <h1 id="heroTitle">Навигация по вузам Казахстана</h1>
+          <p class="hero__lead" id="heroLead">
             Поиск, карты, 3D-туры и свежие новости об образовании в один клик.
           </p>
         </div>
       </header>
 
-      <!-- Новости вузов -->
       <section class="section news">
         <div class="section__head">
-          <h2 class="section__title"><i class="fas fa-newspaper"></i> Новости вузов РК</h2>
-          <span class="section__hint">Последние заметки из открытых источников</span>
+          <h2 class="section__title" id="newsTitle"><i class="fas fa-newspaper"></i> Новости вузов РК</h2>
+          <span class="section__hint" id="newsHint">Последние заметки из открытых источников</span>
         </div>
         <div id="news-list" class="cards-grid"></div>
       </section>
 
-      <!-- Последние обновления -->
       <section class="section updates">
         <div class="section__head">
-          <h2 class="section__title"><i class="fas fa-sync-alt"></i> Последние обновления на сайте</h2>
+          <h2 class="section__title" id="updatesTitle"><i class="fas fa-sync-alt"></i> Последние обновления на сайте</h2>
         </div>
-        <ul class="updates-list">
-          <li><i class="fas fa-check-circle"></i> Добавлен раздел 3D-туры кампусов.</li>
-          <li><i class="fas fa-check-circle"></i> Обновлена интерактивная карта с фильтром по регионам.</li>
-          <li><i class="fas fa-check-circle"></i> Улучшена система AI-поиска с профильными предметами ЕНТ.</li>
-          <li><i class="fas fa-check-circle"></i> Добавлено сравнение университетов.</li>
-        </ul>
+        <ul class="updates-list" id="updatesList"></ul>
       </section>
 
-      <!-- Полезные ссылки -->
       <section class="section links">
         <div class="section__head">
-          <h2 class="section__title"><i class="fas fa-external-link-alt"></i> Полезные сайты для абитуриентов</h2>
+          <h2 class="section__title" id="linksTitle"><i class="fas fa-external-link-alt"></i> Полезные сайты для абитуриентов</h2>
         </div>
-        <div class="links-grid">
+        <div class="links-grid" id="linksGrid">
           <a class="link-pill" href="https://www.gov.kz/memleket/entities/edu" target="_blank" rel="noopener noreferrer">
             <i class="fas fa-landmark"></i> Минпросвещения РК
           </a>
@@ -200,29 +176,27 @@
         </div>
       </section>
 
-      <!-- Статистика образования -->
       <section class="section charts">
         <div class="section__head">
-          <h2 class="section__title"><i class="fas fa-chart-bar"></i> Статистика образования</h2>
-          <span class="section__hint">Данные ориентировочные, для наглядности</span>
+          <h2 class="section__title" id="chartsTitle"><i class="fas fa-chart-bar"></i> Статистика образования</h2>
+          <span class="section__hint" id="chartsHint">Данные ориентировочные, для наглядности</span>
         </div>
         <div class="cards-grid cards-grid--charts">
           <article class="info-card chart-card">
-            <h3><i class="fas fa-award"></i> Гранты РК по годам</h3>
+            <h3 id="grantsTitle"><i class="fas fa-award"></i> Гранты РК по годам</h3>
             <canvas id="grantsChart" class="chart-canvas"></canvas>
           </article>
           <article class="info-card chart-card">
-            <h3><i class="fas fa-users"></i> Абитуриенты по годам</h3>
+            <h3 id="applicantsTitle"><i class="fas fa-users"></i> Абитуриенты по годам</h3>
             <canvas id="applicantsChart" class="chart-canvas"></canvas>
           </article>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
       <div class="site-footer__content">
-        <span><i class="fas fa-code"></i> Создатели: команда UniviGate</span>
+        <span id="footerCreators"><i class="fas fa-code"></i> Создатели: команда GIT</span>
         <a href="https://github.com" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-github"></i> GitHub
         </a>
@@ -233,7 +207,71 @@
     <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-      // Данные для графиков 2020-2025
+      const I18N = {
+        ru: {
+          eyebrow: "UniviGate",
+          heroTitle: "Навигация по вузам Казахстана",
+          heroLead: "Поиск, карты, 3D-туры и свежие новости об образовании в один клик.",
+          newsTitle: "Новости вузов РК",
+          newsHint: "Читать",
+          newsItems: [
+            {
+              date: "05.12.2025",
+              title: "KIMEP открыл новый Центр карьеры",
+              desc: "Университет усиливает поддержку выпускников: менторство, стажировки и партнёрские вакансии.",
+              link: "https://www.kimep.kz/ru/"
+            },
+            {
+              date: "03.12.2025",
+              title: "AITU запускает магистратуру по AI Safety",
+              desc: "Программа с фокусом на безопасные модели, этику и сертификацию ML-систем.",
+              link: "https://astanait.edu.kz/"
+            },
+            {
+              date: "01.12.2025",
+              title: "NU объявил зимний набор на Foundation",
+              desc: "Продлён приём заявок, доступны подготовительные курсы по STEM и академическому английскому.",
+              link: "https://nu.edu.kz/"
+            }
+          ],
+          updatesTitle: "Последние обновления на сайте",
+          updatesItems: [
+            "Обновили подсказки поиска по вузам",
+            "Добавили стили и описание карт в Unilist",
+            "Подключили тестовый AI-чат виджет"
+          ],
+          linksTitle: "Полезные сайты для абитуриентов",
+          links: [
+            { url: "https://www.gov.kz/memleket/entities/edu", icon: "fa-landmark", label: "Минпросвещения РК" },
+            { url: "https://app.testcenter.kz", icon: "fa-file-alt", label: "Регистрация на ЕНТ" },
+            { url: "https://adilet.zan.kz", icon: "fa-gavel", label: "Правовые акты" },
+            { url: "https://www.enbek.kz", icon: "fa-briefcase", label: "Рынок труда" }
+          ],
+          chartsTitle: "Статистика образования",
+          chartsHint: "Данные ориентировочные, для наглядности",
+          grantsTitle: "Гранты РК по годам",
+          applicantsTitle: "Абитуриенты по годам",
+          grantsSeries: "Количество грантов",
+          applicantsSeries: "Количество абитуриентов",
+          footerCreators: "Создатели: команда GIT",
+          menuDesc: {
+            ai: "AI Калькулятор",
+            map: "Расширенная карта РК",
+            ranking: "Рейтинги университетов",
+            tours: "3D-туры кампусов",
+            favorites: "Избранные университеты",
+            compare: "Сравнение университетов"
+          },
+          searchPlaceholder: "Поиск университетов...",
+          chatSubtitle: "Gemini 2.5 Flash",
+          chatModeAssistant: "Ассистент",
+          chatModeTest: "Генератор тестов",
+          chatWelcomeTitle: "Собрать профтест?",
+          chatWelcomeText: "Напиши класс, интересы, сколько вопросов нужно или сферу — сгенерирую углублённый тест и подскажу профессии.",
+          chatSystemMsg: "Режим переключен: Генератор профтестов"
+        }
+      };
+
       const chartYears = ["2020", "2021", "2022", "2023", "2024", "2025"];
       const grantsData = [54000, 56000, 73000, 88000, 112000, 77000];
       const applicantsData = [132000, 145000, 154000, 162000, 181000, 210000];
@@ -248,11 +286,11 @@
           tooltip: { 
             intersect: false, 
             mode: "index",
-            backgroundColor: 'rgba(10, 35, 70, 0.9)',
-            titleColor: '#00d4ff',
-            bodyColor: '#fff',
-            borderColor: 'rgba(0, 212, 255, 0.3)',
-            borderWidth: 1
+            backgroundColor: "rgba(10, 35, 70, 0.9)",
+            titleColor: "#00d4ff",
+            bodyColor: "#fff",
+            borderColor: "rgba(0, 212, 255, 0.3)",
+            borderWidth: 1,
           },
         },
         layout: { padding: { top: 8, right: 8, bottom: 4, left: 8 } },
@@ -261,26 +299,165 @@
             beginAtZero: true,
             ticks: { 
               precision: 0,
-              color: 'rgba(255, 255, 255, 0.6)'
+              color: "rgba(255, 255, 255, 0.6)",
             },
             grid: { color: "rgba(0, 212, 255, 0.1)" },
           },
           x: {
             grid: { display: false },
-            ticks: { color: 'rgba(255, 255, 255, 0.6)' }
+            ticks: { color: "rgba(255, 255, 255, 0.6)" },
           },
         },
       };
 
+      const newsList = document.getElementById("news-list");
+      const updatesList = document.getElementById("updatesList");
+      const linksGrid = document.getElementById("linksGrid");
+      const langButtons = document.querySelectorAll(".lang-switch__btn");
+      const searchInput = document.getElementById("animated-search-input");
+      const grantsTitleEl = document.getElementById("grantsTitle");
+      const applicantsTitleEl = document.getElementById("applicantsTitle");
+      const heroTitleEl = document.getElementById("heroTitle");
+      const heroLeadEl = document.getElementById("heroLead");
+      const eyebrowEl = document.getElementById("eyebrowText");
+      const newsTitleEl = document.getElementById("newsTitle");
+      const newsHintEl = document.getElementById("newsHint");
+      const updatesTitleEl = document.getElementById("updatesTitle");
+      const linksTitleEl = document.getElementById("linksTitle");
+      const chartsTitleEl = document.getElementById("chartsTitle");
+      const chartsHintEl = document.getElementById("chartsHint");
+      const footerCreatorsEl = document.getElementById("footerCreators");
+      const chatSubtitleEl = document.getElementById("chatSubtitle");
+      const chatModeAssistantEl = document.getElementById("aiChatModeAssistant");
+      const chatModeTestEl = document.getElementById("aiChatModeTest");
+      const chatWelcomeTitleEl = document.getElementById("chatWelcomeTitle");
+      const chatWelcomeTextEl = document.getElementById("chatWelcomeText");
+      const chatSystemMsgEl = document.getElementById("chatSystemMsg");
+      const chatInputEl = document.getElementById("aiChatInput");
+
+      let currentLang = localStorage.getItem("ui-lang") || "ru";
+      let grantsChartInstance = null;
+      let applicantsChartInstance = null;
+
+      function renderNews(t) {
+        if (!newsList) return;
+        newsList.innerHTML = t.newsItems
+          .map(
+            (item) => `
+            <article class="info-card">
+              <div class="news-meta"><i class="fas fa-calendar-alt"></i> ${item.date}</div>
+              <h3>${item.title}</h3>
+              <p>${item.desc}</p>
+              <a href="${item.link}" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-arrow-right"></i> ${t.newsHint}
+              </a>
+            </article>
+          `
+          )
+          .join("");
+      }
+
+      function renderUpdates(t) {
+        if (!updatesList) return;
+        updatesList.innerHTML = t.updatesItems
+          .map((text) => `<li><i class="fas fa-check-circle"></i> ${text}</li>`)
+          .join("");
+      }
+
+      function renderLinks(t) {
+        if (!linksGrid) return;
+        linksGrid.innerHTML = t.links
+          .map(
+            (link) => `
+            <a class="link-pill" href="${link.url}" target="_blank" rel="noopener noreferrer">
+              <i class="fas ${link.icon || "fa-link"}"></i> ${link.label}
+            </a>
+          `
+          )
+          .join("");
+      }
+
+      function setActiveLangButton(lang) {
+        langButtons.forEach((btn) =>
+          btn.classList.toggle("active", btn.dataset.lang === lang)
+        );
+      }
+
+      function setMenuDescriptions(t) {
+        const map = [
+          { selector: ".ai-btn", key: "ai" },
+          { selector: ".search-btn", key: "map" },
+          { selector: ".ranking-btn", key: "ranking" },
+          { selector: ".tours-btn", key: "tours" },
+          { selector: ".favorite-btn", key: "favorites" },
+          { selector: ".compare-btn", key: "compare" },
+        ];
+        map.forEach(({ selector, key }) => {
+          const el = document.querySelector(selector);
+          if (el && t.menuDesc[key]) {
+            el.setAttribute("data-description", t.menuDesc[key]);
+          }
+        });
+        if (searchInput && t.searchPlaceholder) {
+          searchInput.placeholder = t.searchPlaceholder;
+        }
+      }
+
+      function applyLang(lang) {
+        const t = I18N[lang] || I18N.ru;
+        currentLang = lang;
+        localStorage.setItem("ui-lang", lang);
+        document.documentElement.setAttribute("lang", lang);
+        setActiveLangButton(lang);
+
+        if (eyebrowEl) eyebrowEl.innerHTML = `<i class="fas fa-rocket"></i> ${t.eyebrow}`;
+        if (heroTitleEl) heroTitleEl.textContent = t.heroTitle;
+        if (heroLeadEl) heroLeadEl.textContent = t.heroLead;
+        if (newsTitleEl) newsTitleEl.innerHTML = `<i class="fas fa-newspaper"></i> ${t.newsTitle}`;
+        if (newsHintEl) newsHintEl.textContent = t.newsHint;
+        if (updatesTitleEl) updatesTitleEl.innerHTML = `<i class="fas fa-sync-alt"></i> ${t.updatesTitle}`;
+        if (linksTitleEl) linksTitleEl.innerHTML = `<i class="fas fa-external-link-alt"></i> ${t.linksTitle}`;
+        if (chartsTitleEl) chartsTitleEl.innerHTML = `<i class="fas fa-chart-bar"></i> ${t.chartsTitle}`;
+        if (chartsHintEl) chartsHintEl.textContent = t.chartsHint;
+        if (grantsTitleEl) grantsTitleEl.innerHTML = `<i class="fas fa-award"></i> ${t.grantsTitle}`;
+        if (applicantsTitleEl) applicantsTitleEl.innerHTML = `<i class="fas fa-users"></i> ${t.applicantsTitle}`;
+        if (footerCreatorsEl) footerCreatorsEl.innerHTML = `<i class="fas fa-code"></i> ${t.footerCreators}`;
+
+        renderNews(t);
+        renderUpdates(t);
+        renderLinks(t);
+        setMenuDescriptions(t);
+
+        if (chatSubtitleEl) chatSubtitleEl.textContent = t.chatSubtitle;
+        if (chatModeAssistantEl) chatModeAssistantEl.textContent = t.chatModeAssistant;
+        if (chatModeTestEl) chatModeTestEl.textContent = t.chatModeTest;
+        if (chatWelcomeTitleEl) chatWelcomeTitleEl.textContent = t.chatWelcomeTitle;
+        if (chatWelcomeTextEl) chatWelcomeTextEl.textContent = t.chatWelcomeText;
+        if (chatSystemMsgEl) chatSystemMsgEl.textContent = t.chatSystemMsg;
+        if (chatInputEl && t.searchPlaceholder) {
+          chatInputEl.placeholder = t.searchPlaceholder;
+        }
+
+        if (grantsChartInstance) {
+          grantsChartInstance.data.datasets[0].label = t.grantsSeries;
+          grantsChartInstance.update();
+        }
+        if (applicantsChartInstance) {
+          applicantsChartInstance.data.datasets[0].label = t.applicantsSeries;
+          applicantsChartInstance.update();
+        }
+      }
+
+      function buildCharts(t) {
       const grantsCtx = document.getElementById("grantsChart");
       if (grantsCtx) {
-        new Chart(grantsCtx, {
+          grantsChartInstance = new Chart(grantsCtx, {
           type: "bar",
           data: {
             labels: chartYears,
             datasets: [
               {
-                label: "Гранты",
+                  label: t.grantsSeries,
                 data: grantsData,
                 backgroundColor: "rgba(0, 212, 255, 0.6)",
                 borderColor: "#00d4ff",
@@ -295,13 +472,13 @@
 
       const applicantsCtx = document.getElementById("applicantsChart");
       if (applicantsCtx) {
-        new Chart(applicantsCtx, {
+          applicantsChartInstance = new Chart(applicantsCtx, {
           type: "line",
           data: {
             labels: chartYears,
             datasets: [
               {
-                label: "Абитуриенты",
+                  label: t.applicantsSeries,
                 data: applicantsData,
                 borderColor: "#00d4ff",
                 backgroundColor: "rgba(0, 212, 255, 0.15)",
@@ -316,46 +493,288 @@
           options: sharedOptions,
         });
       }
-
-      // Новости
-      const newsList = document.getElementById("news-list");
-      const newsItems = [
-        {
-          title: "Грантовый конкурс-2025",
-          date: "04.12.2025",
-          desc: "Минпросвещения подтвердило приоритетные квоты для IT и инженерии.",
-          link: "https://www.gov.kz/memleket/entities/edu",
-        },
-        {
-          title: "AITU открыл XR-лаборатории",
-          date: "20.11.2025",
-          desc: "Введены AR/VR площадки для студенческих проектов и медиа-инженерии.",
-          link: "https://astanait.edu.kz/",
-        },
-        {
-          title: "Стипендии для олимпиадников",
-          date: "08.11.2025",
-          desc: "ТОП-вузами РК объявлены именные стипендии призерам республиканских олимпиад.",
-          link: "https://adilet.zan.kz/",
-        },
-      ];
-
-      if (newsList) {
-        newsList.innerHTML = newsItems
-          .map(
-            (item) => `
-            <article class="info-card">
-              <div class="news-meta"><i class="fas fa-calendar-alt"></i> ${item.date}</div>
-              <h3>${item.title}</h3>
-              <p>${item.desc}</p>
-              <a href="${item.link}" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-arrow-right"></i> Источник
-              </a>
-            </article>
-          `
-          )
-          .join("");
       }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const initialLang = I18N[currentLang] ? currentLang : "ru";
+        buildCharts(I18N[initialLang]);
+        applyLang(initialLang);
+        langButtons.forEach((btn) =>
+          btn.addEventListener("click", () => applyLang(btn.dataset.lang))
+        );
+
+        if (updatesList && !updatesList.innerHTML.trim()) {
+          renderUpdates(I18N[initialLang]);
+        }
+      });
+    </script>
+
+    <div class="ai-chat-widget" id="aiChatWidget">
+      <div class="ai-chat-window" id="aiChatWindow">
+        <div class="ai-chat-header">
+          <div class="ai-chat-avatar">✨</div>
+          <div class="ai-chat-info">
+            <h4>Univigate AI</h4>
+            <span id="chatSubtitle">Gemini 2.5 Flash</span>
+          </div>
+          <div class="ai-chat-mode-switch">
+            <button
+              class="ai-chat-mode-btn"
+              id="aiChatModeAssistant"
+              onclick="aiChatSetMode('assistant')"
+            >
+              Ассистент
+            </button>
+            <button
+              class="ai-chat-mode-btn active"
+              id="aiChatModeTest"
+              onclick="aiChatSetMode('test')"
+            >
+              Генератор тестов
+            </button>
+          </div>
+          <button class="ai-chat-close" onclick="aiChatToggle()">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="ai-chat-messages" id="aiChatMessages">
+          <div class="ai-chat-welcome">
+            <div class="emoji">🧠</div>
+            <h3>Собрать профтест?</h3>
+            <p>
+              Напиши класс, интересы, сколько вопросов нужно или сферу — сгенерирую
+              углублённый тест и подскажу профессии.
+            </p>
+          </div>
+          <div class="ai-chat-message system">
+            Режим переключен: Генератор профтестов
+          </div>
+        </div>
+
+        <div class="ai-chat-typing" id="aiChatTyping">
+          <span></span><span></span><span></span>
+        </div>
+
+        <div class="ai-chat-input-area">
+          <div class="ai-chat-input-wrapper">
+            <textarea
+              class="ai-chat-input"
+              id="aiChatInput"
+              placeholder="Напишите сообщение..."
+              rows="1"
+              onkeydown="aiChatHandleKeyDown(event)"
+            ></textarea>
+            <button class="ai-chat-send" id="aiChatSendBtn" onclick="aiChatSendMessage()">
+              <svg viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="ai-chat-toggle" id="aiChatToggle" onclick="aiChatToggle()">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <script>
+      (function () {
+        const GEMINI_API_URL = "/api/chat";
+        let currentMode = "assistant";
+        const histories = { assistant: [], test: [] };
+        let conversationHistory = histories[currentMode];
+
+        const SYSTEM_PROMPTS = {
+          assistant: `Ты — дружелюбный AI-ассистент Univigate. Отвечай кратко и по делу на русском, используй эмодзи для читаемости. Если просят про поступление, гранты или карьеру — дай чёткие шаги. Если просят код — форматируй в markdown.`,
+          test: `Ты — профессиональный профориентолог Univigate для школьников/студентов Казахстана.
+Задача: собрать точный профтест, просить уточнения при неполных ответах, НЕ придумывать данные.
+Формат финального ответа:
+- "Вопросы": 10–12 пронумерованных, разнообразных (interests, skills, personality, values, real_world). Короткие и ясные, максимум 2 похожих.
+- "Результаты": топ-3 сферы с процентами (сумма 100%) и кратким объяснением, на чём основано.
+- "Профессии": по каждой сфере 3–5 профессий с % соответствия (внутри сферы ≤ 100) + короткое обоснование (интересы/навыки).
+- "Шаги": практические советы (курсы/олимпиады/проекты/вуз в РК или онлайн-ресурсы).
+Правила:
+1) Если ответ пользователя неполный/не по теме, явно попроси уточнить (класс, город/регион, интересы, желаемая сфера, количество вопросов).
+2) Если пользователь назвал сферу (IT, медицина, дизайн, бизнес, инженерия и т.п.) — углубляй вопросы и примеры в этой сфере.
+3) Учитывай контекст: класс/курс, город/регион (Almaty, Astana, регионы), запрос на STEM/гуманитарный уклон.
+4) Пиши компактно, без воды; не придумывай факты, опирайся только на ответы пользователя.
+5) Всегда проверяй, достаточно ли входных данных. При дефиците — задай уточняющий вопрос перед выдачей результатов.`,
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+          aiChatAutoResizeTextarea();
+          aiChatRenderWelcome();
+        });
+
+        window.aiChatSetMode = function (mode) {
+          if (mode === currentMode) return;
+          currentMode = mode;
+          conversationHistory = histories[currentMode];
+          document
+            .getElementById("aiChatModeAssistant")
+            .classList.toggle("active", mode === "assistant");
+          document
+            .getElementById("aiChatModeTest")
+            .classList.toggle("active", mode === "test");
+          aiChatRenderWelcome();
+          const chatWindow = document.getElementById("aiChatWindow");
+          if (chatWindow.classList.contains("open")) {
+            chatWindow.classList.toggle("fullscreen", mode === "test");
+          }
+          aiChatAddMessage(
+            `Режим переключен: ${
+              mode === "assistant"
+                ? "Ассистент (общие вопросы)"
+                : "Генератор профтестов"
+            }`,
+            "system"
+          );
+        };
+
+        window.aiChatRenderWelcome = function () {
+          const messagesContainer = document.getElementById("aiChatMessages");
+          if (!messagesContainer) return;
+          if (currentMode === "assistant") {
+            messagesContainer.innerHTML = `
+              <div class="ai-chat-welcome">
+                <div class="emoji">👋</div>
+                <h3>Привет!</h3>
+                <p>Я AI-ассистент на базе Gemini. Задайте мне любой вопрос!</p>
+              </div>
+            `;
+          } else {
+            messagesContainer.innerHTML = `
+              <div class="ai-chat-welcome">
+                <div class="emoji">🧠</div>
+                <h3>Собрать профтест?</h3>
+                <p>Напиши класс, интересы, сколько вопросов нужно или сферу — сгенерирую углублённый тест и подскажу профессии.</p>
+              </div>
+            `;
+          }
+        };
+
+        window.aiChatToggle = function () {
+          const chatWindow = document.getElementById("aiChatWindow");
+          const chatToggle = document.getElementById("aiChatToggle");
+          chatWindow.classList.toggle("open");
+          chatWindow.classList.toggle("fullscreen", currentMode === "test");
+          chatToggle.classList.toggle("active");
+          if (chatWindow.classList.contains("open")) {
+            document.getElementById("aiChatInput").focus();
+          }
+        };
+
+        window.aiChatAddMessage = function (text, type) {
+          const messagesContainer = document.getElementById("aiChatMessages");
+          if (!messagesContainer) return;
+          const welcomeMsg = messagesContainer.querySelector(".ai-chat-welcome");
+          if (welcomeMsg && type !== "system") welcomeMsg.remove();
+
+          const messageDiv = document.createElement("div");
+          messageDiv.className = `ai-chat-message ${type}`;
+          const formattedText = (text || "")
+            .replace(/```(\w+)?\n([\s\S]*?)```/g, "<pre><code>$2</code></pre>")
+            .replace(/`([^`]+)`/g, "<code>$1</code>")
+            .replace(/\n/g, "<br>");
+          messageDiv.innerHTML = formattedText;
+          messagesContainer.appendChild(messageDiv);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        };
+
+        window.aiChatSetTyping = function (show) {
+          const indicator = document.getElementById("aiChatTyping");
+          indicator.classList.toggle("visible", show);
+          if (show) {
+            const messagesContainer = document.getElementById("aiChatMessages");
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+        };
+
+        window.aiChatSendMessage = async function () {
+          const input = document.getElementById("aiChatInput");
+          const sendBtn = document.getElementById("aiChatSendBtn");
+          const message = input.value.trim();
+          if (!message) return;
+
+          aiChatAddMessage(message, "user");
+          input.value = "";
+          input.style.height = "auto";
+          conversationHistory.push({ role: "user", parts: [{ text: message }] });
+
+          sendBtn.disabled = true;
+          aiChatSetTyping(true);
+
+          try {
+            const messages = [
+              { role: "user", content: aiChatGetSystemPrompt() },
+              ...conversationHistory.map((m) => ({
+                role: m.role === "model" ? "assistant" : "user",
+                content: (m.parts && m.parts[0]?.text) || "",
+              })),
+              { role: "user", content: message },
+            ];
+
+            const response = await fetch(GEMINI_API_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ messages }),
+            });
+
+            const data = await response.json();
+            if (data.error) {
+              throw new Error(data.error.detail || data.error);
+            }
+
+            const botResponse =
+              data.text ||
+              data.candidates?.[0]?.content?.parts?.[0]?.text ||
+              "Нет ответа";
+
+            conversationHistory.push({
+              role: "model",
+              parts: [{ text: botResponse }],
+            });
+
+            aiChatSetTyping(false);
+            aiChatAddMessage(botResponse, "bot");
+          } catch (error) {
+            aiChatSetTyping(false);
+            console.error("Error:", error);
+            aiChatAddMessage(`❌ Ошибка: ${error.message}`, "error");
+            conversationHistory.pop();
+          }
+
+          sendBtn.disabled = false;
+        };
+
+        window.aiChatHandleKeyDown = function (event) {
+          if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            aiChatSendMessage();
+          }
+        };
+
+        window.aiChatAutoResizeTextarea = function () {
+          const textarea = document.getElementById("aiChatInput");
+          if (!textarea) return;
+          textarea.addEventListener("input", function () {
+            this.style.height = "auto";
+            this.style.height = Math.min(this.scrollHeight, 120) + "px";
+          });
+        };
+
+        window.aiChatGetSystemPrompt = function () {
+          return SYSTEM_PROMPTS[currentMode];
+        };
+      })();
     </script>
   </body>
 </html>
