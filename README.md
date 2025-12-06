@@ -1,4 +1,4 @@
-Navigation App — Version 1.10
+Univigate — Version 1.10
 =============================
 
 Lightweight front-end for browsing universities with the full navigation feature set and refreshed styles.
