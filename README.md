@@ -1,28 +1,28 @@
-Navigation App — Version 1.20
+Navigation App — Version 1.10
 =============================
 
-Lightweight front-end for exploring universities with faster decision tools.
+Lightweight front-end for browsing universities with the full navigation feature set and refreshed styles.
 
-What's new in 1.20
+What's new in 1.10
 ------------------
-- Refreshed university list with quick filters and deep links to detail pages.
-- Side-by-side comparison view to weigh programs, tuition, and perks.
-- 3D campus previews so you can feel the vibe before visiting.
-- Keeps the 1.10 upgrades: AI-powered calculator and interactive map.
+- All navigation utilities and shortcuts from the main app are included for a smoother flow.
+- Updated styling for cleaner layout, spacing, and readability across pages.
+- AI-powered calculator to quickly compare university options and get tailored suggestions.
+- Interactive map to preview each university’s geolocation before opening the details page.
 
 Features
 --------
-- Clean navigation with fast search across the universities dataset.
-- Dedicated university list (`pages/unilist.html`) for browsing and jumping into details.
-- Comparison tool (`pages/compare.html`) to evaluate shortlisted options in one place.
-- 3D campus view available from university pages for immersive previews.
-- AI helper available from the main navigation and `pages/ai-searcher.html`.
-- Map view (`pages/map.html`) to visualize campus locations and jump into details.
+- Fast search and clean navigation through the universities dataset.
+- University list (`pages/unilist.html`) to browse and jump into details.
+- Comparison view (`pages/compare.html`) to weigh options side by side.
+- Map view (`pages/map.html`) to visualize campus locations and open details.
+- AI helper accessible from the main navigation and `pages/ai-searcher.html`.
+- 3D campus previews available from `pages/3d-tours.html`.
 
 Getting started
 ---------------
 - Open `index.html` locally or serve the folder with any static server.
-- Data lives in `js/universities/`; scripts and styles are in `js/` and `styles/`.
+- Data lives in `data/universities/`; scripts are in `js/`; styles are in `styles/`.
 
 Notes
 -----

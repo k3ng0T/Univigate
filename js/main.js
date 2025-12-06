@@ -1,143 +1,124 @@
 // Получаем необходимые элементы DOM
 const centralButton = document.getElementById('central-button');
 const circularMenu = document.getElementById('circular-menu');
-const universityCatalog = document.getElementById('university-catalog');
-const searchModal = document.getElementById('search-modal');
-
-// Функция для создания карточки университета
-function createUniversityCard(university) {
-    const card = document.createElement('div');
-    card.className = 'university-card';
-
-    card.innerHTML = `
-        <img src="${university.image}" alt="${university.name}" class="university-image">
-        <div class="university-info">
-            <h3 class="university-name">${university.name}</h3>
-            <p class="university-country">${university.country}</p>
-        </div>
-        <div class="university-requirements">
-            <p>IELTS: ${university.requirements.ielts}</p>
-            <p>SAT: ${university.requirements.sat}</p>
-        </div>
-    `;
-
-    // Добавляем обработчик клика для перехода на страницу университета
-    card.addEventListener('click', () => {
-        // TODO: Реализовать переход на страницу университета
-        console.log('Переход на страницу университета:', university.name);
-    });
-
-    return card;
-}
-
-// Функция для отображения университетов
-function displayUniversities(universitiesList = universities) {
-    universityCatalog.innerHTML = '';
-    universitiesList.forEach(university => {
-        universityCatalog.appendChild(createUniversityCard(university));
-    });
-}
-
-// Функция для фильтрации университетов
-function filterUniversities(criteria) {
-    return universities.filter(university => {
-        const meetsIelts = !criteria.ielts || university.requirements.ielts <= criteria.ielts;
-        const meetsSat = !criteria.sat || university.requirements.sat <= criteria.sat;
-        const meetsCountry = !criteria.country || university.country === criteria.country;
-        
-        return meetsIelts && meetsSat && meetsCountry;
-    });
-}
 
 // Функция для переключения меню
 function toggleMenu() {
     circularMenu.classList.toggle('active');
-    universityCatalog.classList.toggle('blur');
 }
 
 // Обработчик клика по центральной кнопке
-centralButton.addEventListener('click', toggleMenu);
+if (centralButton) {
+    centralButton.addEventListener('click', toggleMenu);
+}
 
 // Обработчик клика по кнопке Exit (закрытие меню)
-document.querySelector('.exit-btn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
-});
-
-// Обработчик клика по кнопке поиска
-document.querySelector('.search-btn').addEventListener('click', () => {
-    searchModal.classList.add('active');
-    circularMenu.classList.remove('active');
-    universityCatalog.classList.remove('blur');
-});
-
-// Обработчик отправки формы поиска
-document.getElementById('search-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(e.target);
-    const criteria = {
-        ielts: parseFloat(formData.get('ielts')),
-        sat: parseInt(formData.get('sat')),
-        country: formData.get('country')
-    };
-
-    const filteredUniversities = filterUniversities(criteria);
-    displayUniversities(filteredUniversities);
-    searchModal.classList.remove('active');
-});
-
-// Закрытие модального окна при клике вне его содержимого
-searchModal.addEventListener('click', (e) => {
-    if (e.target === searchModal) {
-        searchModal.classList.remove('active');
-    }
-});
-
-// Закрытие модального окна по кнопке
-const closeModalBtn = document.querySelector('.close-btn');
-closeModalBtn.addEventListener('click', () => {
-    searchModal.classList.remove('active');
-});
-
-// Заполнение выпадающего списка стран
-const countrySelect = document.getElementById('country-select');
-const countries = [...new Set(universities.map(u => u.country))];
-countries.forEach(country => {
-    const option = document.createElement('option');
-    option.value = country;
-    option.textContent = country;
-    countrySelect.appendChild(option);
-});
-
-// Инициализация: главная страница пустая
-// Университеты отображаются только через AI поиск на странице результатов
-// displayUniversities();
+const exitBtn = document.querySelector('.exit-btn');
+if (exitBtn) {
+    exitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+    });
+}
 
 // ============================================
-// АНИМИРОВАННЫЙ ПОИСК
+// АНИМИРОВАННЫЙ ПОИСК С АВТОЗАПОЛНЕНИЕМ
 // ============================================
 
 const animatedSearchInput = document.getElementById('animated-search-input');
 const animatedSearchButton = document.getElementById('animated-search-button');
 const animatedSearch = document.querySelector('.animated-search');
 
+// Создаём контейнер для подсказок
+let suggestionsContainer = null;
+
+function createSuggestionsContainer() {
+    if (suggestionsContainer) return;
+    
+    suggestionsContainer = document.createElement('div');
+    suggestionsContainer.className = 'search-suggestions';
+    suggestionsContainer.id = 'search-suggestions';
+    
+    if (animatedSearch) {
+        animatedSearch.appendChild(suggestionsContainer);
+    }
+}
+
 // Функция для поиска университетов по тексту
 function searchUniversitiesByText(searchText) {
-    if (!searchText || searchText.trim() === '') {
-        return universities;
+    if (!searchText || searchText.trim() === '' || typeof UNIVERSITIES === 'undefined') {
+        return [];
     }
     
     const searchLower = searchText.toLowerCase().trim();
-    return universities.filter(university => {
-        const nameMatch = university.name.toLowerCase().includes(searchLower);
-        const countryMatch = university.country.toLowerCase().includes(searchLower);
-        return nameMatch || countryMatch;
+    const results = [];
+    
+    for (const [key, uni] of Object.entries(UNIVERSITIES)) {
+        const nameMatch = uni.name.toLowerCase().includes(searchLower);
+        const nameRuMatch = uni.nameRu.toLowerCase().includes(searchLower);
+        const shortNameMatch = uni.shortName.toLowerCase().includes(searchLower);
+        const cityMatch = uni.info.location.city.toLowerCase().includes(searchLower);
+        
+        if (nameMatch || nameRuMatch || shortNameMatch || cityMatch) {
+            results.push(uni);
+        }
+    }
+    
+    return results;
+}
+
+// Функция для отображения подсказок
+function showSuggestions(universities) {
+    if (!suggestionsContainer) {
+        createSuggestionsContainer();
+    }
+    
+    if (!universities || universities.length === 0) {
+        suggestionsContainer.innerHTML = '';
+        suggestionsContainer.classList.remove('active');
+        return;
+    }
+    
+    let html = '';
+    universities.slice(0, 6).forEach(uni => {
+        html += `
+            <div class="suggestion-item" data-id="${uni.id}">
+                <div class="suggestion-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="suggestion-info">
+                    <span class="suggestion-name">${uni.shortName}</span>
+                    <span class="suggestion-full">${uni.nameRu}</span>
+                </div>
+                <div class="suggestion-location">
+                    <i class="fas fa-map-marker-alt"></i> ${uni.info.location.city}
+                </div>
+            </div>
+        `;
     });
+    
+    suggestionsContainer.innerHTML = html;
+    suggestionsContainer.classList.add('active');
+    
+    // Добавляем обработчики клика на подсказки
+    const items = suggestionsContainer.querySelectorAll('.suggestion-item');
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            const uniId = item.dataset.id;
+            goToUniversity(uniId);
+        });
+    });
+}
+
+// Функция для перехода на страницу университета
+function goToUniversity(uniId) {
+    window.location.href = `pages/university.html?id=${uniId}`;
 }
 
 // Обработчик ввода текста в анимированный поиск
 if (animatedSearchInput) {
+    createSuggestionsContainer();
     let searchTimeout;
     
     animatedSearchInput.addEventListener('input', (e) => {
@@ -147,17 +128,50 @@ if (animatedSearchInput) {
         // Поиск с небольшой задержкой для оптимизации
         searchTimeout = setTimeout(() => {
             const filteredUniversities = searchUniversitiesByText(searchText);
-            displayUniversities(filteredUniversities);
-        }, 300);
+            showSuggestions(filteredUniversities);
+        }, 200);
     });
     
     // Обработчик нажатия Enter
     animatedSearchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            const searchText = e.target.value;
+            const searchText = e.target.value.trim();
+            
+            // Ищем точное совпадение
+            const results = searchUniversitiesByText(searchText);
+            if (results.length === 1) {
+                goToUniversity(results[0].id);
+            } else if (results.length > 1) {
+                // Проверяем точное совпадение по имени
+                const exact = results.find(uni => 
+                    uni.name.toLowerCase() === searchText.toLowerCase() ||
+                    uni.nameRu.toLowerCase() === searchText.toLowerCase() ||
+                    uni.shortName.toLowerCase() === searchText.toLowerCase()
+                );
+                if (exact) {
+                    goToUniversity(exact.id);
+                } else {
+                    // Переходим к первому результату
+                    goToUniversity(results[0].id);
+                }
+            }
+        }
+    });
+    
+    // Скрытие подсказок при клике вне поиска
+    document.addEventListener('click', (e) => {
+        if (suggestionsContainer && !animatedSearch.contains(e.target)) {
+            suggestionsContainer.classList.remove('active');
+        }
+    });
+    
+    // Показать подсказки при фокусе если есть текст
+    animatedSearchInput.addEventListener('focus', () => {
+        const searchText = animatedSearchInput.value;
+        if (searchText.trim()) {
             const filteredUniversities = searchUniversitiesByText(searchText);
-            displayUniversities(filteredUniversities);
+            showSuggestions(filteredUniversities);
         }
     });
 }
@@ -166,36 +180,40 @@ if (animatedSearchInput) {
 if (animatedSearchButton) {
     animatedSearchButton.addEventListener('click', () => {
         if (animatedSearchInput) {
-            const searchText = animatedSearchInput.value;
-            const filteredUniversities = searchUniversitiesByText(searchText);
-            displayUniversities(filteredUniversities);
+            const searchText = animatedSearchInput.value.trim();
+            const results = searchUniversitiesByText(searchText);
+            if (results.length > 0) {
+                goToUniversity(results[0].id);
+            }
         }
     });
 }
 
-// Управление классом search-opened для контроля анимации закрытия
+// Управление классом search-opened для контроля анимации
 if (animatedSearch) {
     animatedSearch.addEventListener('mouseenter', () => {
         animatedSearch.classList.add('search-opened');
     });
     
     animatedSearch.addEventListener('mouseleave', () => {
-        // Убираем класс после завершения анимации закрытия
-        setTimeout(() => {
-            animatedSearch.classList.remove('search-opened');
-        }, 150); // Время анимации закрытия
+        if (!animatedSearchInput || !animatedSearchInput.value) {
+            setTimeout(() => {
+                animatedSearch.classList.remove('search-opened');
+            }, 150);
+        }
     });
     
-    // Также при фокусе
     if (animatedSearchInput) {
         animatedSearchInput.addEventListener('focus', () => {
             animatedSearch.classList.add('search-opened');
         });
         
         animatedSearchInput.addEventListener('blur', () => {
-            setTimeout(() => {
-                animatedSearch.classList.remove('search-opened');
-            }, 150);
+            if (!animatedSearchInput.value) {
+                setTimeout(() => {
+                    animatedSearch.classList.remove('search-opened');
+                }, 200);
+            }
         });
     }
 }

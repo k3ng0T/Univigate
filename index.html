@@ -7,7 +7,7 @@
     <title>UniviGate - Поиск университетов</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <!-- Подключение иконок Font Awesome -->
@@ -17,7 +17,53 @@
     />
   </head>
   <body>
-    <!-- Центральная кнопка навигации -->
+    <!-- Анимированный космический фон -->
+    <div class="space-background">
+      <div class="space-gradient"></div>
+      <div class="space-gradient-2"></div>
+      <div class="space-gradient-3"></div>
+      <div class="stars"></div>
+      <div class="stars-2"></div>
+      <!-- Падающие звезды -->
+      <div class="shooting-stars">
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+      </div>
+    </div>
+
+    <!-- Главный хедер с логотипом -->
+    <header class="main-header">
+      <div class="header-content">
+        <img src="images/unilogo.png" alt="Univigate Logo" class="header-logo">
+        <span class="header-title">Univigate</span>
+      </div>
+      <!-- Language Selector -->
+      <div class="language-selector">
+        <button class="lang-btn" data-lang="kz">KZ</button>
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </header>
+
+    <!-- Центральная кнопка навигации (по центру) -->
     <div class="central-nav">
       <button id="central-button" class="central-button">
         <i class="fas fa-graduation-cap"></i>
@@ -65,7 +111,7 @@
           <i class="fas fa-search-plus"></i>
         </a>
         <a
-          href="pages/unilist.html"
+          href="#"
           class="menu-item ranking-btn"
           data-description="Рейтинги университетов"
         >
@@ -73,7 +119,7 @@
         </a>
         <a
           href="pages/3d-tours.html"
-          class="menu-item tours-btn filter-btn"
+          class="menu-item tours-btn"
           data-description="3D-туры кампусов"
         >
           <i class="fas fa-cube"></i>
@@ -98,7 +144,7 @@
       </div>
     </div>
 
-    <script src="js/data.js"></script>
+    <script src="js/universities-data.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

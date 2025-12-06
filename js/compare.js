@@ -437,6 +437,9 @@ function performComparison() {
     document.getElementById('compare-selection').style.display = 'none';
     document.getElementById('compare-results').style.display = 'block';
     
+    // Enable scrolling after comparison
+    document.body.classList.add('compare-scrollable');
+    
     // Заполняем заголовки
     document.getElementById('uni1-name').textContent = uni1.shortName;
     document.getElementById('uni1-fullname').textContent = uni1.nameRu;
@@ -464,6 +467,10 @@ function performComparison() {
 function backToSelection() {
     document.getElementById('compare-selection').style.display = 'block';
     document.getElementById('compare-results').style.display = 'none';
+    
+    // Disable scrolling when back to selection
+    document.body.classList.remove('compare-scrollable');
+    window.scrollTo(0, 0);
 }
 
 // Инициализация при загрузке страницы
