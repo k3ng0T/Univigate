@@ -217,26 +217,3 @@ if (animatedSearch) {
         });
     }
 }
-
-// ============================================
-// СИНХРОНИЗАЦИЯ ЯЗЫКА НА ВСЕХ СТРАНИЦАХ
-// ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    const lang = localStorage.getItem('ui-lang') || 'ru';
-    document.documentElement.setAttribute('lang', lang);
-
-    const langButtons = document.querySelectorAll('.lang-switch__btn');
-    if (langButtons.length) {
-        const setActive = (nextLang) => {
-            localStorage.setItem('ui-lang', nextLang);
-            document.documentElement.setAttribute('lang', nextLang);
-            langButtons.forEach((b) =>
-                b.classList.toggle('active', b.dataset.lang === nextLang)
-            );
-        };
-        setActive(lang);
-        langButtons.forEach((btn) =>
-            btn.addEventListener('click', () => setActive(btn.dataset.lang))
-        );
-    }
-});
