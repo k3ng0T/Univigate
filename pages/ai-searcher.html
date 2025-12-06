@@ -53,65 +53,6 @@
         <h1 class="ai-searcher-title">AI University Searcher</h1>
         
         <form class="ai-form" id="ai-search-form">
-            <!-- IELTS наличие -->
-            <div class="form-group">
-                <label for="has-ielts">Имеется IELTS?</label>
-                <select id="has-ielts" name="has-ielts">
-                    <option value="no" selected>НЕТ</option>
-                    <option value="yes">ДА</option>
-                </select>
-            </div>
-
-            <!-- IELTS Score (условное поле) -->
-            <div class="form-group sat-conditional" id="ielts-score-group">
-                <label for="ielts">IELTS Score:</label>
-                <input type="number" 
-                       id="ielts" 
-                       name="ielts" 
-                       min="1.0" 
-                       max="9.0" 
-                       step="0.5"
-                       lang="en">
-            </div>
-
-            <!-- TOEFL наличие -->
-            <div class="form-group">
-                <label for="has-toefl">Имеется TOEFL?</label>
-                <select id="has-toefl" name="has-toefl">
-                    <option value="no" selected>НЕТ</option>
-                    <option value="yes">ДА</option>
-                </select>
-            </div>
-
-            <!-- TOEFL Score (условное поле) -->
-            <div class="form-group sat-conditional" id="toefl-score-group">
-                <label for="toefl">TOEFL Score:</label>
-                <input type="number" 
-                       id="toefl" 
-                       name="toefl" 
-                       min="0" 
-                       max="120">
-            </div>
-
-            <!-- SAT наличие -->
-            <div class="form-group">
-                <label for="has-sat">Имеется SAT?</label>
-                <select id="has-sat" name="has-sat">
-                    <option value="no" selected>НЕТ</option>
-                    <option value="yes">ДА</option>
-                </select>
-            </div>
-
-            <!-- SAT Score (условное поле) -->
-            <div class="form-group sat-conditional" id="sat-score-group">
-                <label for="sat">SAT Score:</label>
-                <input type="number" 
-                       id="sat" 
-                       name="sat" 
-                       min="0" 
-                       max="1600">
-            </div>
-
             <!-- ЕНТ наличие -->
             <div class="form-group">
                 <label for="has-ent">Имеется ЕНТ?</label>
@@ -121,14 +62,48 @@
                 </select>
             </div>
 
-            <!-- ЕНТ Score (условное поле) -->
-            <div class="form-group sat-conditional" id="ent-score-group">
-                <label for="ent">ЕНТ Score:</label>
+            <!-- ЕНТ секция (условная) -->
+            <div class="form-group sat-conditional" id="ent-details-group">
+                <!-- Комбинация профильных предметов -->
+                <label for="ent-combo">Комбинация профильных предметов:</label>
+                <select id="ent-combo" name="ent-combo">
+                    <option value="">Выберите комбинацию</option>
+                    <optgroup label="Технические направления">
+                        <option value="math-physics">Математика + Физика</option>
+                        <option value="math-informatics">Математика + Информатика</option>
+                    </optgroup>
+                    <optgroup label="Естественные науки">
+                        <option value="biology-chemistry">Биология + Химия</option>
+                        <option value="biology-geography">Биология + География</option>
+                        <option value="chemistry-physics">Химия + Физика</option>
+                    </optgroup>
+                    <optgroup label="Гуманитарные направления">
+                        <option value="history-geography">История Казахстана + География</option>
+                        <option value="history-world">История Казахстана + Всемирная история</option>
+                        <option value="history-law">История Казахстана + Основы права</option>
+                        <option value="history-literature">История Казахстана + Литература</option>
+                    </optgroup>
+                    <optgroup label="Языковые направления">
+                        <option value="english-history">Иностранный язык + История</option>
+                        <option value="language-literature">Язык + Литература</option>
+                    </optgroup>
+                    <optgroup label="Экономика и бизнес">
+                        <option value="math-geography">Математика + География</option>
+                    </optgroup>
+                    <optgroup label="Творческие направления">
+                        <option value="creative-history">Творческий экзамен + История</option>
+                        <option value="creative-math">Творческий экзамен + Математика</option>
+                    </optgroup>
+                </select>
+                
+                <!-- ЕНТ Score -->
+                <label for="ent" style="margin-top: 15px;">Общий балл ЕНТ:</label>
                 <input type="number" 
                        id="ent" 
                        name="ent" 
                        min="0" 
-                       max="140">
+                       max="140"
+                       placeholder="Введите балл">
             </div>
 
             <!-- GPA Score -->
@@ -150,7 +125,7 @@
         </form>
     </div>
 
-    <script src="../js/universities-data.js"></script>
+    <script src="../js/generalDB.js"></script>
     <script src="../js/ai-searcher.js"></script>
 </body>
 </html>

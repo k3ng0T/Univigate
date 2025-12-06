@@ -263,7 +263,10 @@ function showRegionInfo(regionId) {
             'regional': 'Региональный',
             'international': 'Международный',
             'oil-gas': 'Нефтегаз',
-            'agricultural': 'Аграрный'
+            'agricultural': 'Аграрный',
+            'law': 'Юридический',
+            'arts': 'Искусство',
+            'private': 'Частный'
         };
         
         return `
@@ -306,21 +309,22 @@ function showUniversityDetail(uniId, regionId) {
     const region = kazakhstanRegions.find(r => r.id === regionId);
 
     // Требования
-    const requirementsHTML = Object.entries(uni.requirements).map(([key, value]) => {
-        const labels = {
-            ielts: 'IELTS',
-            toefl: 'TOEFL',
-            sat: 'SAT',
-            ent: 'ЕНТ',
-            gpa: 'GPA'
-        };
-        return `
-            <div class="req-item">
-                <div class="label">${labels[key] || key}</div>
-                <div class="value">${value}</div>
-            </div>
-        `;
-    }).join('');
+    const requirementsHTML = Object.entries(uni.requirements)
+        .filter(([key, value]) => value !== null && value !== undefined)
+        .map(([key, value]) => {
+            const labels = {
+                ent: 'ЕНТ',
+                gpa: 'GPA',
+                creative: 'Творч. экзамен'
+            };
+            const displayValue = value === true ? '✓' : value;
+            return `
+                <div class="req-item">
+                    <div class="label">${labels[key] || key}</div>
+                    <div class="value">${displayValue}${key !== 'creative' && key !== 'gpa' ? '+' : ''}</div>
+                </div>
+            `;
+        }).join('');
 
     // Программы
     const programsHTML = uni.programs.map(p => 
@@ -519,4 +523,5 @@ function getUniversityWord(count) {
     }
     return 'университетов';
 }
+
 

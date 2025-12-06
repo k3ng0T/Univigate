@@ -99,9 +99,6 @@ function renderUniversityPage(uni) {
     // Аккредитации
     renderAccreditations(uni);
     
-    // Избранное
-    initFavoriteButton(uni);
-    
     // Инициализация табов
     initTabs();
 }
@@ -147,44 +144,6 @@ function renderRequirements(uni) {
     const req = uni.requirements;
     let html = '';
     
-    if (req.ielts) {
-        html += `
-            <div class="req-card">
-                <div class="req-icon"><i class="fas fa-language"></i></div>
-                <div class="req-info">
-                    <span class="req-name">IELTS</span>
-                    <span class="req-value">от ${req.ielts.min}</span>
-                    <span class="req-grant">грант: ${req.ielts.grant}+</span>
-                </div>
-            </div>
-        `;
-    }
-    
-    if (req.toefl) {
-        html += `
-            <div class="req-card">
-                <div class="req-icon"><i class="fas fa-language"></i></div>
-                <div class="req-info">
-                    <span class="req-name">TOEFL</span>
-                    <span class="req-value">от ${req.toefl.min}</span>
-                    <span class="req-grant">грант: ${req.toefl.grant}+</span>
-                </div>
-            </div>
-        `;
-    }
-    
-    if (req.sat) {
-        html += `
-            <div class="req-card">
-                <div class="req-icon"><i class="fas fa-file-alt"></i></div>
-                <div class="req-info">
-                    <span class="req-name">SAT</span>
-                    <span class="req-value">от ${req.sat.min}</span>
-                    <span class="req-grant">грант: ${req.sat.grant}+</span>
-                </div>
-            </div>
-        `;
-    }
     
     if (req.ent) {
         html += `
@@ -385,16 +344,6 @@ function renderAccreditations(uni) {
     container.innerHTML = uni.accreditations.map(a => `
         <li><i class="fas fa-award"></i> ${a}</li>
     `).join('');
-}
-
-// Кнопка избранного
-function initFavoriteButton(uni) {
-    const favBtn = document.getElementById('favorite-toggle');
-    if (!favBtn || typeof bindFavoriteButton !== 'function') return;
-    favBtn.dataset.id = uni.id;
-    bindFavoriteButton(favBtn, uni.id, {
-        labels: { add: 'В избранное', remove: 'В избранном' }
-    });
 }
 
 // Инициализация табов

@@ -125,7 +125,7 @@
           <i class="fas fa-cube"></i>
         </a>
         <a
-          href="pages/favorites.html"
+          href="#"
           class="menu-item favorite-btn"
           data-description="Избранные университеты"
         >
@@ -144,7 +144,218 @@
       </div>
     </div>
 
-    <script src="js/universities-data.js"></script>
+    <!-- Основной контент страницы -->
+    <main class="landing">
+      <!-- Hero секция -->
+      <header class="hero">
+        <div class="hero__text">
+          <p class="eyebrow"><i class="fas fa-rocket"></i> UniviGate</p>
+          <h1>Навигация по вузам Казахстана</h1>
+          <p class="hero__lead">
+            Поиск, карты, 3D-туры и свежие новости об образовании в один клик.
+          </p>
+        </div>
+      </header>
+
+      <!-- Новости вузов -->
+      <section class="section news">
+        <div class="section__head">
+          <h2 class="section__title"><i class="fas fa-newspaper"></i> Новости вузов РК</h2>
+          <span class="section__hint">Последние заметки из открытых источников</span>
+        </div>
+        <div id="news-list" class="cards-grid"></div>
+      </section>
+
+      <!-- Последние обновления -->
+      <section class="section updates">
+        <div class="section__head">
+          <h2 class="section__title"><i class="fas fa-sync-alt"></i> Последние обновления на сайте</h2>
+        </div>
+        <ul class="updates-list">
+          <li><i class="fas fa-check-circle"></i> Добавлен раздел 3D-туры кампусов.</li>
+          <li><i class="fas fa-check-circle"></i> Обновлена интерактивная карта с фильтром по регионам.</li>
+          <li><i class="fas fa-check-circle"></i> Улучшена система AI-поиска с профильными предметами ЕНТ.</li>
+          <li><i class="fas fa-check-circle"></i> Добавлено сравнение университетов.</li>
+        </ul>
+      </section>
+
+      <!-- Полезные ссылки -->
+      <section class="section links">
+        <div class="section__head">
+          <h2 class="section__title"><i class="fas fa-external-link-alt"></i> Полезные сайты для абитуриентов</h2>
+        </div>
+        <div class="links-grid">
+          <a class="link-pill" href="https://www.gov.kz/memleket/entities/edu" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-landmark"></i> Минпросвещения РК
+          </a>
+          <a class="link-pill" href="https://app.testcenter.kz" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-file-alt"></i> Регистрация на ЕНТ
+          </a>
+          <a class="link-pill" href="https://adilet.zan.kz" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-gavel"></i> Правовые акты
+          </a>
+          <a class="link-pill" href="https://www.enbek.kz" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-briefcase"></i> Рынок труда
+          </a>
+        </div>
+      </section>
+
+      <!-- Статистика образования -->
+      <section class="section charts">
+        <div class="section__head">
+          <h2 class="section__title"><i class="fas fa-chart-bar"></i> Статистика образования</h2>
+          <span class="section__hint">Данные ориентировочные, для наглядности</span>
+        </div>
+        <div class="cards-grid cards-grid--charts">
+          <article class="info-card chart-card">
+            <h3><i class="fas fa-award"></i> Гранты РК по годам</h3>
+            <canvas id="grantsChart" class="chart-canvas"></canvas>
+          </article>
+          <article class="info-card chart-card">
+            <h3><i class="fas fa-users"></i> Абитуриенты по годам</h3>
+            <canvas id="applicantsChart" class="chart-canvas"></canvas>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer__content">
+        <span><i class="fas fa-code"></i> Создатели: команда UniviGate</span>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </footer>
+
+    <script src="js/generalDB.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Данные для графиков 2020-2025
+      const chartYears = ["2020", "2021", "2022", "2023", "2024", "2025"];
+      const grantsData = [54000, 56000, 73000, 88000, 112000, 77000];
+      const applicantsData = [132000, 145000, 154000, 162000, 181000, 210000];
+
+      const sharedOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1.6,
+        animation: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { 
+            intersect: false, 
+            mode: "index",
+            backgroundColor: 'rgba(10, 35, 70, 0.9)',
+            titleColor: '#00d4ff',
+            bodyColor: '#fff',
+            borderColor: 'rgba(0, 212, 255, 0.3)',
+            borderWidth: 1
+          },
+        },
+        layout: { padding: { top: 8, right: 8, bottom: 4, left: 8 } },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { 
+              precision: 0,
+              color: 'rgba(255, 255, 255, 0.6)'
+            },
+            grid: { color: "rgba(0, 212, 255, 0.1)" },
+          },
+          x: {
+            grid: { display: false },
+            ticks: { color: 'rgba(255, 255, 255, 0.6)' }
+          },
+        },
+      };
+
+      const grantsCtx = document.getElementById("grantsChart");
+      if (grantsCtx) {
+        new Chart(grantsCtx, {
+          type: "bar",
+          data: {
+            labels: chartYears,
+            datasets: [
+              {
+                label: "Гранты",
+                data: grantsData,
+                backgroundColor: "rgba(0, 212, 255, 0.6)",
+                borderColor: "#00d4ff",
+                borderWidth: 1,
+                borderRadius: 6,
+              },
+            ],
+          },
+          options: sharedOptions,
+        });
+      }
+
+      const applicantsCtx = document.getElementById("applicantsChart");
+      if (applicantsCtx) {
+        new Chart(applicantsCtx, {
+          type: "line",
+          data: {
+            labels: chartYears,
+            datasets: [
+              {
+                label: "Абитуриенты",
+                data: applicantsData,
+                borderColor: "#00d4ff",
+                backgroundColor: "rgba(0, 212, 255, 0.15)",
+                tension: 0.3,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                pointBackgroundColor: "#00d4ff",
+                fill: true,
+              },
+            ],
+          },
+          options: sharedOptions,
+        });
+      }
+
+      // Новости
+      const newsList = document.getElementById("news-list");
+      const newsItems = [
+        {
+          title: "Грантовый конкурс-2025",
+          date: "04.12.2025",
+          desc: "Минпросвещения подтвердило приоритетные квоты для IT и инженерии.",
+          link: "https://www.gov.kz/memleket/entities/edu",
+        },
+        {
+          title: "AITU открыл XR-лаборатории",
+          date: "20.11.2025",
+          desc: "Введены AR/VR площадки для студенческих проектов и медиа-инженерии.",
+          link: "https://astanait.edu.kz/",
+        },
+        {
+          title: "Стипендии для олимпиадников",
+          date: "08.11.2025",
+          desc: "ТОП-вузами РК объявлены именные стипендии призерам республиканских олимпиад.",
+          link: "https://adilet.zan.kz/",
+        },
+      ];
+
+      if (newsList) {
+        newsList.innerHTML = newsItems
+          .map(
+            (item) => `
+            <article class="info-card">
+              <div class="news-meta"><i class="fas fa-calendar-alt"></i> ${item.date}</div>
+              <h3>${item.title}</h3>
+              <p>${item.desc}</p>
+              <a href="${item.link}" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-arrow-right"></i> Источник
+              </a>
+            </article>
+          `
+          )
+          .join("");
+      }
+    </script>
   </body>
 </html>

@@ -1,7 +1,186 @@
 /**
  * Сравнение университетов
- * Использует данные из universities-data.js
+ * Использует данные из map-data.js и generalDB.js
  */
+
+// Собираем все университеты из map-data.js в единый объект
+function getAllUniversities() {
+    const allUnis = {};
+    
+    // Сначала добавляем все из map-data.js
+    if (typeof universitiesByRegion !== 'undefined') {
+        for (const region in universitiesByRegion) {
+            universitiesByRegion[region].forEach(uni => {
+                // Конвертируем в совместимый формат
+                allUnis[uni.id] = {
+                    id: uni.id,
+                    name: uni.name,
+                    nameRu: uni.name, // Используем name как nameRu
+                    shortName: uni.shortName,
+                    city: uni.city,
+                    
+                    info: {
+                        description: uni.description || '',
+                        type: uni.type || '',
+                        location: {
+                            city: uni.city
+                        },
+                        website: uni.contacts?.website || '',
+                        email: uni.contacts?.email || '',
+                        phone: uni.contacts?.phone || ''
+                    },
+                    
+                    requirements: {
+                        ent: uni.requirements?.ent ? { min: uni.requirements.ent, grant: uni.requirements.ent + 15 } : null,
+                        gpa: uni.requirements?.gpa ? { min: uni.requirements.gpa, grant: uni.requirements.gpa + 0.3 } : null,
+                        entRequired: uni.requirements?.ent !== null
+                    },
+                    
+                    rankings: {
+                        qsWorld: uni.ranking?.qsWorld || null,
+                        qsAsia: uni.ranking?.qsAsia || null,
+                        national: uni.ranking?.national || null
+                    },
+                    
+                    programs: {
+                        bachelor: uni.programs || [],
+                        master: [],
+                        doctorate: []
+                    },
+                    
+                    strengths: [],
+                    accreditations: [],
+                    scholarships: {
+                        types: uni.ranking?.scholarships ? [`Гранты: ${uni.ranking.scholarships}%`] : [],
+                        international: []
+                    }
+                };
+            });
+        }
+    }
+    
+    // Затем перезаписываем/дополняем данными из generalDB.js (если есть)
+    if (typeof UNIVERSITIES !== 'undefined') {
+        for (const id in UNIVERSITIES) {
+            const uni = UNIVERSITIES[id];
+            // generalDB имеет более полные данные, поэтому используем их
+            allUnis[uni.id.toLowerCase()] = {
+                ...uni,
+                id: uni.id.toLowerCase() // нормализуем id к нижнему регистру
+            };
+            // Также сохраняем с оригинальным id
+            allUnis[uni.id] = uni;
+        }
+    }
+    
+    return allUnis;
+}
+
+// Кешируем все университеты
+const ALL_UNIVERSITIES = getAllUniversities();
+
+// Функция получения университета по ID
+function getUniversityById(id) {
+    return ALL_UNIVERSITIES[id] || ALL_UNIVERSITIES[id.toLowerCase()] || ALL_UNIVERSITIES[id.toUpperCase()] || null;
+}
+
+// Получение баллов ЕНТ для направления
+function getENTScoresForDirection(uni, directionKey) {
+    if (!uni) return { noData: true, scores: [] };
+    
+    // Если ЕНТ не требуется
+    if (uni.requirements && !uni.requirements.entRequired) {
+        return { notRequired: true, scores: [] };
+    }
+    
+    // Если есть entScores в generalDB формате
+    if (uni.entScores) {
+        const direction = typeof DIRECTIONS !== 'undefined' ? DIRECTIONS[directionKey] : null;
+        if (!direction) return { noData: true, scores: [] };
+        
+        const keywords = direction.keywords || [];
+        const scores = [];
+        
+        for (const [program, data] of Object.entries(uni.entScores)) {
+            const matches = keywords.some(kw => 
+                program.toLowerCase().includes(kw.toLowerCase())
+            );
+            if (matches) {
+                scores.push({
+                    program: program,
+                    threshold: data.threshold,
+                    grant: data.grant
+                });
+            }
+        }
+        
+        return { scores };
+    }
+    
+    // Если данные из map-data.js (простой формат requirements)
+    if (uni.requirements && uni.requirements.ent) {
+        const entReq = uni.requirements.ent;
+        const minScore = typeof entReq === 'object' ? entReq.min : entReq;
+        const grantScore = typeof entReq === 'object' ? entReq.grant : minScore + 15;
+        
+        return {
+            scores: [{
+                program: 'Общий балл',
+                threshold: minScore,
+                grant: grantScore
+            }]
+        };
+    }
+    
+    return { noData: true, scores: [] };
+}
+
+// Поиск программ по направлению
+function findProgramsByDirection(university, directionKey) {
+    if (!university || !university.programs) {
+        return { bachelor: [], master: [], doctorate: [] };
+    }
+    
+    const direction = typeof DIRECTIONS !== 'undefined' ? DIRECTIONS[directionKey] : null;
+    
+    // Если programs - это массив (формат map-data.js)
+    if (Array.isArray(university.programs)) {
+        if (!direction) {
+            return { bachelor: university.programs, master: [], doctorate: [] };
+        }
+        
+        const keywords = direction.keywords || [];
+        const filtered = university.programs.filter(program =>
+            keywords.some(kw => program.toLowerCase().includes(kw.toLowerCase()))
+        );
+        
+        return { bachelor: filtered, master: [], doctorate: [] };
+    }
+    
+    // Если programs - это объект (формат generalDB.js)
+    if (!direction) {
+        return {
+            bachelor: university.programs.bachelor || [],
+            master: university.programs.master || [],
+            doctorate: university.programs.doctorate || []
+        };
+    }
+    
+    const keywords = direction.keywords || [];
+    
+    const filterByKeywords = (programs) => {
+        if (!programs) return [];
+        return programs.filter(program => 
+            keywords.some(kw => program.toLowerCase().includes(kw.toLowerCase()))
+        );
+    };
+    
+    return {
+        bachelor: filterByKeywords(university.programs.bachelor),
+        master: filterByKeywords(university.programs.master),
+        doctorate: filterByKeywords(university.programs.doctorate)
+    };
+}
 
 // Заполнение списков выбора университетов
 function populateUniversitySelects() {
@@ -10,19 +189,28 @@ function populateUniversitySelects() {
     
     if (!select1 || !select2) return;
     
-    const universities = Object.values(UNIVERSITIES).sort((a, b) => {
-        return a.nameRu.localeCompare(b.nameRu, 'ru');
-    });
+    const universities = Object.values(ALL_UNIVERSITIES)
+        .filter((uni, index, self) => 
+            // Убираем дубликаты по shortName
+            index === self.findIndex(u => u.shortName === uni.shortName)
+        )
+        .sort((a, b) => {
+            const nameA = a.nameRu || a.name || '';
+            const nameB = b.nameRu || b.name || '';
+            return nameA.localeCompare(nameB, 'ru');
+        });
     
     universities.forEach(uni => {
+        const displayName = uni.nameRu || uni.name;
+        
         const option1 = document.createElement('option');
         option1.value = uni.id;
-        option1.textContent = `${uni.shortName} - ${uni.nameRu}`;
+        option1.textContent = `${uni.shortName} - ${displayName}`;
         select1.appendChild(option1);
         
         const option2 = document.createElement('option');
         option2.value = uni.id;
-        option2.textContent = `${uni.shortName} - ${uni.nameRu}`;
+        option2.textContent = `${uni.shortName} - ${displayName}`;
         select2.appendChild(option2);
     });
 }
@@ -343,39 +531,6 @@ function renderRequirementsSection(uni, otherUni, containerId) {
     
     const div = document.createElement('div');
     div.className = 'requirements-content';
-    
-    // IELTS
-    if (req.ielts) {
-        const isEasier = otherReq.ielts && req.ielts.min < otherReq.ielts.min;
-        div.innerHTML += `
-            <div class="req-item ${isEasier ? 'unique-item' : ''}">
-                <span class="req-label">IELTS:</span>
-                <span class="req-value">${req.ielts.min}+ (грант: ${req.ielts.grant}+)</span>
-            </div>
-        `;
-    }
-    
-    // TOEFL
-    if (req.toefl) {
-        const isEasier = otherReq.toefl && req.toefl.min < otherReq.toefl.min;
-        div.innerHTML += `
-            <div class="req-item ${isEasier ? 'unique-item' : ''}">
-                <span class="req-label">TOEFL:</span>
-                <span class="req-value">${req.toefl.min}+ (грант: ${req.toefl.grant}+)</span>
-            </div>
-        `;
-    }
-    
-    // SAT
-    if (req.sat) {
-        const isEasier = otherReq.sat && req.sat.min < otherReq.sat.min;
-        div.innerHTML += `
-            <div class="req-item ${isEasier ? 'unique-item' : ''}">
-                <span class="req-label">SAT:</span>
-                <span class="req-value">${req.sat.min}+ (грант: ${req.sat.grant}+)</span>
-            </div>
-        `;
-    }
     
     // ЕНТ
     if (req.ent) {

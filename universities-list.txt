@@ -1,0 +1,257 @@
+╔════════════════════════════════════════════════════════════════╗
+║     ПОЛНЫЙ СПИСОК УНИВЕРСИТЕТОВ КАЗАХСТАНА - UNIVIGATE        ║
+╚════════════════════════════════════════════════════════════════╝
+
+Всего университетов: 56
+Городов: 19
+Дата: 06.12.2025
+
+═════════════════════════════════════════════════════════════════
+
+
+▸ АЛМАТЫ (20)
+─────────────────────────────────────────────
+
+1. KazNU
+   Al-Farabi Kazakh National University
+   ID: kaznu
+2. AlmaU
+   Almaty Management University
+   ID: almau
+3. ATU
+   Almaty Technological University
+   ID: atu
+4. AUPET
+   Almaty University of Power Engineering and Telecommunications
+   ID: aupet
+5. KazNMU
+   Asfendiyarov Kazakh National Medical University
+   ID: kaznmu
+6. Caspian
+   Caspian University
+   ID: caspian
+7. DMUK
+   De Montfort University Kazakhstan
+   ID: dmuk
+8. DKU
+   German-Kazakh University
+   ID: dku
+9. IITU/MUIT
+   International IT University
+   ID: iitu
+10. Kainar
+   Kainar Academy
+   ID: kainar
+11. KazGASA
+   Kazakh Leading Academy of Architecture and Civil Engineering
+   ID: kazgasa
+12. KazNAA
+   Kazakh National Academy of Arts
+   ID: kazart
+13. KazNARU
+   Kazakh National Agrarian Research University
+   ID: kaznaru
+14. KazWPU
+   Kazakh National Women\
+   ID: kazwpu
+15. KBTU
+   Kazakh-British Technical University
+   ID: kbtu
+16. KIMEP
+   KIMEP University
+   ID: kimep
+17. Narxoz
+   Narxoz University
+   ID: narxoz
+18. Satbayev
+   Satbayev University
+   ID: satbayev
+19. Turan
+   Turan University
+   ID: turan
+20. UIB
+   University of International Business
+   ID: uib
+
+▸ АСТАНА (8)
+─────────────────────────────────────────────
+
+21. AITU
+   Astana IT University
+   ID: astana-it
+22. AMU
+   Astana Medical University
+   ID: astana-med
+23. KUTB
+   Kazakh University of Technology and Business
+   ID: kazuor
+24. ENU
+   L.N. Gumilyov Eurasian National University
+   ID: enu
+25. KAZGUU/MNU
+   M. Narikbayev KAZGUU University
+   ID: kazguu
+26. NU
+   Nazarbayev University
+   ID: nu
+27. KazATU
+   S. Seifullin Kazakh Agro Technical University
+   ID: kazatu
+28. Turan-Astana
+   Turan-Astana University
+   ID: turan-astana
+
+▸ КАРАГАНДА (4)
+─────────────────────────────────────────────
+
+29. KarU
+   E.A. Buketov Karaganda University
+   ID: karaganda-buketov
+30. KMU
+   Karaganda Medical University
+   ID: karaganda-med
+31. KarTU
+   Karaganda Technical University
+   ID: karaganda-tech
+32. KEU
+   Karaganda University of Kazpotrebsoyuz
+   ID: karaganda-econ
+
+▸ ШЫМКЕНТ (3)
+─────────────────────────────────────────────
+
+33. SKU
+   M. Auezov South Kazakhstan University
+   ID: auezov
+34. ShU
+   Shymkent University
+   ID: shymkent-uni
+35. SKMA
+   South Kazakhstan Medical Academy
+   ID: skma
+
+▸ АТЫРАУ (2)
+─────────────────────────────────────────────
+
+36. AUOG
+   Atyrau University of Oil and Gas
+   ID: atyrau-oil
+37. AU
+   Kh. Dosmukhamedov Atyrau University
+   ID: atyrau-uni
+
+▸ КОСТАНАЙ (2)
+─────────────────────────────────────────────
+
+38. KRU
+   A. Baitursynov Kostanay Regional University
+   ID: ksu
+39. KEEU
+   Kostanay Engineering and Economics University
+   ID: kstu
+
+▸ ПАВЛОДАР (2)
+─────────────────────────────────────────────
+
+40. IUE
+   Innovative University of Eurasia
+   ID: innovativ
+41. TU
+   Toraighyrov University
+   ID: toraighyrov
+
+▸ СЕМЕЙ (2)
+─────────────────────────────────────────────
+
+42. SMU
+   Semey Medical University
+   ID: semey-med
+43. ShakU
+   Shakarim University
+   ID: shakarim
+
+▸ УРАЛЬСК (2)
+─────────────────────────────────────────────
+
+44. WKU
+   M. Utemisov West Kazakhstan University
+   ID: wkau
+45. WKATU
+   Zhangir Khan West Kazakhstan Agrarian Technical University
+   ID: wkatu
+
+▸ УСТЬ-КАМЕНОГОРСК (2)
+─────────────────────────────────────────────
+
+46. EKTU
+   D. Serikbayev East Kazakhstan Technical University
+   ID: eksu
+47. VKU
+   S. Amanzholov East Kazakhstan University
+   ID: vku
+
+▸ АКТАУ (1)
+─────────────────────────────────────────────
+
+48. Yessenov Uni
+   Sh. Yessenov Caspian University of Technologies and Engineering
+   ID: yessenov
+
+▸ АКТОБЕ (1)
+─────────────────────────────────────────────
+
+49. ARU
+   K. Zhubanov Aktobe Regional University
+   ID: zhubanov
+
+▸ КАСКЕЛЕН (1)
+─────────────────────────────────────────────
+
+50. SDU
+   Suleyman Demirel University
+   ID: sdu
+
+▸ КОКШЕТАУ (1)
+─────────────────────────────────────────────
+
+51. KU
+   Sh. Ualikhanov Kokshetau University
+   ID: ku
+
+▸ КЫЗЫЛОРДА (1)
+─────────────────────────────────────────────
+
+52. KorkytU
+   Korkyt Ata Kyzylorda University
+   ID: korkyt
+
+▸ ПЕТРОПАВЛОВСК (1)
+─────────────────────────────────────────────
+
+53. NKSU
+   M. Kozybayev North Kazakhstan University
+   ID: nksu
+
+▸ ТАЛДЫКОРГАН (1)
+─────────────────────────────────────────────
+
+54. ZhU
+   I. Zhansugurov Zhetysu University
+   ID: zhetysu
+
+▸ ТАРАЗ (1)
+─────────────────────────────────────────────
+
+55. TRU
+   M.Kh. Dulaty Taraz Regional University
+   ID: tau
+
+▸ ТУРКЕСТАН (1)
+─────────────────────────────────────────────
+
+56. IKTU
+   Khoja Akhmet Yassawi International Kazakh-Turkish University
+   ID: iktu
+
+═════════════════════════════════════════════════════════════════
+ИТОГО: 56 университетов

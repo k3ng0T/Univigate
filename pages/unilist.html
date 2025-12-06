@@ -10,7 +10,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <script src="../js/universities-data.js"></script>
+    <script src="../js/generalDB.js"></script>
   </head>
   <body>
     <!-- Анимированный космический фон -->
@@ -73,6 +73,35 @@
       let universities = [];
       let filtered = [];
 
+      // Маппинг ID → доступные файлы логотипов в /images
+      const LOGO_MAP = {
+        NU: "images/NU.jpg",
+        ENU: "images/enu.png",
+        AstanaIT: "images/AITU.jpg",
+        AMU: "images/amu.png",
+        MNU: "images/MNU.jpg",
+        KazATU: "images/kazatu.png",
+        KazNU: "images/kaznu.png",
+        Satbayev: "images/Satpaev.jpg",
+        KBTU: "images/KBTU.jpg",
+        KazNMU: "images/kaznmu.png",
+        KIMEP: "images/KIMEP.jpg",
+        MUIT: "images/IITU.jpg",
+        SDU: "images/SDU.jpg",
+        Narxoz: "images/Narxoz.jpg",
+        DMUK: "images/dmuk.png",
+        ATU: "images/ATU.jpg",
+        Turan: "images/turan.png",
+        AlmaU: "images/almau.png",
+        DKU: "images/dku.png",
+        KarU: "images/karu.png",
+        KMU: "images/kmu.png",
+        SKU: "images/sku.png",
+        IKTU: "images/iktu.png",
+        SMU: "images/smu.png",
+        ShakU: "images/shaku.png",
+      };
+
       document.addEventListener("DOMContentLoaded", loadDataFromJs);
 
       function loadDataFromJs() {
@@ -132,7 +161,7 @@
       }
 
       function createCardHtml(uni) {
-        const logoSrc = `../${uni.logo || "images/default.png"}`;
+        const logoSrc = `../${LOGO_MAP[uni.id] || uni.logo || "images/unilogo.png"}`;
         const founded = uni.info?.founded || "—";
         const city = uni.info?.location?.city || "—";
         return `
@@ -149,7 +178,7 @@
             <div class="card-body">
               <div class="card-thumb">
                 <img src="${logoSrc}" alt="${escapeHtml(uni.shortName || uni.name || uni.id)}"
-                  onerror="this.src='../images/default.png';" />
+                  onerror="this.src='../images/unilogo.png';" />
               </div>
               <div class="uni-location"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(city)}</div>
               <div class="favorite-meta">
@@ -182,3 +211,5 @@
     </script>
   </body>
 </html>
+
+
