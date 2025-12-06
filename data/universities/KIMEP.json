@@ -1,0 +1,131 @@
+{
+  "KIMEP": {
+    "full_name": [
+      "Kazakhstan Institute of Management, Economics and Strategic Research"
+    ],
+    "Description": [
+      "KIMEP University — частный университет, работающий по североамериканской модели образования.",
+      "Старейший частный университет в Центральной Азии.",
+      "Обучение ведётся полностью на английском языке.",
+      "KIMEP является лидером в бизнес-образовании и социальных науках в регионе."
+    ],
+    "Rating": [
+      "QS World University Rankings: нету",
+      "QS Asia University Rankings: нету",
+      "Национальный рейтинг (IQAA 2024): лучший в области гуманитарных и экономических наук в Казахстане"
+    ],
+    "Accreditation": [
+      "AACSB (Association to Advance Collegiate Schools of Business)",
+      "ACBSP (Accreditation Council for Business Schools and Programs)",
+      "EFMD (European Foundation for Management Development)",
+      "IQAA (Independent Quality Assurance Agency)"
+    ],
+    "Location": [
+      "Алматы, Казахстан"
+    ],
+    "Founded": [
+      "1992 год"
+    ],
+    "ProgramsByDegree": {
+      "Bachelor": [
+        "Бизнес-администрирование",
+        "Финансы",
+        "Маркетинг",
+        "Учёт и аудит",
+        "Менеджмент",
+        "Международные отношения",
+        "Журналистика",
+        "Экономика",
+        "Государственное управление",
+        "Юриспруденция",
+        "Международное право",
+        "Переводческое дело",
+        "TESOL (Teaching English to Speakers of Other Languages)",
+        "Политология",
+        "Социология",
+        "Public Relations",
+        "Media and Communications",
+        "International Business",
+        "Entrepreneurship",
+        "Human Resource Management",
+        "Supply Chain Management",
+        "Information Systems"
+      ],
+      "Master": [
+        "MBA",
+        "Executive MBA",
+        "Master of Finance",
+        "Master of Accounting",
+        "Master of Economics",
+        "Master of Public Administration",
+        "Master of International Relations",
+        "Master of Law (LLM)",
+        "Master of Arts in TESOL",
+        "Master of Arts in Translation",
+        "Master of Business Administration",
+        "Master in Management",
+        "Master in Marketing"
+      ],
+      "Doctorate": [
+        "DBA (Doctor of Business Administration)",
+        "PhD in Business Administration",
+        "PhD in Economics"
+      ]
+    },
+    "FacultyDirections": {
+      "Bang College of Business": [
+        "Бизнес-администрирование",
+        "Финансы",
+        "Маркетинг",
+        "Учёт и аудит",
+        "Менеджмент",
+        "International Business",
+        "Entrepreneurship"
+      ],
+      "College of Social Sciences": [
+        "Международные отношения",
+        "Журналистика",
+        "Экономика",
+        "Государственное управление",
+        "Политология",
+        "Социология"
+      ],
+      "School of Law": [
+        "Юриспруденция",
+        "Международное право"
+      ],
+      "College of Humanities and Education": [
+        "Переводческое дело",
+        "TESOL",
+        "Media and Communications"
+      ]
+    },
+    "RequirementsToApply": {
+      "Undergraduate": [
+        "Аттестат о среднем образовании",
+        "Результаты ЕНТ или SAT",
+        "IELTS 5.5+ или внутренний тест KEPT"
+      ],
+      "Graduate": [
+        "Диплом бакалавра",
+        "IELTS 6.0+",
+        "GMAT/GRE для некоторых программ",
+        "Рекомендательные письма",
+        "Statement of Purpose"
+      ]
+    },
+    "AbroadOpportunityScholarships": {
+      "Стипендии": "Грант Бiлiм (100% и 50%), гранты за академические достижения, Need-based scholarships",
+      "Международные программы": "Партнёрства с 95+ университетами мира, программы обмена в США, Европе, Азии, двойные дипломы"
+    },
+    "StrongPoints": [
+      "Обучение на английском языке",
+      "Международный преподавательский состав",
+      "Крупнейшая англоязычная библиотека в Центральной Азии",
+      "96% выпускников трудоустроены",
+      "Международные аккредитации AACSB и EFMD",
+      "Северо-американская модель образования"
+    ],
+    "BachelorENTThresholds": "ЕНТ принимается, но основной отбор через SAT и внутренние экзамены"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "MUIT": {
+    "full_name": [
+      "International IT University (IITU)"
+    ],
+    "Description": [
+      "Международный университет информационных технологий (МУИТ/IITU) — ведущий IT-университет Казахстана.",
+      "Специализируется на подготовке IT-специалистов и инженеров.",
+      "Имеет сильные связи с IT-индустрией.",
+      "Университет предлагает современные программы в области информационных технологий и телекоммуникаций."
+    ],
+    "Rating": [
+      "QS World University Rankings: нету",
+      "QS Asia University Rankings: нету",
+      "Национальный рейтинг исследовательских вузов Казахстана (NHR): нету"
+    ],
+    "Accreditation": [
+      "Национальная аккредитация IQAA",
+      "Государственная лицензия МОН РК",
+      "Партнёрства с Cisco, Microsoft, Oracle"
+    ],
+    "Location": [
+      "Алматы, Казахстан"
+    ],
+    "Founded": [
+      "2009 год"
+    ],
+    "ProgramsByDegree": {
+      "Bachelor": [
+        "Computer Science",
+        "Software Engineering",
+        "Information Systems",
+        "Cybersecurity",
+        "Data Science",
+        "Game Development",
+        "Mobile Development",
+        "Telecommunications",
+        "Radio Engineering",
+        "Network Technologies",
+        "Digital Media",
+        "Graphic Design",
+        "Animation",
+        "Game Design",
+        "Web Development",
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Big Data Analytics",
+        "Cloud Computing",
+        "IoT (Internet of Things)",
+        "DevOps",
+        "UX/UI Design",
+        "3D Modeling",
+        "VR/AR Development",
+        "IT Project Management",
+        "Digital Business",
+        "E-commerce"
+      ],
+      "Master": [
+        "Computer Science",
+        "Software Engineering",
+        "Information Systems",
+        "Cybersecurity",
+        "Data Science",
+        "Artificial Intelligence",
+        "Telecommunications",
+        "Network Technologies",
+        "Digital Media",
+        "IT Management",
+        "Big Data Analytics",
+        "Cloud Computing",
+        "Machine Learning"
+      ],
+      "Doctorate": [
+        "Computer Science",
+        "Information Systems",
+        "Telecommunications",
+        "Cybersecurity"
+      ]
+    },
+    "FacultyDirections": {
+      "Факультет информационных технологий": [
+        "Computer Science",
+        "Software Engineering",
+        "Information Systems",
+        "Cybersecurity",
+        "Data Science",
+        "Game Development",
+        "Mobile Development",
+        "Artificial Intelligence"
+      ],
+      "Факультет телекоммуникаций": [
+        "Telecommunications",
+        "Radio Engineering",
+        "Network Technologies",
+        "IoT"
+      ],
+      "Факультет цифровых медиа": [
+        "Digital Media",
+        "Graphic Design",
+        "Animation",
+        "Game Design",
+        "UX/UI Design",
+        "3D Modeling"
+      ]
+    },
+    "RequirementsToApply": {
+      "Undergraduate": [
+        "Аттестат о среднем образовании",
+        "Результаты ЕНТ",
+        "Внутренний тест по английскому или математике"
+      ],
+      "Graduate": [
+        "Диплом бакалавра в области IT или смежной специальности",
+        "Результаты КТА",
+        "Внутренний тест по английскому",
+        "Рекомендательные письма"
+      ]
+    },
+    "AbroadOpportunityScholarships": {
+      "Стипендии": "Государственные гранты, внутренние стипендии, стипендии от IT-компаний партнёров",
+      "Международные программы": "Партнёрства с IT-компаниями (Cisco, Microsoft, Oracle), обмены с зарубежными IT-вузами, стажировки в технологических компаниях"
+    },
+    "StrongPoints": [
+      "Специализация на IT и телекоммуникациях",
+      "Партнёрства с IT-компаниями",
+      "Практико-ориентированное обучение",
+      "Современные лаборатории и оборудование",
+      "Программы разработки игр и цифровых медиа"
+    ],
+    "BachelorENTThresholds": {
+      "Computer Science": {
+        "threshold": 50,
+        "grant": 115
+      },
+      "Software Engineering": {
+        "threshold": 50,
+        "grant": 113
+      },
+      "Cybersecurity": {
+        "threshold": 50,
+        "grant": 112
+      },
+      "Game Development": {
+        "threshold": 50,
+        "grant": 105
+      },
+      "Data Science": {
+        "threshold": 50,
+        "grant": 118
+      },
+      "Telecommunications": {
+        "threshold": 50,
+        "grant": 105
+      },
+      "Graphic Design": {
+        "threshold": 50,
+        "grant": 95
+      },
+      "Information Systems": {
+        "threshold": 50,
+        "grant": 110
+      }
+    }
+  }
+}

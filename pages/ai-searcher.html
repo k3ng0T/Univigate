@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Searcher - UniviGate</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Навигация назад -->
+    <div class="nav-back">
+        <a href="../index.html" class="nav-back-btn" title="Вернуться на главную">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="ai-searcher-container">
+        <h1 class="ai-searcher-title">AI University Searcher</h1>
+        
+        <form class="ai-form" id="ai-search-form">
+            <!-- IELTS наличие -->
+            <div class="form-group">
+                <label for="has-ielts">Имеется IELTS?</label>
+                <select id="has-ielts" name="has-ielts">
+                    <option value="no" selected>НЕТ</option>
+                    <option value="yes">ДА</option>
+                </select>
+            </div>
+
+            <!-- IELTS Score (условное поле) -->
+            <div class="form-group sat-conditional" id="ielts-score-group">
+                <label for="ielts">IELTS Score:</label>
+                <input type="number" 
+                       id="ielts" 
+                       name="ielts" 
+                       min="1.0" 
+                       max="9.0" 
+                       step="0.5"
+                       lang="en">
+            </div>
+
+            <!-- TOEFL наличие -->
+            <div class="form-group">
+                <label for="has-toefl">Имеется TOEFL?</label>
+                <select id="has-toefl" name="has-toefl">
+                    <option value="no" selected>НЕТ</option>
+                    <option value="yes">ДА</option>
+                </select>
+            </div>
+
+            <!-- TOEFL Score (условное поле) -->
+            <div class="form-group sat-conditional" id="toefl-score-group">
+                <label for="toefl">TOEFL Score:</label>
+                <input type="number" 
+                       id="toefl" 
+                       name="toefl" 
+                       min="0" 
+                       max="120">
+            </div>
+
+            <!-- SAT наличие -->
+            <div class="form-group">
+                <label for="has-sat">Имеется SAT?</label>
+                <select id="has-sat" name="has-sat">
+                    <option value="no" selected>НЕТ</option>
+                    <option value="yes">ДА</option>
+                </select>
+            </div>
+
+            <!-- SAT Score (условное поле) -->
+            <div class="form-group sat-conditional" id="sat-score-group">
+                <label for="sat">SAT Score:</label>
+                <input type="number" 
+                       id="sat" 
+                       name="sat" 
+                       min="0" 
+                       max="1600">
+            </div>
+
+            <!-- ЕНТ наличие -->
+            <div class="form-group">
+                <label for="has-ent">Имеется ЕНТ?</label>
+                <select id="has-ent" name="has-ent">
+                    <option value="no" selected>НЕТ</option>
+                    <option value="yes">ДА</option>
+                </select>
+            </div>
+
+            <!-- ЕНТ Score (условное поле) -->
+            <div class="form-group sat-conditional" id="ent-score-group">
+                <label for="ent">ЕНТ Score:</label>
+                <input type="number" 
+                       id="ent" 
+                       name="ent" 
+                       min="0" 
+                       max="140">
+            </div>
+
+            <!-- GPA Score -->
+            <div class="form-group">
+                <label for="gpa">GPA Score:</label>
+                <input type="number" 
+                       id="gpa" 
+                       name="gpa" 
+                       min="0" 
+                       max="4.0" 
+                       step="0.1" 
+                       lang="en"
+                       required>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-search"></i> Найти университеты
+            </button>
+        </form>
+    </div>
+
+    <script src="../js/universities-data.js"></script>
+    <script src="../js/ai-searcher.js"></script>
+</body>
+</html>

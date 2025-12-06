@@ -1,0 +1,1098 @@
+/* Сброс стилей */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0c1929 0%, #1a3a5c 50%, #0d2137 100%);
+}
+
+/* ==================== ЗАГРУЗОЧНЫЙ ЭКРАН ==================== */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0c1929 0%, #1a3a5c 50%, #0d2137 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+    color: #fff;
+}
+
+.loader-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(0, 212, 255, 0.2);
+    border-top-color: #00d4ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loader-content p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== НАВИГАЦИЯ ==================== */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(12, 25, 41, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.nav-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+    color: #00d4ff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.nav-back-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.nav-title {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-title i {
+    color: #00d4ff;
+}
+
+.nav-help-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.nav-help-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* ==================== ПОДСКАЗКА ONBOARDING ==================== */
+.onboarding-tooltip {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 900;
+    animation: bounceIn 0.5s ease;
+}
+
+.onboarding-tooltip.hidden {
+    display: none;
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgba(0, 212, 255, 0.9);
+    margin: 0 auto;
+}
+
+.tooltip-content {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.9) 0%, rgba(123, 104, 238, 0.9) 100%);
+    padding: 16px 20px;
+    border-radius: 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+    max-width: 400px;
+}
+
+.tooltip-content i {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.tooltip-content p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.tooltip-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.tooltip-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==================== КОНТЕЙНЕР КАРТЫ ==================== */
+.map-wrapper {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+#map {
+    flex: 1;
+    height: 100%;
+    background: #0c1929;
+}
+
+.leaflet-container {
+    background: #0c1929;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ==================== ПАНЕЛЬ ИНФОРМАЦИИ ==================== */
+.info-panel {
+    width: 400px;
+    min-width: 400px;
+    height: 100%;
+    background: rgba(12, 25, 41, 0.98);
+    border-left: 1px solid rgba(0, 212, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 500;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-toggle {
+    display: none;
+}
+
+.panel-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.panel-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.3);
+    border-radius: 3px;
+}
+
+.panel-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 212, 255, 0.5);
+}
+
+/* Placeholder */
+.panel-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.placeholder-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(123, 104, 238, 0.1) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    border: 2px dashed rgba(0, 212, 255, 0.3);
+}
+
+.placeholder-icon i {
+    font-size: 40px;
+    color: #00d4ff;
+    opacity: 0.7;
+}
+
+.panel-placeholder h3 {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.panel-placeholder p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+.placeholder-stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00d4ff;
+    line-height: 1;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+}
+
+/* ==================== ЗАГОЛОВОК РЕГИОНА ==================== */
+.region-header {
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(123, 104, 238, 0.1) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.region-header.clickable {
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.region-header.clickable:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(123, 104, 238, 0.15) 100%);
+}
+
+.region-header h2 {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.region-header h2 i {
+    color: #00d4ff;
+    font-size: 1rem;
+}
+
+.region-header .count {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* ==================== СПИСОК УНИВЕРСИТЕТОВ ==================== */
+.universities-list {
+    padding: 15px;
+}
+
+.uni-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.uni-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+.uni-item:hover {
+    background: rgba(0, 212, 255, 0.08);
+    border-color: rgba(0, 212, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.uni-item:hover::before {
+    background: #00d4ff;
+}
+
+.uni-item.active {
+    background: rgba(0, 212, 255, 0.12);
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.uni-item.active::before {
+    background: linear-gradient(180deg, #00d4ff, #7b68ee);
+}
+
+.uni-item h4 {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.uni-item .city {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.uni-item .city i {
+    font-size: 0.7rem;
+    color: #00d4ff;
+}
+
+.uni-item .uni-type {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+    font-size: 0.7rem;
+    border-radius: 20px;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==================== ДЕТАЛЬНАЯ КАРТОЧКА ==================== */
+.uni-detail-card {
+    margin: 15px;
+    background: rgba(20, 35, 60, 0.6);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: slideUp 0.4s ease;
+    border: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card-header {
+    background: linear-gradient(135deg, #00d4ff 0%, #7b68ee 100%);
+    padding: 20px;
+    position: relative;
+}
+
+.close-detail {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-detail:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.card-header h3 {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding-right: 40px;
+    line-height: 1.4;
+}
+
+.card-header .location {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-section {
+    margin-bottom: 20px;
+}
+
+.detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.detail-section h5 {
+    color: #00d4ff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-section h5 i {
+    font-size: 0.85rem;
+}
+
+/* Требования */
+.requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.req-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.req-item:hover {
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.req-item .label {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.req-item .value {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Программы */
+.programs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.program-tag {
+    background: rgba(0, 212, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.program-tag:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: rgba(0, 212, 255, 0.4);
+}
+
+/* Рейтинги */
+.rankings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ranking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.ranking-item .name {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+.ranking-item .rank {
+    color: #ffd700;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Контакты */
+.contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+}
+
+.contact-item i {
+    color: #00d4ff;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.contact-item a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    word-break: break-all;
+}
+
+.contact-item a:hover {
+    color: #7b68ee;
+    text-decoration: underline;
+}
+
+/* Кнопка специальностей */
+.specialties-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #00d4ff 0%, #7b68ee 100%);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.specialties-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+}
+
+.specialties-btn i {
+    font-size: 1.1rem;
+}
+
+/* ==================== КОНТРОЛЫ КАРТЫ ==================== */
+.map-controls {
+    position: fixed;
+    bottom: 100px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 800;
+}
+
+.control-btn {
+    width: 44px;
+    height: 44px;
+    background: rgba(12, 25, 41, 0.95);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 10px;
+    color: #00d4ff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==================== МОДАЛЬНОЕ ОКНО ПОМОЩИ ==================== */
+.help-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.help-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.help-modal-content {
+    background: linear-gradient(135deg, #0f1c2e 0%, #1a3050 100%);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.help-modal.active .help-modal-content {
+    transform: translateY(0);
+}
+
+.help-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.help-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.help-modal-content h2 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.help-modal-content h2 i {
+    color: #00d4ff;
+}
+
+.help-steps {
+    margin-bottom: 25px;
+}
+
+.help-step {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #00d4ff 0%, #7b68ee 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.step-content p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.help-tips {
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.help-tips h4 {
+    color: #00d4ff;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.help-tips ul {
+    list-style: none;
+    padding: 0;
+}
+
+.help-tips li {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    padding: 6px 0;
+    padding-left: 15px;
+    position: relative;
+}
+
+.help-tips li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #00d4ff;
+}
+
+.help-tips li i {
+    color: #00d4ff;
+    font-size: 0.75rem;
+}
+
+/* ==================== СТИЛИ МАРКЕРОВ LEAFLET ==================== */
+.region-marker {
+    background: linear-gradient(135deg, #00d4ff 0%, #7b68ee 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.region-marker:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 25px rgba(0, 212, 255, 0.6);
+}
+
+.region-marker.active {
+    background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6); }
+    50% { box-shadow: 0 6px 35px rgba(255, 215, 0, 0.8); }
+}
+
+.uni-marker {
+    background: #ff6b6b;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.uni-marker:hover {
+    transform: scale(1.3);
+    background: #ffd700;
+}
+
+.uni-marker.active {
+    background: #ffd700;
+    transform: scale(1.3);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+}
+
+/* ==================== LEAFLET OVERRIDES ==================== */
+.leaflet-control-zoom {
+    display: none !important;
+}
+
+.leaflet-popup-content-wrapper {
+    background: rgba(12, 25, 41, 0.98);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.leaflet-popup-content {
+    color: #fff;
+    margin: 12px 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.leaflet-popup-content h4 {
+    color: #00d4ff;
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+}
+
+.leaflet-popup-content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.leaflet-popup-tip {
+    background: rgba(12, 25, 41, 0.98);
+}
+
+/* ==================== TOOLTIP СТИЛИ ==================== */
+.region-tooltip {
+    background: rgba(12, 25, 41, 0.98) !important;
+    border: 1px solid rgba(0, 212, 255, 0.3) !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+    padding: 8px 12px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 13px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+    border-top-color: rgba(12, 25, 41, 0.98) !important;
+}
+
+/* ==================== АДАПТИВНОСТЬ ==================== */
+@media (max-width: 900px) {
+    .info-panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        min-width: 100%;
+        height: 50vh;
+        border-left: none;
+        border-top: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: 20px 20px 0 0;
+        transform: translateY(calc(100% - 60px));
+    }
+
+    .info-panel.expanded {
+        transform: translateY(0);
+    }
+
+    .panel-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 50px;
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .panel-toggle i {
+        transition: transform 0.3s ease;
+    }
+
+    .info-panel.expanded .panel-toggle i {
+        transform: rotate(180deg);
+    }
+
+    .map-wrapper {
+        flex-direction: column;
+    }
+
+    #map {
+        height: 100%;
+    }
+
+    .map-controls {
+        bottom: auto;
+        top: 80px;
+        right: 15px;
+        left: auto;
+    }
+
+    .nav-title {
+        font-size: 1rem;
+    }
+
+    .onboarding-tooltip {
+        width: 90%;
+        max-width: none;
+    }
+
+    .tooltip-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-nav {
+        padding: 0 15px;
+    }
+
+    .nav-title {
+        font-size: 0.9rem;
+    }
+
+    .nav-back-btn,
+    .nav-help-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .control-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .info-panel {
+        height: 60vh;
+    }
+
+    .uni-detail-card {
+        margin: 10px;
+    }
+
+    .card-header {
+        padding: 15px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .requirements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+

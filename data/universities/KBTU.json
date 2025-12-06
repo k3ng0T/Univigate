@@ -1,0 +1,195 @@
+{
+  "KBTU": {
+    "full_name": [
+      "Kazakh-British Technical University"
+    ],
+    "Description": [
+      "Казахстанско-Британский технический университет (КБТУ) — ведущий технический университет Казахстана.",
+      "Университет создан совместно с British Council и ведущими британскими университетами.",
+      "Обучение ведётся преимущественно на английском языке.",
+      "КБТУ является одним из топовых вузов Казахстана в области IT и инженерии."
+    ],
+    "Rating": [
+      "QS World University Rankings: нету",
+      "QS Asia University Rankings: 201-250 место",
+      "Национальный рейтинг исследовательских вузов Казахстана (NHR): топ-10"
+    ],
+    "Accreditation": [
+      "Международные аккредитации ABET (инженерные программы)",
+      "Аккредитация FIBAA (бизнес-программы)",
+      "Партнёрства с британскими университетами",
+      "Национальная аккредитация IQAA"
+    ],
+    "Location": [
+      "Алматы, Казахстан"
+    ],
+    "Founded": [
+      "2001 год"
+    ],
+    "ProgramsByDegree": {
+      "Bachelor": [
+        "Computer Science",
+        "Information Systems",
+        "Software Engineering",
+        "Cybersecurity",
+        "Data Science",
+        "Artificial Intelligence",
+        "Petroleum Engineering",
+        "Chemical Engineering",
+        "Power Engineering",
+        "Mechanical Engineering",
+        "Finance",
+        "Management",
+        "Marketing",
+        "Accounting",
+        "Economics",
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Jurisprudence",
+        "International Law",
+        "Geophysics",
+        "Geology",
+        "Automation and Control",
+        "Telecommunications",
+        "Business Analytics",
+        "Entrepreneurship"
+      ],
+      "Master": [
+        "Computer Science",
+        "Software Engineering",
+        "Data Science",
+        "Cybersecurity",
+        "Artificial Intelligence",
+        "Petroleum Engineering",
+        "Chemical Engineering",
+        "Power Engineering",
+        "Finance",
+        "MBA",
+        "Management",
+        "Marketing",
+        "Economics",
+        "Mathematics",
+        "Physics",
+        "International Law",
+        "Business Analytics",
+        "Project Management",
+        "Energy Management"
+      ],
+      "Doctorate": [
+        "Computer Science",
+        "Information Systems",
+        "Petroleum Engineering",
+        "Chemical Engineering",
+        "Physics",
+        "Mathematics",
+        "Economics",
+        "Finance"
+      ]
+    },
+    "FacultyDirections": {
+      "Факультет информационных технологий": [
+        "Computer Science",
+        "Information Systems",
+        "Software Engineering",
+        "Cybersecurity",
+        "Data Science",
+        "Artificial Intelligence",
+        "Business Analytics"
+      ],
+      "Факультет энергетики и нефтегазовой индустрии": [
+        "Petroleum Engineering",
+        "Chemical Engineering",
+        "Power Engineering",
+        "Geology",
+        "Geophysics"
+      ],
+      "Бизнес-школа": [
+        "Finance",
+        "Management",
+        "Marketing",
+        "Accounting",
+        "Economics",
+        "Entrepreneurship"
+      ],
+      "Факультет математики и естественных наук": [
+        "Mathematics",
+        "Physics",
+        "Chemistry"
+      ],
+      "Школа права": [
+        "Jurisprudence",
+        "International Law"
+      ]
+    },
+    "RequirementsToApply": {
+      "Undergraduate": [
+        "Аттестат о среднем образовании",
+        "Результаты ЕНТ или внутренний экзамен",
+        "IELTS 5.5+ или внутренний тест по английскому",
+        "Собеседование"
+      ],
+      "Graduate": [
+        "Диплом бакалавра по соответствующей специальности",
+        "IELTS 6.0+ или эквивалент",
+        "Рекомендательные письма",
+        "Мотивационное письмо",
+        "GMAT/GRE для некоторых программ"
+      ]
+    },
+    "AbroadOpportunityScholarships": {
+      "Стипендии": "Гранты на основе академической успеваемости, социальные гранты, стипендии от партнёров-компаний",
+      "Международные программы": "Обмены с британскими и европейскими университетами, двойные дипломы, летние школы"
+    },
+    "StrongPoints": [
+      "Сильные IT-программы",
+      "Партнёрство с британскими университетами",
+      "Преподавание на английском языке",
+      "Высокий уровень трудоустройства в IT и нефтегазовой сфере",
+      "Международные аккредитации ABET и FIBAA",
+      "Современный кампус и лаборатории"
+    ],
+    "BachelorENTThresholds": {
+      "Computer Science": {
+        "threshold": 50,
+        "grant": 120
+      },
+      "Software Engineering": {
+        "threshold": 50,
+        "grant": 118
+      },
+      "Information Systems": {
+        "threshold": 50,
+        "grant": 115
+      },
+      "Cybersecurity": {
+        "threshold": 50,
+        "grant": 118
+      },
+      "Data Science": {
+        "threshold": 50,
+        "grant": 120
+      },
+      "Petroleum Engineering": {
+        "threshold": 50,
+        "grant": 110
+      },
+      "Chemical Engineering": {
+        "threshold": 50,
+        "grant": 108
+      },
+      "Finance": {
+        "threshold": 50,
+        "grant": 108
+      },
+      "Management": {
+        "threshold": 50,
+        "grant": 105
+      },
+      "Economics": {
+        "threshold": 50,
+        "grant": 102
+      }
+    }
+  }
+}

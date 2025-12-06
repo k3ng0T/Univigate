@@ -16,4 +16,3 @@ menuModal.addEventListener('click', function(e) {
     // Тут добавить анимацию ухода кнопки и возврата сайта
   }
 });
-

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Университет - UniviGate</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Навигация назад -->
+    <div class="nav-back">
+        <a href="../index.html" class="nav-back-btn" title="Вернуться на главную">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="university-page">
+        <!-- Загрузка -->
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Загрузка информации...</p>
+        </div>
+
+        <!-- Ошибка -->
+        <div class="error-message" id="error" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h2>Университет не найден</h2>
+            <p>Проверьте правильность ссылки или выберите университет из списка.</p>
+            <a href="ai-searcher.html" class="btn-primary">
+                <i class="fas fa-search"></i> Найти университет
+            </a>
+        </div>
+
+        <!-- Контент университета -->
+        <div class="university-content" id="uni-content" style="display: none;">
+            <!-- Заголовок -->
+            <header class="uni-page-header">
+                <div class="uni-logo">
+                    <img id="uni-logo" src="" alt="Логотип">
+                </div>
+                <div class="uni-title">
+                    <h1 id="uni-name"></h1>
+                    <p class="uni-name-ru" id="uni-name-ru"></p>
+                    <div class="uni-badges">
+                        <span class="badge badge-type" id="uni-type"></span>
+                        <span class="badge badge-location" id="uni-location"></span>
+                        <span class="badge badge-founded" id="uni-founded"></span>
+                    </div>
+                </div>
+                <div class="uni-rankings" id="uni-rankings">
+                    <!-- Динамический контент -->
+                </div>
+            </header>
+
+            <!-- Описание -->
+            <section class="uni-section">
+                <h2><i class="fas fa-info-circle"></i> О университете</h2>
+                <p id="uni-description"></p>
+                
+                <div class="uni-contacts">
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <a id="uni-website" href="" target="_blank"></a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a id="uni-email" href=""></a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span id="uni-phone"></span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="uni-address"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Требования для поступления -->
+            <section class="uni-section">
+                <h2><i class="fas fa-clipboard-check"></i> Требования для поступления</h2>
+                <div class="requirements-grid" id="uni-requirements">
+                    <!-- Динамический контент -->
+                </div>
+                <p class="ent-note" id="uni-ent-note"></p>
+            </section>
+
+            <!-- Сильные стороны -->
+            <section class="uni-section">
+                <h2><i class="fas fa-star"></i> Сильные стороны</h2>
+                <ul class="strengths-list" id="uni-strengths">
+                    <!-- Динамический контент -->
+                </ul>
+            </section>
+
+            <!-- Факультеты и программы -->
+            <section class="uni-section">
+                <h2><i class="fas fa-graduation-cap"></i> Факультеты и программы</h2>
+                <div class="faculties-grid" id="uni-faculties">
+                    <!-- Динамический контент -->
+                </div>
+            </section>
+
+            <!-- Программы по степеням -->
+            <section class="uni-section">
+                <h2><i class="fas fa-book"></i> Программы по степеням</h2>
+                <div class="programs-tabs">
+                    <button class="tab-btn active" data-tab="bachelor">Бакалавриат</button>
+                    <button class="tab-btn" data-tab="master">Магистратура</button>
+                    <button class="tab-btn" data-tab="doctorate">Докторантура</button>
+                </div>
+                <div class="programs-content">
+                    <div class="tab-content active" id="tab-bachelor"></div>
+                    <div class="tab-content" id="tab-master"></div>
+                    <div class="tab-content" id="tab-doctorate"></div>
+                </div>
+            </section>
+
+            <!-- Баллы ЕНТ -->
+            <section class="uni-section" id="ent-section">
+                <h2><i class="fas fa-chart-line"></i> Проходные баллы ЕНТ</h2>
+                <div class="ent-scores-grid" id="uni-ent-scores">
+                    <!-- Динамический контент -->
+                </div>
+            </section>
+
+            <!-- Стипендии и международные программы -->
+            <section class="uni-section">
+                <h2><i class="fas fa-globe"></i> Стипендии и международные программы</h2>
+                <div class="scholarships-content" id="uni-scholarships">
+                    <!-- Динамический контент -->
+                </div>
+            </section>
+
+            <!-- Аккредитации -->
+            <section class="uni-section">
+                <h2><i class="fas fa-certificate"></i> Аккредитации</h2>
+                <ul class="accreditations-list" id="uni-accreditations">
+                    <!-- Динамический контент -->
+                </ul>
+            </section>
+
+            <!-- Действия -->
+            <div class="uni-actions">
+                <a id="apply-link" href="" target="_blank" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i> Подать заявку
+                </a>
+                <a href="compare.html" class="btn-secondary">
+                    <i class="fas fa-balance-scale"></i> Сравнить с другим
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/universities-data.js"></script>
+    <script src="../js/university-page.js"></script>
+</body>
+</html>

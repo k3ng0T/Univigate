@@ -1,0 +1,2774 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Центральная кнопка навигации */
+.central-nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.central-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.central-button:hover {
+  width: 70px;
+  height: 70px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.central-button:hover i {
+  font-size: 28px;
+}
+
+/* Кнопка Exit - на месте центральной кнопки (сверху) */
+.exit-btn {
+  position: fixed !important;
+  top: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background-color: #ff4757 !important;
+  width: 60px;
+  height: 60px;
+}
+
+.exit-btn i {
+  color: #fff !important;
+  font-size: 24px;
+}
+
+.exit-btn:hover {
+  background-color: #ff6b81 !important;
+  width: 70px;
+  height: 70px;
+}
+
+.exit-btn:hover i {
+  color: #fff !important;
+  font-size: 28px;
+}
+
+/* Подсказка для Exit снизу, а не сверху */
+.exit-btn::after {
+  top: auto !important;
+  bottom: -40px !important;
+}
+
+.exit-btn:hover::after {
+  top: auto !important;
+  bottom: -35px !important;
+}
+
+/* Круговое меню */
+.circular-menu {
+  text-decoration: none;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.circular-menu.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Контейнер для кнопок меню */
+.menu-buttons-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+/* Стили кнопок меню */
+.menu-item {
+  text-decoration: none;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-item i {
+  font-size: 18px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* Позиционирование кнопок по кругу */
+.ranking-btn {
+  top: calc(50% - 120px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search-btn {
+  top: calc(50% - 85px);
+  left: calc(50% - 85px);
+  transform: translate(-50%, -50%);
+}
+
+.ai-btn {
+  top: calc(50% - 85px);
+  left: calc(50% + 85px);
+  transform: translate(-50%, -50%);
+}
+
+.filter-btn,
+.tours-btn {
+  top: calc(50% + 120px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.favorite-btn {
+  top: calc(50% + 85px);
+  left: calc(50% - 85px);
+  transform: translate(-50%, -50%);
+}
+
+.compare-btn {
+  top: calc(50% + 85px);
+  left: calc(50% + 85px);
+  transform: translate(-50%, -50%);
+}
+
+/* Стили для ссылки-кнопки */
+/* Hover эффект - увеличение + цвет */
+.menu-item:hover {
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background-color: #007bff;
+  z-index: 10;
+}
+
+.menu-item:hover i {
+  color: #fff;
+  font-size: 22px;
+}
+
+/* Подсказки при наведении */
+.menu-item::after {
+  content: attr(data-description);
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.menu-item:hover::after {
+  opacity: 1;
+  visibility: visible;
+  top: -35px;
+}
+
+/* Центральная кнопка */
+.central-button i {
+  font-size: 24px;
+  color: #007bff;
+}
+
+.central-button:hover i {
+  color: #0056b3;
+}
+
+/* Каталог университетов */
+/* Удалены устаревшие стили каталога и модальных окон */
+
+/* ============================================
+   АНИМИРОВАННЫЙ ПОИСК В ЦЕНТРЕ КРУГОВОГО МЕНЮ
+   ============================================ */
+
+/* Анимированный поиск в центре кругового меню */
+.animated-search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: fit-content;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  z-index: 15;
+}
+
+/* Keyframes для плавного симметричного расширения из центра в обе стороны */
+@keyframes expandLeftRight {
+  0% {
+    width: 2.5rem;
+    opacity: 0;
+    visibility: hidden;
+  }
+  5% {
+    width: 4rem;
+    opacity: 0.2;
+  }
+  10% {
+    width: 6rem;
+    opacity: 0.35;
+  }
+  15% {
+    width: 8rem;
+    opacity: 0.45;
+  }
+  20% {
+    width: 10rem;
+    opacity: 0.55;
+  }
+  25% {
+    width: 12rem;
+    opacity: 0.65;
+  }
+  30% {
+    width: 14rem;
+    opacity: 0.72;
+  }
+  35% {
+    width: 15.5rem;
+    opacity: 0.78;
+  }
+  40% {
+    width: 16.5rem;
+    opacity: 0.83;
+  }
+  45% {
+    width: 17.5rem;
+    opacity: 0.87;
+  }
+  50% {
+    width: 18rem;
+    opacity: 0.9;
+  }
+  55% {
+    width: 18.5rem;
+    opacity: 0.92;
+  }
+  60% {
+    width: 19rem;
+    opacity: 0.94;
+  }
+  65% {
+    width: 19.3rem;
+    opacity: 0.95;
+  }
+  70% {
+    width: 19.5rem;
+    opacity: 0.96;
+  }
+  75% {
+    width: 19.7rem;
+    opacity: 0.97;
+  }
+  80% {
+    width: 19.8rem;
+    opacity: 0.98;
+  }
+  85% {
+    width: 19.9rem;
+    opacity: 0.99;
+  }
+  90% {
+    width: 19.95rem;
+    opacity: 0.995;
+  }
+  95% {
+    width: 19.98rem;
+    opacity: 0.998;
+  }
+  100% {
+    width: 20em;
+    opacity: 1;
+  }
+}
+
+/* Keyframes для качения иконки вправо - точно синхронно с правым краем поиска */
+@keyframes rollToRight {
+  0% {
+    transform: translate(-50%, -50%) translateX(0) rotate(0deg) scale(1);
+  }
+  5% {
+    transform: translate(-50%, -50%) translateX(0.875em) rotate(18deg)
+      scale(1.02);
+  }
+  10% {
+    transform: translate(-50%, -50%) translateX(3em) rotate(36deg) scale(1.04);
+  }
+  15% {
+    transform: translate(-50%, -50%) translateX(4em) rotate(54deg) scale(1.06);
+  }
+  20% {
+    transform: translate(-50%, -50%) translateX(5em) rotate(72deg) scale(1.08);
+  }
+  25% {
+    transform: translate(-50%, -50%) translateX(6em) rotate(90deg) scale(1.1);
+  }
+  30% {
+    transform: translate(-50%, -50%) translateX(7em) rotate(108deg) scale(1.12);
+  }
+  35% {
+    transform: translate(-50%, -50%) translateX(7.75em) rotate(126deg)
+      scale(1.13);
+  }
+  40% {
+    transform: translate(-50%, -50%) translateX(8.25em) rotate(144deg)
+      scale(1.14);
+  }
+  45% {
+    transform: translate(-50%, -50%) translateX(8.75em) rotate(162deg)
+      scale(1.145);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(9em) rotate(180deg) scale(1.15);
+  }
+  55% {
+    transform: translate(-50%, -50%) translateX(9.25em) rotate(198deg)
+      scale(1.145);
+  }
+  60% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(216deg)
+      scale(1.14);
+  }
+  65% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(234deg)
+      scale(1.13);
+  }
+  70% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(252deg)
+      scale(1.12);
+  }
+  75% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(270deg) scale(1.1);
+  }
+  80% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(288deg)
+      scale(1.08);
+  }
+  85% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(306deg)
+      scale(1.06);
+  }
+  90% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(324deg)
+      scale(1.04);
+  }
+  95% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(342deg)
+      scale(1.02);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(360deg) scale(1);
+  }
+}
+
+/* Keyframes для плавного появления иконки при качении */
+@keyframes iconGlow {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0px rgba(100, 100, 100, 0));
+  }
+  20% {
+    filter: brightness(1.1) drop-shadow(0 0 2px rgba(100, 100, 100, 0.2));
+  }
+  40% {
+    filter: brightness(1.2) drop-shadow(0 0 4px rgba(100, 100, 100, 0.4));
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 8px rgba(100, 100, 100, 0.5));
+  }
+  60% {
+    filter: brightness(1.25) drop-shadow(0 0 6px rgba(100, 100, 100, 0.4));
+  }
+  80% {
+    filter: brightness(1.15) drop-shadow(0 0 3px rgba(100, 100, 100, 0.3));
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 0px rgba(100, 100, 100, 0));
+  }
+}
+
+/* Keyframes для пульсации кнопки */
+@keyframes buttonPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 123, 255, 0);
+  }
+}
+
+/* Keyframes для эффекта волны при расширении */
+@keyframes expandWave {
+  0%,
+  100% {
+    border-radius: 30px;
+  }
+  50% {
+    border-radius: 25px;
+  }
+}
+
+/* Keyframes для закрытия поиска - обратная анимация */
+@keyframes collapseLeftRight {
+  0% {
+    width: 20em;
+    opacity: 1;
+  }
+  5% {
+    width: 19.98rem;
+    opacity: 0.998;
+  }
+  10% {
+    width: 19.95rem;
+    opacity: 0.995;
+  }
+  15% {
+    width: 19.9rem;
+    opacity: 0.99;
+  }
+  20% {
+    width: 19.8rem;
+    opacity: 0.98;
+  }
+  25% {
+    width: 19.7rem;
+    opacity: 0.97;
+  }
+  30% {
+    width: 19.5rem;
+    opacity: 0.96;
+  }
+  35% {
+    width: 19.3rem;
+    opacity: 0.95;
+  }
+  40% {
+    width: 19rem;
+    opacity: 0.94;
+  }
+  45% {
+    width: 18.5rem;
+    opacity: 0.92;
+  }
+  50% {
+    width: 18rem;
+    opacity: 0.9;
+  }
+  55% {
+    width: 17.5rem;
+    opacity: 0.87;
+  }
+  60% {
+    width: 16.5rem;
+    opacity: 0.83;
+  }
+  65% {
+    width: 15.5rem;
+    opacity: 0.78;
+  }
+  70% {
+    width: 14rem;
+    opacity: 0.72;
+  }
+  75% {
+    width: 12rem;
+    opacity: 0.65;
+  }
+  80% {
+    width: 10rem;
+    opacity: 0.55;
+  }
+  85% {
+    width: 8rem;
+    opacity: 0.45;
+  }
+  90% {
+    width: 6rem;
+    opacity: 0.35;
+  }
+  95% {
+    width: 4rem;
+    opacity: 0.2;
+  }
+  100% {
+    width: 2.5rem;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Keyframes для возврата иконки обратно в центр */
+@keyframes rollToLeft {
+  0% {
+    transform: translate(-50%, -50%) translateX(9.5em) rotate(0deg) scale(1);
+  }
+  5% {
+    transform: translate(-50%, -50%) translateX(8.8em) rotate(-18deg)
+      scale(1.01);
+  }
+  10% {
+    transform: translate(-50%, -50%) translateX(8em) rotate(-36deg) scale(1.02);
+  }
+  15% {
+    transform: translate(-50%, -50%) translateX(7.2em) rotate(-54deg)
+      scale(1.03);
+  }
+  20% {
+    transform: translate(-50%, -50%) translateX(6.4em) rotate(-72deg)
+      scale(1.04);
+  }
+  25% {
+    transform: translate(-50%, -50%) translateX(5.6em) rotate(-90deg)
+      scale(1.05);
+  }
+  30% {
+    transform: translate(-50%, -50%) translateX(4.8em) rotate(-108deg)
+      scale(1.06);
+  }
+  35% {
+    transform: translate(-50%, -50%) translateX(4em) rotate(-126deg) scale(1.07);
+  }
+  40% {
+    transform: translate(-50%, -50%) translateX(3.2em) rotate(-144deg)
+      scale(1.08);
+  }
+  45% {
+    transform: translate(-50%, -50%) translateX(2.4em) rotate(-162deg)
+      scale(1.09);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(1.6em) rotate(-180deg)
+      scale(1.1);
+  }
+  55% {
+    transform: translate(-50%, -50%) translateX(1.2em) rotate(-198deg)
+      scale(1.08);
+  }
+  60% {
+    transform: translate(-50%, -50%) translateX(0.8em) rotate(-216deg)
+      scale(1.06);
+  }
+  65% {
+    transform: translate(-50%, -50%) translateX(0.6em) rotate(-234deg)
+      scale(1.04);
+  }
+  70% {
+    transform: translate(-50%, -50%) translateX(0.4em) rotate(-252deg)
+      scale(1.02);
+  }
+  75% {
+    transform: translate(-50%, -50%) translateX(0.3em) rotate(-270deg)
+      scale(1.01);
+  }
+  80% {
+    transform: translate(-50%, -50%) translateX(0.2em) rotate(-288deg)
+      scale(1.005);
+  }
+  85% {
+    transform: translate(-50%, -50%) translateX(0.1em) rotate(-306deg)
+      scale(1.002);
+  }
+  90% {
+    transform: translate(-50%, -50%) translateX(0.05em) rotate(-324deg)
+      scale(1.001);
+  }
+  95% {
+    transform: translate(-50%, -50%) translateX(0.02em) rotate(-342deg) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(0) rotate(-360deg) scale(1);
+  }
+}
+
+.animated-search__input {
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  background-color: #fff;
+  border: 2px solid #e0e0e0;
+  color: #333;
+  padding: 0.7rem 1rem;
+  padding-right: 3rem;
+  border-radius: 30px;
+  width: 2.5rem;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  animation: none;
+  visibility: hidden;
+  display: block;
+}
+
+/* При наведении: симметричное расширение из центра */
+.animated-search:hover .animated-search__input {
+  animation: expandLeftRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    expandWave 0.3s ease-in-out;
+  transition: none;
+  border-color: #007bff;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+.animated-search__input:hover,
+.animated-search__input:focus {
+  box-shadow: 0 0 1.5em rgba(0, 123, 255, 0.15);
+  background-color: #f8f9fa;
+  border-color: #007bff;
+}
+
+.animated-search__input:focus {
+  outline: none;
+  animation: expandLeftRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    expandWave 0.3s ease-in-out;
+  border-color: #007bff;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.animated-search__input::-webkit-input-placeholder {
+  font-weight: 300;
+  color: #999;
+  transition: opacity 0.3s ease;
+}
+
+.animated-search:hover .animated-search__input::-webkit-input-placeholder {
+  opacity: 0.8;
+}
+
+.animated-search__button {
+  border: none;
+  background-color: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 16;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  animation: none;
+}
+
+/* При наведении: крутимся одновременно с расширением поиска */
+.animated-search:hover .animated-search__button {
+  animation: rollToRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    buttonPulse 1.2s ease-in-out 0.3s infinite;
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: none;
+}
+
+.animated-search__button:hover {
+  cursor: pointer;
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* При фокусе на инпуте тоже запускаем анимации */
+.animated-search:focus-within .animated-search__input {
+  animation: expandLeftRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    expandWave 0.3s ease-in-out;
+  border-color: #007bff;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.animated-search:focus-within .animated-search__button {
+  animation: rollToRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    buttonPulse 1.2s ease-in-out 0.3s infinite;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.animated-search__icon {
+  height: 1.3em;
+  width: 1.3em;
+  fill: #666;
+  transition: fill 0.3s ease;
+  transform-origin: center;
+  animation: none;
+}
+
+/* Иконка светится при качении */
+.animated-search:hover .animated-search__icon {
+  fill: #fff;
+  animation: iconGlow 0.3s ease-in-out;
+}
+
+.animated-search:focus-within .animated-search__icon {
+  fill: #fff;
+}
+
+.animated-search__button:hover .animated-search__icon {
+  fill: #fff;
+}
+
+/* Плавное возвращение при убирании курсора */
+/* Закрытие поиска при убирании курсора - используем класс для контроля */
+.animated-search.search-opened:not(:hover):not(:focus-within)
+  .animated-search__input {
+  animation: collapseLeftRight 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.animated-search.search-opened:not(:hover):not(:focus-within)
+  .animated-search__button {
+  animation: rollToLeft 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition: none;
+}
+
+/* Адаптивность: планшеты */
+@media (max-width: 992px) {
+  .central-nav {
+    top: 16px;
+  }
+
+  .central-button {
+    width: 56px;
+    height: 56px;
+  }
+
+  .central-button:hover {
+    width: 64px;
+    height: 64px;
+  }
+
+  .menu-buttons-container {
+    width: 260px;
+    height: 260px;
+  }
+
+  .menu-item {
+    width: 48px;
+    height: 48px;
+  }
+
+  .menu-item:hover {
+    width: 56px;
+    height: 56px;
+  }
+
+  .ranking-btn {
+    top: calc(50% - 104px);
+  }
+
+  .search-btn {
+    top: calc(50% - 78px);
+    left: calc(50% - 78px);
+  }
+
+  .ai-btn {
+    top: calc(50% - 78px);
+    left: calc(50% + 78px);
+  }
+
+  .filter-btn,
+  .tours-btn {
+    top: calc(50% + 104px);
+    left: 50%;
+  }
+
+  .favorite-btn {
+    top: calc(50% + 78px);
+    left: calc(50% - 78px);
+  }
+
+  .compare-btn {
+    top: calc(50% + 78px);
+    left: calc(50% + 78px);
+  }
+
+  .menu-item::after {
+    font-size: 11px;
+  }
+}
+
+/* Адаптивность: мобильные */
+@media (max-width: 768px) {
+  .central-nav {
+    top: 14px;
+  }
+
+  .central-button {
+    width: 52px;
+    height: 52px;
+  }
+
+  .central-button:hover {
+    width: 58px;
+    height: 58px;
+  }
+
+  .menu-buttons-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  .menu-item {
+    width: 46px;
+    height: 46px;
+  }
+
+  .menu-item:hover {
+    width: 50px;
+    height: 50px;
+  }
+
+  .ranking-btn {
+    top: calc(50% - 88px);
+  }
+
+  .search-btn {
+    top: calc(50% - 66px);
+    left: calc(50% - 66px);
+  }
+
+  .ai-btn {
+    top: calc(50% - 66px);
+    left: calc(50% + 66px);
+  }
+
+  .filter-btn,
+  .tours-btn {
+    top: calc(50% + 88px);
+    left: 50%;
+  }
+
+  .favorite-btn {
+    top: calc(50% + 66px);
+    left: calc(50% - 66px);
+  }
+
+  .compare-btn {
+    top: calc(50% + 66px);
+    left: calc(50% + 66px);
+  }
+
+  .menu-item::after {
+    top: -34px;
+    font-size: 10px;
+  }
+
+  .animated-search {
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+
+  .animated-search:hover .animated-search__input,
+  .animated-search:focus-within .animated-search__input {
+    width: 16em;
+  }
+
+  .animated-search:hover .animated-search__button,
+  .animated-search:focus-within .animated-search__button {
+    animation: rollToRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+      buttonPulse 1.2s ease-in-out 0.3s infinite;
+  }
+
+  .ai-searcher-container {
+    margin: 80px 16px 40px;
+    padding: 22px;
+  }
+
+  .ai-searcher-title {
+    font-size: 1.7em;
+    margin-bottom: 22px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 15px;
+  }
+
+  .submit-btn {
+    font-size: 17px;
+  }
+
+  .nav-back {
+    top: 16px;
+    left: 12px;
+  }
+
+  .nav-back-btn {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Стили для страницы AI Searcher */
+.ai-searcher-container {
+  max-width: 600px;
+  margin: 100px auto 50px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ai-searcher-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #007bff;
+  font-size: 2em;
+}
+
+.ai-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.sat-conditional {
+  display: none;
+  margin-top: 10px;
+  padding-left: 20px;
+  border-left: 3px solid #007bff;
+}
+
+.sat-conditional.visible {
+  display: block;
+}
+
+.submit-btn {
+  padding: 15px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Навигация назад */
+.nav-back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.nav-back-btn {
+  text-decoration: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.nav-back-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-back-btn i {
+  font-size: 20px;
+  color: #007bff;
+}
+
+/* Адаптивность: узкие экраны */
+@media (max-width: 540px) {
+  .central-nav {
+    top: 12px;
+  }
+
+  .central-button {
+    width: 50px;
+    height: 50px;
+  }
+
+  .central-button:hover {
+    width: 54px;
+    height: 54px;
+  }
+
+  .menu-buttons-container {
+    width: 190px;
+    height: 190px;
+  }
+
+  .menu-item {
+    width: 44px;
+    height: 44px;
+  }
+
+  .menu-item:hover {
+    width: 48px;
+    height: 48px;
+  }
+
+  .ranking-btn {
+    top: calc(50% - 74px);
+  }
+
+  .search-btn {
+    top: calc(50% - 56px);
+    left: calc(50% - 56px);
+  }
+
+  .ai-btn {
+    top: calc(50% - 56px);
+    left: calc(50% + 56px);
+  }
+
+  .filter-btn,
+  .tours-btn {
+    top: calc(50% + 74px);
+    left: 50%;
+  }
+
+  .favorite-btn {
+    top: calc(50% + 56px);
+    left: calc(50% - 56px);
+  }
+
+  .compare-btn {
+    top: calc(50% + 56px);
+    left: calc(50% + 56px);
+  }
+
+  .menu-item::after {
+    top: -30px;
+    padding: 4px 8px;
+  }
+
+  .animated-search {
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+
+  .animated-search__input {
+    max-width: 14em;
+  }
+
+  .ai-searcher-container {
+    margin: 72px 12px 32px;
+    padding: 18px;
+  }
+
+  .ai-searcher-title {
+    font-size: 1.5em;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .nav-back {
+    top: 12px;
+    left: 10px;
+  }
+
+  .nav-back-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .nav-back-btn i {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .central-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .central-button:hover {
+    width: 52px;
+    height: 52px;
+  }
+
+  .menu-buttons-container {
+    width: 170px;
+    height: 170px;
+  }
+
+  .menu-item {
+    width: 42px;
+    height: 42px;
+  }
+
+  .menu-item:hover {
+    width: 46px;
+    height: 46px;
+  }
+
+  .ranking-btn {
+    top: calc(50% - 64px);
+  }
+
+  .search-btn {
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+  }
+
+  .ai-btn {
+    top: calc(50% - 50px);
+    left: calc(50% + 50px);
+  }
+
+  .filter-btn,
+  .tours-btn {
+    top: calc(50% + 64px);
+    left: 50%;
+  }
+
+  .favorite-btn {
+    top: calc(50% + 50px);
+    left: calc(50% - 50px);
+  }
+
+  .compare-btn {
+    top: calc(50% + 50px);
+    left: calc(50% + 50px);
+  }
+
+  .menu-item::after {
+    top: -28px;
+    font-size: 9px;
+  }
+
+  .animated-search {
+    transform: translate(-50%, -50%) scale(0.84);
+  }
+
+  .animated-search__input {
+    max-width: 13em;
+  }
+
+  .ai-searcher-container {
+    margin: 68px 10px 28px;
+    padding: 16px;
+  }
+
+  .ai-searcher-title {
+    font-size: 1.4em;
+  }
+
+  .nav-back {
+    top: 10px;
+    left: 8px;
+  }
+
+  .nav-back-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ============================================
+   СТРАНИЦА СРАВНЕНИЯ УНИВЕРСИТЕТОВ
+   ============================================ */
+
+.compare-container {
+  max-width: 1400px;
+  margin: 100px auto 50px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.compare-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #007bff;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.compare-title i {
+  font-size: 1.2em;
+}
+
+/* Форма выбора */
+.compare-selection {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.selection-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.selection-item {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+}
+
+.selection-item label,
+.direction-selection label {
+  display: block;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.university-select,
+.direction-select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.university-select:focus,
+.direction-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.university-select:hover,
+.direction-select:hover {
+  border-color: #007bff;
+}
+
+.vs-badge {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.direction-selection {
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
+
+.compare-btn-submit {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 16px 30px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.compare-btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.compare-btn-submit:active {
+  transform: translateY(0);
+}
+
+.compare-btn-submit i {
+  margin-right: 10px;
+}
+
+/* Результаты сравнения */
+.compare-results {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.compare-header {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.uni-header {
+  flex: 1;
+  padding: 25px 20px;
+  text-align: center;
+}
+
+.uni-header h2 {
+  color: #007bff;
+  font-size: 1.8em;
+  margin-bottom: 8px;
+}
+
+.uni-fullname {
+  color: #666;
+  font-size: 14px;
+}
+
+.compare-divider-header {
+  width: 3px;
+  background: linear-gradient(180deg, #007bff, #0056b3);
+  margin: 10px 0;
+}
+
+/* Секции сравнения */
+.compare-section {
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.section-title {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 15px 20px;
+  margin: 0;
+  font-size: 1.1em;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.section-title i {
+  color: #007bff;
+  font-size: 1.1em;
+}
+
+.compare-content {
+  display: flex;
+  min-height: 150px;
+}
+
+.compare-column {
+  flex: 1;
+  padding: 20px;
+}
+
+.compare-divider {
+  width: 2px;
+  background: linear-gradient(180deg, #007bff, #0056b3);
+}
+
+/* Списки */
+.compare-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.compare-list li {
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 30px;
+}
+
+.compare-list li::before {
+  content: '•';
+  position: absolute;
+  left: 12px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.compare-list li:hover {
+  background-color: #e9ecef;
+}
+
+/* Уникальные элементы - подсветка зелёным */
+.compare-list li.unique-item,
+.scholarship-item.unique-item {
+  background-color: #d4edda;
+  border-left: 4px solid #28a745;
+}
+
+.compare-list li.unique-item::before {
+  content: '★';
+  color: #28a745;
+}
+
+.compare-list li.unique-item:hover {
+  background-color: #c3e6cb;
+}
+
+/* Подсекции программ */
+.programs-subsection {
+  margin-bottom: 20px;
+}
+
+.programs-subsection:last-child {
+  margin-bottom: 0;
+}
+
+.programs-subsection h4 {
+  color: #495057;
+  font-size: 0.95em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #dee2e6;
+}
+
+.programs-subsection h4 i {
+  color: #007bff;
+  font-size: 0.9em;
+}
+
+/* Секция ЕНТ */
+.ent-not-required {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.ent-not-required i {
+  font-size: 2.5em;
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.ent-not-required span {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #155724;
+  margin-bottom: 10px;
+}
+
+.ent-note {
+  color: #666;
+  font-size: 0.9em;
+  max-width: 300px;
+}
+
+.ent-no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.ent-no-data i {
+  font-size: 2em;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.ent-no-data span {
+  color: #666;
+  font-size: 0.95em;
+}
+
+.ent-scores {
+  padding: 10px;
+}
+
+.ent-score-item {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 12px;
+}
+
+.ent-score-item:last-child {
+  margin-bottom: 0;
+}
+
+.ent-score-item.better-score {
+  background-color: #d4edda;
+  border-left: 4px solid #28a745;
+}
+
+.ent-score-item.worse-score {
+  background-color: #f8f9fa;
+}
+
+.score-program {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 1.05em;
+}
+
+.score-details {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.score-threshold,
+.score-grant {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-label {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.score-value {
+  font-weight: 600;
+  color: #007bff;
+  font-size: 1.1em;
+}
+
+.grant-value {
+  color: #28a745;
+}
+
+.score-better {
+  color: #28a745;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.score-worse {
+  color: #dc3545;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+/* Стипендии */
+.scholarships-content {
+  padding: 5px;
+}
+
+.scholarship-item {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.scholarship-item:last-child {
+  margin-bottom: 0;
+}
+
+.scholarship-item h4 {
+  color: #333;
+  font-size: 1em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scholarship-item h4 i {
+  color: #007bff;
+}
+
+.scholarship-item p {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Нет данных */
+.no-data {
+  color: #6c757d;
+  font-style: italic;
+  text-align: center;
+  padding: 30px;
+}
+
+/* Кнопка назад */
+.back-to-selection {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 0;
+  padding: 14px 30px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.back-to-selection:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-selection i {
+  margin-right: 8px;
+}
+
+/* Адаптивность для сравнения */
+@media (max-width: 992px) {
+  .compare-container {
+    margin: 80px 20px 40px;
+    padding: 20px;
+  }
+
+  .compare-title {
+    font-size: 1.6em;
+  }
+
+  .selection-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .selection-item {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .vs-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .compare-header {
+    flex-direction: column;
+  }
+
+  .compare-divider-header {
+    width: 100%;
+    height: 3px;
+    margin: 0;
+  }
+
+  .uni-header h2 {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 768px) {
+  .compare-container {
+    margin: 70px 15px 30px;
+    padding: 15px;
+  }
+
+  .compare-title {
+    font-size: 1.4em;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .compare-content {
+    flex-direction: column;
+  }
+
+  .compare-divider {
+    width: 100%;
+    height: 2px;
+  }
+
+  .compare-column {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 1em;
+    padding: 12px 15px;
+  }
+
+  .compare-list li {
+    padding: 8px 12px;
+    padding-left: 25px;
+    font-size: 0.95em;
+  }
+
+  .ent-score-item {
+    padding: 12px;
+  }
+
+  .score-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .uni-header {
+    padding: 20px 15px;
+  }
+
+  .uni-header h2 {
+    font-size: 1.2em;
+  }
+
+  .compare-btn-submit {
+    font-size: 16px;
+    padding: 14px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .compare-container {
+    margin: 65px 10px 20px;
+    padding: 12px;
+  }
+
+  .compare-title {
+    font-size: 1.2em;
+  }
+
+  .university-select,
+  .direction-select {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .vs-badge {
+    width: 35px;
+    height: 35px;
+    font-size: 11px;
+  }
+
+  .compare-list li {
+    padding: 7px 10px;
+    padding-left: 22px;
+    font-size: 0.9em;
+  }
+
+  .scholarship-item {
+    padding: 12px;
+  }
+
+  .scholarship-item p {
+    font-size: 0.9em;
+  }
+}
+
+/* ============================================
+   СТРАНИЦА РЕЗУЛЬТАТОВ AI SEARCHER
+============================================ */
+
+.results-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+}
+
+.results-header h2 {
+  color: #00ffff;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #00ffff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.university-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.university-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+}
+
+.card-header {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(0, 150, 150, 0.2) 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  color: #00ffff;
+  font-size: 1.3em;
+  margin: 0;
+}
+
+.ranking-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.uni-name {
+  color: #fff;
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.uni-location {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9em;
+  margin-bottom: 15px;
+}
+
+.uni-location i {
+  margin-right: 5px;
+  color: #00ffff;
+}
+
+.grant-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  margin-bottom: 15px;
+}
+
+.grant-high {
+  background: rgba(0, 255, 100, 0.2);
+  color: #00ff64;
+  border: 1px solid rgba(0, 255, 100, 0.3);
+}
+
+.grant-medium {
+  background: rgba(255, 200, 0, 0.2);
+  color: #ffc800;
+  border: 1px solid rgba(255, 200, 0, 0.3);
+}
+
+.requirements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.req {
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+}
+
+.req.met {
+  background: rgba(0, 255, 100, 0.2);
+  color: #00ff64;
+  border: 1px solid rgba(0, 255, 100, 0.3);
+}
+
+.req.unmet {
+  background: rgba(255, 100, 100, 0.2);
+  color: #ff6464;
+  border: 1px solid rgba(255, 100, 100, 0.3);
+}
+
+.req.special {
+  background: rgba(0, 255, 255, 0.2);
+  color: #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.strengths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.strength {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-footer {
+  padding: 15px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-details:hover {
+  background: rgba(0, 255, 255, 0.2);
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.no-results i {
+  font-size: 4em;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+.no-results h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* ============================================
+   СТРАНИЦА УНИВЕРСИТЕТА
+============================================ */
+
+.university-page {
+  max-width: 1200px;
+  margin: 80px auto 40px;
+  padding: 0 20px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: #00ffff;
+}
+
+.loading i {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  color: #fff;
+}
+
+.error-message i {
+  font-size: 4em;
+  color: #ff6464;
+  margin-bottom: 20px;
+}
+
+.error-message h2 {
+  margin-bottom: 10px;
+}
+
+.error-message p {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #00ffff 0%, #00b3b3 100%);
+  color: #0a0a0a;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #00ffff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-color: #00ffff;
+}
+
+/* Заголовок страницы университета */
+.uni-page-header {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 30px;
+  align-items: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 30px;
+}
+
+.uni-logo img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+}
+
+.uni-title h1 {
+  color: #00ffff;
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+.uni-name-ru {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+.uni-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.badge-type {
+  background: rgba(0, 255, 255, 0.2);
+  color: #00ffff;
+}
+
+.badge-location i {
+  margin-right: 5px;
+}
+
+.uni-rankings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.uni-rankings .ranking-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.ranking-label {
+  font-size: 0.75em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ranking-value {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #00ffff;
+}
+
+.uni-rankings .qs-world {
+  border-color: rgba(0, 255, 255, 0.3);
+}
+
+.uni-rankings .national .ranking-value {
+  color: #ffc800;
+}
+
+/* Секции страницы университета */
+.uni-section {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.uni-section h2 {
+  color: #00ffff;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.uni-section h2 i {
+  font-size: 0.9em;
+}
+
+.uni-section p {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+}
+
+/* Контакты */
+.uni-contacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.contact-item i {
+  color: #00ffff;
+  width: 20px;
+  text-align: center;
+}
+
+.contact-item a {
+  color: #00ffff;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+.contact-item span {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Требования */
+.requirements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.req-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.req-card.highlight {
+  background: rgba(0, 255, 100, 0.1);
+  border-color: rgba(0, 255, 100, 0.3);
+}
+
+.req-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #00ffff;
+  font-size: 1.2em;
+}
+
+.req-card.highlight .req-icon {
+  background: rgba(0, 255, 100, 0.2);
+  color: #00ff64;
+}
+
+.req-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.req-name {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85em;
+}
+
+.req-value {
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.req-grant {
+  color: #00ffff;
+  font-size: 0.85em;
+}
+
+.ent-note {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+
+/* Сильные стороны */
+.strengths-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.strengths-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.strengths-list li i {
+  color: #00ff64;
+  margin-top: 3px;
+}
+
+/* Факультеты */
+.faculties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.faculty-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.faculty-card h4 {
+  color: #00ffff;
+  font-size: 1em;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faculty-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.faculty-card li {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 5px 0;
+  font-size: 0.9em;
+}
+
+.faculty-card li::before {
+  content: "•";
+  color: #00ffff;
+  margin-right: 8px;
+}
+
+.faculty-ent {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Табы программ */
+.programs-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn.active {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+  color: #00ffff;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.programs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.program-tag {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ЕНТ таблица */
+.ent-table {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ent-table-header {
+  display: grid;
+  grid-template-columns: 1fr 100px 100px;
+  gap: 10px;
+  padding: 15px 20px;
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.ent-table-row {
+  display: grid;
+  grid-template-columns: 1fr 100px 100px;
+  gap: 10px;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ent-table-row:last-child {
+  border-bottom: none;
+}
+
+.ent-table-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ent-table-row .threshold {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ent-table-row .grant {
+  color: #00ffff;
+  font-weight: 600;
+}
+
+.ent-not-required-full {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 25px;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.ent-not-required-full i {
+  font-size: 2em;
+  color: #00ffff;
+}
+
+.ent-not-required-full p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Стипендии */
+.scholarships-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.scholarship-block {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.scholarship-block h4 {
+  color: #00ffff;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scholarship-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.scholarship-block li {
+  color: rgba(255, 255, 255, 0.85);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scholarship-block li:last-child {
+  border-bottom: none;
+}
+
+/* Аккредитации */
+.accreditations-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.accreditations-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.accreditations-list li i {
+  color: #ffc800;
+}
+
+/* Действия */
+.uni-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Адаптивность страницы университета */
+@media (max-width: 900px) {
+  .uni-page-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .uni-logo {
+    justify-self: center;
+  }
+  
+  .uni-badges {
+    justify-content: center;
+  }
+  
+  .uni-rankings {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .university-page {
+    margin-top: 70px;
+    padding: 0 15px;
+  }
+  
+  .uni-page-header {
+    padding: 20px;
+  }
+  
+  .uni-title h1 {
+    font-size: 1.5em;
+  }
+  
+  .uni-section {
+    padding: 20px 15px;
+  }
+  
+  .ent-table-header,
+  .ent-table-row {
+    grid-template-columns: 1fr 80px 80px;
+    font-size: 0.85em;
+    padding: 10px 15px;
+  }
+  
+  .programs-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .uni-actions {
+    flex-direction: column;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Стили для требований в Compare */
+.requirements-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.requirements-content .req-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.requirements-content .req-item.unique-item {
+  background: rgba(0, 255, 100, 0.1);
+  border: 1px solid rgba(0, 255, 100, 0.2);
+}
+
+.requirements-content .req-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.requirements-content .req-value {
+  color: #fff;
+  font-weight: 500;
+}
